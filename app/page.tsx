@@ -12,10 +12,10 @@ import { Testimonials } from "@/sections/Testimonials";
 export default function Home() {
   return (
     <div className="relative">
-     
+      <Header />
       <section id="hero-section" className="relative">
         <ParticleNetwork />
-        <Header />
+       
         <Hero />
       </section>
       <LogosBanner />

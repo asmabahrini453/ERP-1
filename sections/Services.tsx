@@ -12,8 +12,8 @@ import Logo09 from "@/assets/images/money-management.png";
 
 export default function Services() {
     return (
-      <section >
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <section  >
+        <div className="mx-auto max-w-6xl px-4 sm:px-5">
           <div className="pb-12 md:pb-20">
             {/* Tab panels */}
             <div className="relative flex h-[324px] items-center justify-center">
@@ -217,7 +217,7 @@ export default function Services() {
                       </div>
                     </div>
                   </div>
-                  <div className="absolute -translate-x-[216px] -translate-y-[82px]">
+                  <div className="absolute -translate-x-[216px] -translate-y-[82px] hidden md:flex">
                     <div className="animate-[breath_6s_ease-in-out_3.5s_infinite_both]">
                       <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white shadow-lg shadow-black/[0.03] before:absolute before:inset-0 before:m-[8.334%] before:rounded-[inherit] before:border before:border-gray-700/5 before:bg-gray-200/60 before:[mask-image:linear-gradient(to_bottom,black,transparent)]">
                         <Image
@@ -225,7 +225,7 @@ export default function Services() {
                           src={Logo04}
                           width={24}
                           height={22}
-                          alt="Logo 04"
+                          alt="Logo 04"  
                         />
                       </div>
                     </div>
@@ -243,7 +243,7 @@ export default function Services() {
                       </div>
                     </div>
                   </div>
-                  <div className="absolute translate-x-[216px] translate-y-[82px]">
+                  <div className="absolute translate-x-[216px] translate-y-[82px] hidden md:flex">
                     <div className="animate-[breath_6s_ease-in-out_2s_infinite_both]">
                       <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white shadow-lg shadow-black/[0.03] before:absolute before:inset-0 before:m-[8.334%] before:rounded-[inherit] before:border before:border-gray-700/5 before:bg-gray-200/60 before:[mask-image:linear-gradient(to_bottom,black,transparent)]">
                         <Image
@@ -282,7 +282,7 @@ export default function Services() {
                       </div>
                     </div>
                   </div>
-                  <div className="absolute translate-x-[292px] opacity-40">
+                  <div className="absolute translate-x-[292px] opacity-40 hidden md:flex">
                     <div className="animate-[breath_6s_ease-in-out_4s_infinite_both]">
                       <div className="flex h-12 w-12 items-center justify-center rounded-full border border-gray-200/60 bg-white shadow-lg">
                         <Image
