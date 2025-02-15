@@ -3,6 +3,7 @@ import MenuIcon from "@/assets/icons/menu.svg"
 import Logo from "@/assets/images/erplogo.png"
 import Image from "next/image";
 
+
 export const Header = () => {
     return (
     <header className="sticky top-0 backdrop-blur-sm">
@@ -21,7 +22,7 @@ export const Header = () => {
            <div className="flex items-center justify-between">
             <div className="flex justify-center items-center">
              <Image src={Logo} alt="logo" height={60} width={60}/> 
-             <span className="font-bold tracking-tight text-[#383861] hidden md:flex">ERP PRO</span>
+             <span className="font-bold tracking-tight text-[#383861] hidden lg:flex">ERP PRO</span>
              </div>
              
               <MenuIcon className="h-5 w-5 md:hidden"/>
@@ -29,10 +30,12 @@ export const Header = () => {
                 <a href="#" > Acceuil</a>
                 <a href="#" > Services</a>
                 <a href="#"> Nouveautés</a>
+                <a href="#">Tarification</a>
                 <a href="#"  > Aide</a>
                 <a href="#" > Clients</a>
                 <button className="bg-black text-white font-medium inline-flex justify-center py-2 px-4 rounded-lg tracking-tight">se connecter</button>
             </nav>
+          
            </div>
         </div>
 

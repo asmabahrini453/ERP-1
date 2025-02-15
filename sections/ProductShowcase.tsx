@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export const ProductShowcase = () => {
   return (
-    <section className="py-24 bg-gradient-to-b from-[#FFFFFF] to-[#EAEFFA]">
+    <section className="py-24 bg-gradient-to-b from-[#FFFFFF] to-[#D2DCFF]">
       <div className="container">
         <div className="section-heading">
           <div className="flex justify-center">
