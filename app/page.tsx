@@ -1,5 +1,6 @@
 import ParticleNetwork from "@/components/particle-network";
 import { CallToAction } from "@/sections/CallToAction";
+import Categories from "@/sections/Services";
 import { Footer } from "@/sections/Footer";
 import { Header } from "@/sections/Header";
 import { Hero } from "@/sections/Hero";
@@ -21,6 +22,7 @@ export default function Home() {
       <ProductShowcase/>
       <Pricing/>
       <Testimonials/>
+      <Categories/>
       <CallToAction/>
       <Footer/>
     </div>
