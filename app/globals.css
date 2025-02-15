@@ -13,4 +13,12 @@
     .btn-text{
         @apply text-black bg-transparent;
     }
+    .logo-banner-image{
+        @apply h-8 w-auto ;
+    }
+    .mask-image-gradient {
+        @apply relative; /* Ensure the container is positioned correctly */
+        mask-image: linear-gradient(to right, transparent, rgba(0, 0, 0, 1), transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, rgba(0, 0, 0, 1), transparent); /* For webkit browsers */
+      }
 }

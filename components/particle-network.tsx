@@ -11,18 +11,20 @@ interface Particle {
 
 export default function ParticleNetwork() {
   const canvasRef = useRef<HTMLCanvasElement>(null) //canvasRef stores a refeerence of the <canvas> elem so we can draw on it
+  const heroRef = useRef<HTMLElement | null>(null) // Reference to the Hero section
 //useEffect we use it to set up the animation effect once we render the page
   useEffect(() => {
     const canvas = canvasRef.current //retrieves the actual canvas elem
-    if (!canvas) return
+    heroRef.current = document.getElementById("hero-section") as HTMLElement
+    if (!canvas || !heroRef.current) return
 
     const ctx = canvas.getContext("2d") //gets a 2D drawing context, which is needed to draw on the canvas
     if (!ctx) return
 
     // Set canvas size to match window size
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
+  const resizeCanvas = () => {
+      canvas.width = heroRef.current!.offsetWidth
+      canvas.height = heroRef.current!.offsetHeight
     }
     resizeCanvas()
     window.addEventListener("resize", resizeCanvas)
@@ -96,7 +98,7 @@ export default function ParticleNetwork() {
     //render the canvas
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full -z-10 bg-gradient-to-b from-white via-purple-50/50 to-blue-50/50"
+      className="absolute top-0 left-0 w-full h-full -z-10 bg-gradient-to-b from-white via-purple-50/50 to-blue-50/50"
     />
   )
 }
