@@ -4,6 +4,7 @@ import { Hero } from "@/sections/Hero";
 import { LogosBanner } from "@/sections/LogosBanner";
 import { Pricing } from "@/sections/Pricing";
 import { ProductShowcase } from "@/sections/ProductShowcase";
+import { Testimonials } from "@/sections/Testimonials";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <LogosBanner />
       <ProductShowcase/>
       <Pricing/>
+      <Testimonials/>
     </div>
   );
 }

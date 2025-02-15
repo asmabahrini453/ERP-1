@@ -1,6 +1,6 @@
 import ArrowRight from "@/assets/icons/arrow-right.svg"
 import MenuIcon from "@/assets/icons/menu.svg"
-import Logo from "@/assets/images/logosaas.png"
+import Logo from "@/assets/images/erplogo.png"
 import Image from "next/image";
 
 export const Header = () => {
@@ -19,7 +19,11 @@ export const Header = () => {
       <div className="py-5">
         <div className="container">
            <div className="flex items-center justify-between">
-              <Image src={Logo} alt="logo" height={40} width={40}/>
+            <div className="flex justify-center items-center">
+             <Image src={Logo} alt="logo" height={60} width={60}/> 
+             <span className="font-bold tracking-tight text-[#383861] hidden md:flex">ERP PRO</span>
+             </div>
+             
               <MenuIcon className="h-5 w-5 md:hidden"/>
               <nav className="hidden md:flex gap-6 items-center text-black/60 ">
                 <a href="#" > Acceuil</a>
