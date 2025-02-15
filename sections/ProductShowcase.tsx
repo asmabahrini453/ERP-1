@@ -3,16 +3,16 @@ import Image from "next/image";
 
 export const ProductShowcase = () => {
   return (
-    <section className="py-24">
+    <section className="py-24 bg-gradient-to-b from-[#FFFFFF] to-[#EAEFFA]">
       <div className="container">
-        <div className="max-w-[540px] mx-auto">
+        <div className="section-heading">
           <div className="flex justify-center">
             <div className="tag">Boostez votre productivité</div>
           </div>
-          <h2 className="text-center text-3xl md:text-[54px] md:leading-[60px] font-bold mt-5 tracking-tighter bg-gradient-to-b from-black to-[#001E80] text-transparent bg-clip-text">
+          <h2 className=" mt-5 section-title">
             Une manière plus efficace de suivre vos progrès
           </h2>
-          <p className="mt-5 text-center text-[22px] leading-[30px] tracking-tight text-muted-foreground">
+          <p className="mt-5 section-description text-muted-foreground ">
             Célébrez la joie de l'accomplissement avec une application conçue pour suivre vos progrès et motiver vos efforts.
           </p>
         </div>

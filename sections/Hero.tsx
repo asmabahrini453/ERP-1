@@ -5,7 +5,7 @@ export const Hero = () => {
     <section className="relative container mx-auto px-4 py-16 md:py-24 text-center">
       <div className="relative z-10">
         <div className="tag">
-          Version 2.0 est ici
+          Version 1.0 est ici
         </div>
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight mt-5 mb-6  bg-gradient-to-b from-black to-[#001E80] text-transparent bg-clip-text">
           Gestion des tâches simplifiée  
