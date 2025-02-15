@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export const Header = () => {
     return (
-    <header className="sticky top-0">
+    <header className="sticky top-0 backdrop-blur-sm">
       <div className="flex justify-center items-center py-3 bg-black text-white text-sm gap-3">
         <p className="text-white/60 hidden md:block">
         Optimisez votre flux de travail et augmentez votre productivité
