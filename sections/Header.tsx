@@ -6,14 +6,13 @@ import MenuIcon from "@/assets/icons/menu.svg";
 import Logo from "@/assets/images/erplogo.png";
 import Image from "next/image";
 
-import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 
 export const Header = () => {
   return (
     <header className="sticky top-0 backdrop-blur-sm z-50">
-      {/* Top Bar */}
-      <div className="flex justify-center items-center py-3 bg-black text-white text-sm gap-3">
+      {/* Banner */}
+      <div className="flex justify-center items-center py-3 bg-[#023E8A] text-white text-sm gap-3">
         <p className="text-white/60 hidden md:block">
           Optimisez votre flux de travail et augmentez votre productivité
         </p>
@@ -23,19 +22,19 @@ export const Header = () => {
         </div>
       </div>
 
-      {/* Main Header */}
+      {/* Nav bar */}
       <div className="py-5">
         <div className="container">
           <div className="flex items-center justify-between">
-            {/* Logo */}
-            <div className="flex justify-center items-center">
-              <Image src={Logo} alt="logo" height={60} width={60} />
-              <span className="font-bold tracking-tight text-[#383861] hidden lg:flex">
+           
+            <div className="flex justify-center items-center ">
+              <Image src={Logo} alt="logo" height={60} width={60} className="rotate-45 " />
+              <span className="font-bold tracking-tight text-[#383861] hidden lg:flex ">
                 ERP PRO
               </span>
             </div>
 
-            {/* Mobile Menu (Shadcn UI) */}
+           
             <Sheet>
               <SheetTrigger asChild>
                 <button className="md:hidden">
@@ -69,7 +68,7 @@ export const Header = () => {
                     <a href="#" className="hover:text-black">Clients</a>
                   </SheetClose>
                   <SheetClose asChild>
-                    <button className="bg-black text-white font-medium py-2 px-4 rounded-lg tracking-tight">
+                    <button className="bg-[#023E8A] text-white font-medium py-2 px-4 rounded-lg tracking-tight">
                       Se connecter
                     </button>
                   </SheetClose>
@@ -77,7 +76,7 @@ export const Header = () => {
               </SheetContent>
             </Sheet>
 
-            {/* Desktop Navigation */}
+          
             <nav className="hidden md:flex gap-6 items-center text-black/60">
               <a href="#" className="hover:text-black">Acceuil</a>
               <a href="#" className="hover:text-black">Services</a>
@@ -85,7 +84,7 @@ export const Header = () => {
               <a href="#" className="hover:text-black">Tarification</a>
               <a href="#" className="hover:text-black">Aide</a>
               <a href="#" className="hover:text-black">Clients</a>
-              <button className="bg-black text-white font-medium py-2 px-4 rounded-lg tracking-tight">
+              <button className="bg-[#023E8A] text-white font-medium py-2 px-4 rounded-lg tracking-tight">
                 Se connecter
               </button>
             </nav>

@@ -7,13 +7,20 @@ import Youtube from "@/assets/icons/social-youtube.svg"
 
 export const Footer = () => {
     return (
-        <footer className="bg-black text-sm text-[#BCBCBC] py-10 text-center">
+        <footer className=" bg-[#023E8A] text-sm text-[#BCBCBC] py-10 text-center">
             <div className="container">
                 <div className="relative w-full">
                     <div className="inline-flex relative "></div>
-                    <div className=" flex justify-center">
-                        <Image className="relative" src={Logo} alt="logo" height={60} width={60} />
-                    </div>
+                    <div className="relative flex justify-center items-center">
+                        <div className="absolute w-[60px] h-[60px] bg-white blur-xl opacity-70 rounded-lg " />
+                        <Image 
+                            src={Logo} 
+                            alt="logo" 
+                            height={60} 
+                            width={60} 
+                            className="relative rotate-45"
+                        />
+                        </div>
                 </div>
             </div>
             <nav className="flex flex-col gap-6 mt-6 md:flex-row md:justify-center" >
