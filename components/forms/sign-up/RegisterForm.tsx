@@ -10,8 +10,8 @@ function RegisterForm() {
 
   return (
     <>
-      <h2 className="text-gravel md:text-4xl font-bold">Détails du compte</h2>
-      <p className="text-iridium md:text-sm">Veuillez saisir vos coordonnées</p>
+      <h2 className=" md:text-4xl section-title text-left">Détails du compte</h2>
+      <p className="section-description text-left text-lg text-muted-foreground">Veuillez saisir vos coordonnées</p>
 
       {USER_REGISTRATION_FORM.map((field) => (
         <FormGenerator

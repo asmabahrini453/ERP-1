@@ -22,7 +22,7 @@ const SignInPage = () => {
                 Vous n'avez pas de compte ?{' '}
                 <Link
                     href="/auth/sign-up"
-                    className="font-bold hover:text-[#023E8A]"
+                    className="font-bold text-[#3BCEAB]"
                 >
                     Créez-en un
                 </Link>

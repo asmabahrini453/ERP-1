@@ -1,5 +1,5 @@
 "use client";
-import productImage from "@/assets/images/product.jpg";
+import productImage from "@/assets/images/product.png";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect } from "react";
