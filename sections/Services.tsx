@@ -12,8 +12,8 @@ import Logo09 from "@/assets/images/money-management.png";
 
 export default function Services() {
     return (
-      <section  >
-        <div className="mx-auto max-w-6xl px-4 sm:px-5">
+      <section >
+        <div className="mx-auto max-w-6xl px-4 sm:px-5 ">
           <div className="pb-12 md:pb-20">
             {/* Tab panels */}
             <div className="relative flex h-[324px] items-center justify-center">

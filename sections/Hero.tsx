@@ -16,7 +16,7 @@ export const Hero = () => {
           Gérez vos tâches, optimisez vos flux de travail et boostez votre productivité avec notre ERP tout-en-un.  
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center mt-[30px]">
-          <button className="btn">Commencer</button>
+          <button className="btn hover:bg-[#3BCEAB]">Commencer</button>
           <button className="btn btn-text inline-flex gap-1 items-center">
             <span>En savoir plus</span>
             <ArrowRight className="h-5 w-5 " />

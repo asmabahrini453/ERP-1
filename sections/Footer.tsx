@@ -7,7 +7,7 @@ import Youtube from "@/assets/icons/social-youtube.svg"
 
 export const Footer = () => {
     return (
-        <footer className=" bg-[#023E8A] text-sm text-[#BCBCBC] py-10 text-center">
+        <footer className="  text-sm text-[#BCBCBC] py-10 text-center">
             <div className="container">
                 <div className="relative w-full">
                     <div className="inline-flex relative "></div>

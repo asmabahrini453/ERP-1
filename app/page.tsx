@@ -24,6 +24,8 @@ export default function Home() {
       <Testimonials/>
       <Categories/>
       <CallToAction/>
+    
+     
       <Footer/>
     </div>
   );

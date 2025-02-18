@@ -114,7 +114,7 @@ const TestimonialsColumn = (
 
 export const Testimonials = () => {
   return (
-    <section className="bg-white">
+    <section >
       <div className="container">
         <div className="section-heading">
           <div className="flex justify-center">
@@ -125,7 +125,7 @@ export const Testimonials = () => {
             De la gestion des stocks à l'automatisation des processus, notre ERP transforme le quotidien des entreprises.
           </p>
         </div>
-        <div className="flex justify-center gap-6  mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)] max-h-[738px] overflow-hidden">
+        <div className="flex justify-center gap-6  mt-10 [mask-image:linear-gradient(to_bottom,white,black_25%,black_75%,white)] max-h-[738px] overflow-hidden">
           <TestimonialsColumn testimonials={firstColumn} duration={15} />
           <TestimonialsColumn testimonials={secondColumn} duration={19} className="hidden md:block" />
           <TestimonialsColumn testimonials={thirdColumn} duration={17} className="hidden lg:block" />
