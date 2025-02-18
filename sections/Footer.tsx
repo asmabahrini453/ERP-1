@@ -18,7 +18,7 @@ export const Footer = () => {
                             alt="logo" 
                             height={60} 
                             width={60} 
-                            className="relative rotate-45"
+                            className="relative"
                         />
                         </div>
                 </div>

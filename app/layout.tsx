@@ -6,8 +6,11 @@ import {twMerge} from "tailwind-merge";
 const dmSans = DM_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "ERP Pro Plateform",
+  title: "ERP Pro ",
   description: "Gestion des tâches simplifiée pour équipes et particuliers",
+  icons: {
+    icon:"/erplogo.png" ,
+  },
 };
 
 export default function RootLayout({

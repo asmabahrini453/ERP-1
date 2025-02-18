@@ -7,6 +7,7 @@ import Logo from "@/assets/images/erplogo.png";
 import Image from "next/image";
 
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
+import Link from "next/link";
 
 export const Header = () => {
   return (
@@ -28,7 +29,7 @@ export const Header = () => {
           <div className="flex items-center justify-between">
            
             <div className="flex justify-center items-center ">
-              <Image src={Logo} alt="logo" height={60} width={60} className="rotate-45 " />
+              <Image src={Logo} alt="logo" height={60} width={60}  />
               <span className="font-bold tracking-tight text-[#383861] hidden lg:flex ">
                 ERP PRO
               </span>
@@ -68,9 +69,9 @@ export const Header = () => {
                     <a href="#" className="hover:text-black">Clients</a>
                   </SheetClose>
                   <SheetClose asChild>
-                    <button className="bg-[#023E8A] text-white font-medium py-2 px-4 rounded-lg tracking-tight">
+                    <Link  href="/auth/sign-in" className="bg-[#023E8A] text-white font-medium flex items-center justify-center py-2 px-4 rounded-lg tracking-tight">
                       Se connecter
-                    </button>
+                    </Link>
                   </SheetClose>
                 </nav>
               </SheetContent>
@@ -84,9 +85,9 @@ export const Header = () => {
               <a href="#" className="hover:text-black">Tarification</a>
               <a href="#" className="hover:text-black">Aide</a>
               <a href="#" className="hover:text-black">Clients</a>
-              <button className="bg-[#023E8A] text-white font-medium py-2 px-4 rounded-lg tracking-tight">
+              <Link  href="/auth/sign-in"  className="bg-[#023E8A] text-white font-medium py-2 px-4 rounded-lg tracking-tight">
                 Se connecter
-              </button>
+              </Link>
             </nav>
           </div>
         </div>

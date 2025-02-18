@@ -10,7 +10,6 @@ import avatar7 from "@/assets/images/avatar-7.png";
 import avatar8 from "@/assets/images/avatar-8.png";
 import avatar9 from "@/assets/images/avatar-9.png";
 import Image from "next/image";
-import { twMerge } from "tailwind-merge";
 import React from "react";
 
 const testimonials = [
