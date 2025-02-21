@@ -11,7 +11,7 @@ import Link from "next/link";
 
 export const Header = () => {
   return (
-    <header className="sticky top-0 backdrop-blur-sm z-50">
+    <header className="sticky top-0  z-50">
       {/* Banner */}
       <div className="flex justify-center items-center py-3 bg-[#023E8A] text-white text-sm gap-3">
         <p className="text-white/60 hidden md:block">
