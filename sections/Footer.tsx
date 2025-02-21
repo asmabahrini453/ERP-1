@@ -19,9 +19,9 @@ export const Footer = () => {
                     />
                     <nav className="flex flex-col gap-6 md:flex-row justify-center">
                         <div className="flex justify-center items-center gap-9">
-                            <div className="relative group flex flex-col items-start">
+                            <div className="relative group flex flex-col items-start font-semibold">
                                 <a href="#">Acceuil</a>
-                                <div className="flex flex-col items-start text-[#023E8A]">
+                                <div className="flex flex-col items-start text-[#023E8A] ">
                                     <p className="hover:text-[#3BCEAB] cursor-pointer">Produit</p>
                                     <p className="hover:text-[#3BCEAB] cursor-pointer">Composant</p>
                                     <p className="hover:text-[#3BCEAB] cursor-pointer">Tarifs</p>
@@ -30,9 +30,9 @@ export const Footer = () => {
                                     <p className="hover:text-[#3BCEAB] cursor-pointer">React authentication</p>
                                 </div>
                             </div>
-                            <div className="relative group flex flex-col  items-start">
+                            <div className="relative group flex flex-col  items-start font-semibold">
                                 <a href="#">Services</a>
-                                <div className="flex flex-col items-start text-[#023E8A]">
+                                <div className="flex flex-col items-start text-[#023E8A] ">
                                     <p className="hover:text-[#3BCEAB] cursor-pointer">Product</p>
                                     <p className="hover:text-[#3BCEAB] cursor-pointer">Components</p>
                                     <p className="hover:text-[#3BCEAB] cursor-pointer">Pricing</p>
@@ -43,10 +43,10 @@ export const Footer = () => {
                             </div>
                         </div>
 
-                        <div className="flex justify-center items-center gap-9">
+                        <div className="flex justify-center items-center gap-9 font-semibold">
                             <div className="relative group flex flex-col  items-start">
                                 <a href="#">Tarification</a>
-                                <div className="flex flex-col  items-start text-[#023E8A]">
+                                <div className="flex flex-col  items-start text-[#023E8A] ">
                                     <p className="hover:text-[#3BCEAB] cursor-pointer ">Product</p>
                                     <p className="hover:text-[#3BCEAB] cursor-pointer">Components</p>
                                     <p className="hover:text-[#3BCEAB] cursor-pointer">Pricing</p>
@@ -55,9 +55,9 @@ export const Footer = () => {
                                     <p className="hover:text-[#3BCEAB] cursor-pointer">React authentication</p>
                                 </div>
                             </div>
-                            <div className="relative group flex flex-col  items-start">
+                            <div className="relative group flex flex-col  items-start font-semibold">
                                 <a href="#">Aide</a>
-                                <div className="flex flex-col  items-start text-[#023E8A]">
+                                <div className="flex flex-col  items-start text-[#023E8A] ">
                                     <p className="hover:text-[#3BCEAB] cursor-pointer">Product</p>
                                     <p className="hover:text-[#3BCEAB] cursor-pointer">Components</p>
                                     <p className="hover:text-[#3BCEAB] cursor-pointer">Pricing</p>
@@ -73,11 +73,11 @@ export const Footer = () => {
                 <hr className="w-full mt-6" />
 
                 {/* Second section with copyright and social icons */}
-                <div className="flex flex-col items-center md:flex-row justify-between mt-6 mb-6">
+                <div className="flex flex-col items-center md:flex-row justify-between mt-6 mb-2">
                     <p className="text-center mb-4 md:mb-0">
                         &copy; 2025, Tous droits réservés à DevPro Solutions.
                     </p>
-                    <div className="flex justify-center gap-6 sm:mt-2">
+                    <div className="flex justify-center gap-6 sm:mt-2 ">
                         <X className="text-[#3BCEAB] hover:text-[#023E8A] cursor-pointer" />
                         <Insta className="text-[#3BCEAB] hover:text-[#023E8A] cursor-pointer" />
                         <Linkedin className="text-[#3BCEAB] hover:text-[#023E8A] cursor-pointer" />
