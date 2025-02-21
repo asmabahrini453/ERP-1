@@ -56,18 +56,14 @@ export const Header = () => {
                   <SheetClose asChild>
                     <a href="#" className="hover:text-black">Services</a>
                   </SheetClose>
-                  <SheetClose asChild>
-                    <a href="#" className="hover:text-black">Nouveautés</a>
-                  </SheetClose>
+                 
                   <SheetClose asChild>
                     <a href="#" className="hover:text-black">Tarification</a>
                   </SheetClose>
                   <SheetClose asChild>
                     <a href="#" className="hover:text-black">Aide</a>
                   </SheetClose>
-                  <SheetClose asChild>
-                    <a href="#" className="hover:text-black">Clients</a>
-                  </SheetClose>
+                
                   <SheetClose asChild>
                     <Link  href="/auth/sign-in" className="bg-[#023E8A] hover:bg-[#3BCEAB] text-white font-medium flex items-center justify-center py-2 px-4 rounded-lg tracking-tight">
                       Se connecter
@@ -81,10 +77,8 @@ export const Header = () => {
             <nav className="hidden md:flex gap-6 items-center text-black/60">
               <a href="#" className="hover:text-black">Acceuil</a>
               <a href="#" className="hover:text-black">Services</a>
-              <a href="#" className="hover:text-black">Nouveautés</a>
               <a href="#" className="hover:text-black">Tarification</a>
               <a href="#" className="hover:text-black">Aide</a>
-              <a href="#" className="hover:text-black">Clients</a>
               <Link  href="/auth/sign-in"  className="bg-[#023E8A] text-white font-medium py-2 px-4 rounded-lg tracking-tight hover:bg-[#3BCEAB]">
                 Se connecter
               </Link>
