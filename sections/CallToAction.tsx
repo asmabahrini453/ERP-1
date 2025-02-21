@@ -2,8 +2,7 @@
 import Lottie from "lottie-react";
 import animationData from "@/assets/animations/animation.json"; 
 import ArrowRight from "@/assets/icons/arrow-right.svg";
-import Logo from "@/assets/images/erplogo.png";
-import Image from "next/image";
+import Typewriter from 'typewriter-effect';
 
 export const CallToAction = () => {
     return (
@@ -11,11 +10,18 @@ export const CallToAction = () => {
             <div className="container sm:max-w-[450px] md:max-w-[1100px] bg-white shadow-xl rounded-3xl px-4 md:px-6 flex flex-col md:flex-row items-center relative overflow-hidden min-h-[90px] md:min-h-[130px]">
                 
                 <div className="w-full text-left space-y-3 md:space-y-4 px-4 sm:m-2 mt-8 sm:mt-5 sm:mb-5 md:mt-5">
-                    <h2 className="section-title md:text-left md:text-5xl">
-                        Optimisez votre gestion,
-                         <br /> 
-                        <span className="text-[#3BCEAB] section-title md:text-5xl">sans contraintes</span>
-                    </h2>
+                <h2 className="section-title md:text-left  ">Optimisez votre gestion,
+               <span className="text-[#3BCEAB] section-title md:text-5xl md:text-left">
+               <Typewriter
+                    options={{
+                        strings: [' sans contraintes '],
+                        autoStart: true,
+                        loop: true,
+                    }}
+                />
+              </span>
+              </h2>
+
                     <p className="section-description md:text-left text-muted-foreground text-sm md:text-lg mt-5">
                         Gérez vos processus métier avec efficacité grâce à une solution ERP <br /> complète et intuitive. 
                         <span className="font-semibold"> Gratuit pour vos premiers utilisateurs.</span>
