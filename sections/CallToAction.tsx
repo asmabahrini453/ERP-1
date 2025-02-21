@@ -8,7 +8,7 @@ import Image from "next/image";
 export const CallToAction = () => {
     return (
         <section className="py-8 flex justify-center">
-            <div className="container sm:max-w-[500px] md:max-w-[1100px] bg-white shadow-xl rounded-3xl px-4 md:px-6 flex flex-col md:flex-row items-center relative overflow-hidden min-h-[90px] md:min-h-[130px]">
+            <div className="container sm:max-w-[500px] md:max-w-[1100px] lg:max-w-[1150px] bg-white shadow-xl rounded-3xl px-4 md:px-6 flex flex-col md:flex-row items-center relative overflow-hidden min-h-[90px] md:min-h-[130px]">
                 
                 {/* Texte */}
                 <div className="w-full text-left space-y-3 md:space-y-4 px-4 sm:m-2 mt-8 sm:mt-5 sm:mb-5 md:mt-5">

@@ -11,9 +11,9 @@ import Link from "next/link";
 
 export const Header = () => {
   return (
-    <header className="sticky top-0  z-50">
+    <header>
       {/* Banner */}
-      <div className="flex justify-center items-center py-3 bg-[#023E8A] text-white text-sm gap-3">
+      <div className="flex justify-center items-center py-1 bg-[#023E8A] text-white text-sm gap-3">
         <p className="text-white/60 hidden md:block">
           Optimisez votre flux de travail et augmentez votre productivité
         </p>
@@ -24,7 +24,7 @@ export const Header = () => {
       </div>
 
       {/* Nav bar */}
-      <div className="py-5">
+      <div className="py-1">
         <div className="container">
           <div className="flex items-center justify-between">
            
