@@ -2,7 +2,7 @@ import ArrowRight from "@/assets/icons/arrow-right.svg";
 
 export const Hero = () => {
   return (
-    <section className="relative container mx-auto px-4 py-16 md:py-28 lg:py-52 text-center">
+    <section className="relative container mx-auto px-4 py-16 md:py-28  text-center">
       <div className="relative z-10">
         <div className="tag">
           Version 1.0 est ici
