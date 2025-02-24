@@ -8,6 +8,7 @@ import { LogosBanner } from "@/sections/LogosBanner";
 import { Pricing } from "@/sections/Pricing";
 import { ProductShowcase } from "@/sections/ProductShowcase";
 import { Testimonials } from "@/sections/Testimonials";
+import { Features } from "@/sections/Features";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       </section>
       <LogosBanner />
       <ProductShowcase/>
+      <Features/>
       <Pricing/>
       <Testimonials/>
       <Categories/>
