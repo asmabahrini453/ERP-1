@@ -32,7 +32,7 @@ export const Features = () => {
                     initial={{ opacity: 0 }} 
                     whileInView={{ opacity: 1 }} 
                     viewport={{ once: true, amount: 0.5 }} 
-                    transition={{ duration: 0.5 }} 
+                    transition={{ duration: 0.7 }} 
                 >
                     <FeatureCard
                         title="Gestion optimisée des tâches"
