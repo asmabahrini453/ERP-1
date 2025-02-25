@@ -16,19 +16,21 @@ export default function Home() {
       <Header />
       <section id="hero-section" className="relative">
         <ParticleNetwork />
-       
         <Hero />
       </section>
+
       <LogosBanner />
-      <ProductShowcase/>
-      <Features/>
-      <Pricing/>
-      <Testimonials/>
-      <Categories/>
-      <CallToAction/>
-    
      
-      <Footer/>
-    </div>
+      
+
+        <ProductShowcase />
+        <Features />
+        <Pricing />
+        <Testimonials />
+        <Categories />
+        <CallToAction />
+      <Footer />
+    
+      </div>
   );
 }

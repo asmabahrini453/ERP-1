@@ -18,17 +18,17 @@ const features = [
 
 export const Features = () => {
     return (
-        <section className="py-24">
-            <div className="container">
-                <div className="section-heading">
-                    <h2 className="section-title">Fonctionnalités</h2>
+        <section className="py-24 flex justify-center items-center">
+            <div className="container text-center">
+                <div className="section-heading mb-12">
+                    <h2 className="section-title text-3xl font-bold">Fonctionnalités</h2>
                     <p className="section-description mt-5 text-muted-foreground">
                         Là où la puissance rencontre la simplicité
                     </p>
                 </div>
-                
+
                 <motion.div
-                    className="mt-12 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-3 gap-8"
+                    className="mt-12 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-3 gap-8 justify-items-center"
                     initial={{ opacity: 0 }} 
                     whileInView={{ opacity: 1 }} 
                     viewport={{ once: true, amount: 0.5 }} 

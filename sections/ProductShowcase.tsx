@@ -26,8 +26,9 @@ export const ProductShowcase = () => {
   }, [scrollYProgress]);
 
   return (
-    <section className="py-24 bg-gradient-to-b from-[#FFFFFF] to-[#F6F7FA]">
+    <section className="py-24 bg-gradient-to-b from-[#FFFFFF] to-[#F6F7FA] " >
       <div className="container">
+        
         <div className="section-heading">
           <div className="flex justify-center">
             <div className="tag">Boostez votre productivité</div>

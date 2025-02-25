@@ -36,6 +36,7 @@
     .card {
         @apply p-10 border border-[#222222]/10 max-w-xs w-full rounded-3xl shadow-[0_7px_14px_#EEEEF1];
     }
+   
  
 }
 @layer base {
@@ -65,6 +66,7 @@
         --chart-4: 43 74% 66%;
         --chart-5: 27 87% 67%;
         --radius: 0.5rem
+        
     }
   .dark {
         --background: 222.2 84% 4.9%;

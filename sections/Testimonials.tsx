@@ -114,7 +114,7 @@ const TestimonialsColumn = (
 
 export const Testimonials = () => {
   return (
-    <section >
+    <section  >
       <div className="container">
         <div className="section-heading">
           <div className="flex justify-center">
