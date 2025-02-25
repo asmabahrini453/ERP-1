@@ -11,7 +11,7 @@ export const FeatureCard=(props:{
         <motion.div   
          whileHover={{ scale: 1.15 }}
         transition={{ duration: 0.3 }} 
-        className={twMerge("bg-white border_white/10 shadow-xl p-6 rounded-3xl w-[400px]",className)}>
+        className={twMerge("bg-white border_white/10 shadow-xl p-6 rounded-3xl w-[400px] ",className)}>
             <div className="aspect-video">{children}</div>
             <div>
                 <h3 className="text-3xl font-medium mt-6 section-title text-left">{title}</h3>

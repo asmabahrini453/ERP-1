@@ -21,7 +21,7 @@ export const Features = () => {
         <section className="py-24 flex justify-center items-center">
             <div className="container text-center">
                 <div className="section-heading mb-12">
-                    <h2 className="section-title text-3xl font-bold">Fonctionnalités</h2>
+                    <h2 className="section-title  font-bold">Fonctionnalités</h2>
                     <p className="section-description mt-5 text-muted-foreground">
                         Là où la puissance rencontre la simplicité
                     </p>
@@ -32,7 +32,7 @@ export const Features = () => {
                     initial={{ opacity: 0 }} 
                     whileInView={{ opacity: 1 }} 
                     viewport={{ once: true, amount: 0.5 }} 
-                    transition={{ duration: 0.7 }} 
+                    transition={{ duration: 0.5 }} 
                 >
                     <FeatureCard
                         title="Gestion optimisée des tâches"
@@ -41,8 +41,6 @@ export const Features = () => {
                     >
                         <motion.div 
                             className="flex items-center justify-center overflow-hidden"
-                            whileHover={{ scale: 1.15 }}
-                            transition={{ duration: 0.3 }}
                         >
                             <Image 
                                 src={taskflow} 
@@ -59,8 +57,6 @@ export const Features = () => {
                     >
                         <motion.div 
                             className="flex items-center justify-center overflow-hidden"
-                            whileHover={{ scale: 1.15 }}
-                            transition={{ duration: 0.3 }}
                         >
                             <Image 
                                 src={workflow} 
@@ -77,8 +73,6 @@ export const Features = () => {
                     >
                         <motion.div 
                             className="flex items-center justify-center overflow-hidden"
-                            whileHover={{ scale: 1.15 }}
-                            transition={{ duration: 0.3 }}
                         >
                             <Image 
                                 src={kanban} 

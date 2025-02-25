@@ -7,7 +7,7 @@ import Youtube from "@/assets/icons/social-youtube.svg";
 
 export const Footer = () => {
     return (
-        <footer className="text-sm text-[#BCBCBC] py-10">
+        <footer className="text-sm text-[#BCBCBC] pt-24 pb-12">
             <div className="container">
                 <hr className="w-full mb-6" />
                 <div className="flex flex-col items-center md:flex-row justify-between mb-6">
@@ -19,7 +19,7 @@ export const Footer = () => {
                     />
                     <nav className="flex flex-col gap-6 md:flex-row justify-center">
                         <div className="flex justify-center items-center gap-9">
-                            <div className="relative group flex flex-col items-start font-semibold">
+                            <div className="relative group flex flex-col items-start ">
                                 <a href="#">Acceuil</a>
                                 <div className="flex flex-col items-start text-[#023E8A] ">
                                     <p className="hover:text-[#3BCEAB] cursor-pointer">Produit</p>
@@ -30,7 +30,7 @@ export const Footer = () => {
                                     <p className="hover:text-[#3BCEAB] cursor-pointer">React authentication</p>
                                 </div>
                             </div>
-                            <div className="relative group flex flex-col  items-start font-semibold">
+                            <div className="relative group flex flex-col  items-start">
                                 <a href="#">Services</a>
                                 <div className="flex flex-col items-start text-[#023E8A] ">
                                     <p className="hover:text-[#3BCEAB] cursor-pointer">Product</p>
@@ -43,7 +43,7 @@ export const Footer = () => {
                             </div>
                         </div>
 
-                        <div className="flex justify-center items-center gap-9 font-semibold">
+                        <div className="flex justify-center items-center gap-9">
                             <div className="relative group flex flex-col  items-start">
                                 <a href="#">Tarification</a>
                                 <div className="flex flex-col  items-start text-[#023E8A] ">
@@ -55,7 +55,7 @@ export const Footer = () => {
                                     <p className="hover:text-[#3BCEAB] cursor-pointer">React authentication</p>
                                 </div>
                             </div>
-                            <div className="relative group flex flex-col  items-start font-semibold">
+                            <div className="relative group flex flex-col  items-start">
                                 <a href="#">Aide</a>
                                 <div className="flex flex-col  items-start text-[#023E8A] ">
                                     <p className="hover:text-[#3BCEAB] cursor-pointer">Product</p>
@@ -72,9 +72,8 @@ export const Footer = () => {
 
                 <hr className="w-full mt-6" />
 
-                {/* Second section with copyright and social icons */}
-                <div className="flex flex-col items-center md:flex-row justify-between mt-6 mb-2">
-                    <p className="text-center mb-4 md:mb-0">
+                <div className="flex flex-col items-center md:flex-row justify-between mt-6 ">
+                    <p className="text-center">
                         &copy; 2025, Tous droits réservés à DevPro Solutions.
                     </p>
                     <div className="flex justify-center gap-6 sm:mt-2 ">
