@@ -25,8 +25,8 @@ export const ProductShowcase = () => {
 
   return (
     <section
-      className="py-24 relative bg-cover bg-right"
-      style={{ backgroundImage: "url('/blurred-shape.svg')"  ,}}
+      className="py-24  lg:relative  lg:bg-cover  lg:bg-right"
+      style={{ backgroundImage: "url('/blurred-shape1.png')"  ,}}
     >
       <div className="container relative z-10">
         <div className="section-heading">

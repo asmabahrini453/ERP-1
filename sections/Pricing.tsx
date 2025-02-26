@@ -3,7 +3,6 @@
 import CheckIcon from "@/assets/icons/check.svg";
 import { twMerge } from "tailwind-merge";
 import { easeOut, motion } from "framer-motion";
-import Image from "next/image";
 
 const pricingTiers = [
   {
@@ -58,24 +57,25 @@ const pricingTiers = [
 
 export const Pricing = () => {
   return (
-    <section className="py-24 relative ">
+    <section className="py-24 relative">
       <div 
-        className="absolute inset-0 bg-cover z-0 top-50" 
+        className="lg:absolute lg:inset-0 lg:bg-cover  lg:z-0  lg:top-10" 
         style={{ 
-          backgroundImage: "url('/blurred-shape.svg')",
-          backgroundPosition: "center top",
-          transform: "translateY(-30%)" 
+          backgroundImage: "url('/blurred-shape1.png')"  ,
+         backgroundPosition: "center top",
+         backgroundSize:"80%",
+          transform: "translateY(-40%)  translatex(-10%)" 
         }}
       ></div>
-      
-      <div className="container relative z-10">
+
+
+      <div className="container">
         <div className="section-heading">
           <h2 className="section-title">Tarification</h2>
           <p className="section-description mt-5 text-muted-foreground">
-            Choisissez l'offre qui correspond à vos besoins et optimisez la gestion de votre entreprise avec notre ERP puissant et intuitif.
+            Choisissez l’offre qui correspond à vos besoins et optimisez la gestion de votre entreprise avec notre ERP puissant et intuitif.
           </p>
         </div>
-
         <div className="flex flex-col gap-6 items-center mt-10 lg:flex-row lg:items-end lg:justify-center">
           {pricingTiers.map(({ title, monthlyPrice, buttonText, popular, inverse, features }) => (
             <motion.div
@@ -85,19 +85,20 @@ export const Pricing = () => {
                 inverse && "border-black text-white bg-[#023E8A]"
               )}
               whileHover={{
-                rotateX: 1.5,
-                rotateY: 1.5,
-                scale: 1.08,
+                rotateX:1.5, 
+                rotateY:1.5, 
+                scale: 1.08, 
               }}
               transition={{
-                duration: 0.1,
-                ease: easeOut,
+                duration: .1, 
+                ease:easeOut,
               }}
             >
               <div className="flex justify-between">
                 <h3 className={twMerge("text-lg font-bold text-black/50", inverse && "text-white/60")}>
                   {title}
                 </h3>
+
                 {popular && (
                   <div className="inline-flex text-sm px-4 py-1.5 rounded-xl border border-white/20">
                     <motion.span
@@ -118,11 +119,9 @@ export const Pricing = () => {
 
               <div className="flex items-baseline gap-1 mt-[30px]">
                 <span className="text-4xl font-bold tracking-tighter leading-none">{monthlyPrice}€</span>
-                <span className={twMerge("tracking-tighter font-bold text-black/50", inverse && "tracking-tighter font-bold text-white")}>
-                  /mois
-                </span>
+                <span className={twMerge("tracking-tighter font-bold text-black/50", inverse && "tracking-tighter font-bold text-white")}>/mois</span>
               </div>
-              <button className={twMerge("btn btn-primary w-full mt-[30px] hover:bg-[#3BCEAB]", inverse && "bg-white text-black hover:text-white")}>
+              <button className={twMerge("btn btn-primary w-full mt-[30px] hover:bg-[#3BCEAB]", inverse && "bg-white text-black hover:text-white" )}>
                 {buttonText}
               </button>
               <ul className="flex flex-col gap-5 mt-8">

@@ -19,7 +19,7 @@ const features = [
 export const Features = () => {
     return (
         <section 
-            className="py-24 flex justify-center items-center bg-cover bg-top relative"
+            className="py-24 lg:flex  lg:justify-center  lg:items-center  lg:bg-cover  lg:bg-top  lg:relative"
             style={{
                  backgroundImage: "url('/secondary-illustration1.png')"  
                

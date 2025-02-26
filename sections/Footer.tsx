@@ -7,22 +7,9 @@ import Youtube from "@/assets/icons/social-youtube.svg";
 
 export const Footer = () => {
     return (
-        <footer 
-            className="relative text-sm text-[#BCBCBC] pt-24 pb-12 bg-no-repeat bg-cover bg-center"
-        >
-            <div
-          className="pointer-events-none absolute bottom-0 left-1/2 -z-10 -translate-x-1/2"
-          aria-hidden="true"
-        >
-          <Image
-            className="max-w-none"
-            src="/footer-illustration.svg"
-            width={1176}
-            height={378}
-            alt="Footer illustration"
-          />
-        </div>
+        <footer className="text-sm text-[#BCBCBC] pt-24 pb-12">
             <div className="container">
+            
                 <hr className="w-full mb-6" />
                 <div className="flex flex-col items-center md:flex-row justify-between mb-6">
                     <Image 

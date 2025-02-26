@@ -2,7 +2,7 @@
 
 import Plus from "@/assets/icons/plus.svg";
 import { twMerge } from "tailwind-merge";
-import {AnimatePresence, motion} from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 
 const faqs = [
@@ -29,64 +29,79 @@ const faqs = [
 ];
 
 export const FAQ = () => {
-    const [selectedIndex,setselectedIndex] = useState(0);
+    const [selectedIndex, setselectedIndex] = useState(0);
 
     return (
-        <section 
-        className="py-24 flex justify-center items-center bg-cover bg-top relative"
-        style={{
-             backgroundImage: "url('/secondary-illustration1.png')"  
-           
-            }}
-    >
-            <div className="container">
-                <div className="section-heading mb-12">
-                    <h2 className="section-title">FAQ</h2>
-                    <p className="section-description mt-5 text-muted-foreground">
-                        Nous avons des réponses
-                    </p>
-                </div>
+        <section className="py-24 lg:relative ">
+            {/* Large Device Section */}
+            <div 
+                className="lg:absolute lg:inset-0 lg:bg-cover lg:z-0 top-10"
+                style={{
+                    backgroundImage: "url('/blurred-shape1.png')",
+                    backgroundPosition: "center top",
+                    backgroundSize: "80%",
+                    transform: "translateY(-40%) translatex(-30%)"
+                }}
+            ></div>
 
-                <div className="grid gap-6 grid-cols-1">
-                    {faqs.map((faq, faqIndex) => (
-                        <div
-                            key={faq.question}
-                            className="bg-white rounded-2xl border border-white/10 p-6 flex flex-col justify-between shadow-xl"
-                        >
-                            <div className="flex items-center justify-between gap-6 cursor-pointer" onClick={()=> (setselectedIndex(faqIndex))}>
-                                <h3 className="font-medium flex-1">{faq.question}</h3>
-                                <Plus
-                                    className={twMerge(
-                                        "text-[#3BCEAB] flex-shrink-0  transition duration-300  cursor-pointer",
-                                        selectedIndex === faqIndex && "rotate-45"
-                                    )}
-                                />
-                            </div>
-                            <AnimatePresence>
-                                {selectedIndex === faqIndex && (
-                                <motion.div
-                                    initial={{
-                                    height: 0,
-                                    marginTop: 0,
-                                    }}
-                                    animate={{
-                                    height: "auto",
-                                    marginTop: 24,
-                                    }}
-                                    exit={{
-                                    height: 0,
-                                    marginTop: 0,
-                                    }}
-                                    className= "overflow-hidden"
-                                   
-                                    id={`faq-answer-${faqIndex}`}
+            {/* Small Device Section */}
+            <div 
+                className="sm:py-24 sm:flex sm:justify-center sm:items-center sm:bg-cover sm:bg-top sm:relative"
+                style={{
+                    backgroundImage: "url('/secondary-illustration1.png')"
+                }}
+            >
+                <div className="container">
+                    <div className="section-heading mb-12">
+                        <h2 className="section-title">FAQ</h2>
+                        <p className="section-description mt-5 text-muted-foreground">
+                            Nous avons des réponses
+                        </p>
+                    </div>
+
+                    <div className="grid gap-6 grid-cols-1">
+                        {faqs.map((faq, faqIndex) => (
+                            <div
+                                key={faq.question}
+                                className="bg-white rounded-2xl border border-white/10 p-6 flex flex-col justify-between shadow-xl"
+                            >
+                                <div 
+                                    className="flex items-center justify-between gap-6 cursor-pointer" 
+                                    onClick={() => setselectedIndex(faqIndex)}
                                 >
-                                    <p className="text-muted-foreground">{faq.answer}</p>
-                                </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </div>
-                    ))}
+                                    <h3 className="font-medium flex-1">{faq.question}</h3>
+                                    <Plus
+                                        className={twMerge(
+                                            "text-[#3BCEAB] flex-shrink-0 transition duration-300 cursor-pointer",
+                                            selectedIndex === faqIndex && "rotate-45"
+                                        )}
+                                    />
+                                </div>
+                                <AnimatePresence>
+                                    {selectedIndex === faqIndex && (
+                                    <motion.div
+                                        initial={{
+                                        height: 0,
+                                        marginTop: 0,
+                                        }}
+                                        animate={{
+                                        height: "auto",
+                                        marginTop: 24,
+                                        }}
+                                        exit={{
+                                        height: 0,
+                                        marginTop: 0,
+                                        }}
+                                        className="overflow-hidden"
+                                        id={`faq-answer-${faqIndex}`}
+                                    >
+                                        <p className="text-muted-foreground">{faq.answer}</p>
+                                    </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>
