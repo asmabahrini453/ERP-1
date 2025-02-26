@@ -7,7 +7,7 @@ export const Hero = () => {
         <div className="tag">
           Version 1.0 est ici
         </div>
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tight mt-5 mb-6  bg-gradient-to-b from-black to-[#001E80] text-transparent bg-clip-text">
+        <h1  className="text-4xl md:text-6xl font-bold tracking-tight mt-5 mb-6  bg-gradient-to-b from-black to-[#001E80] text-transparent bg-clip-text">
           Gestion des tâches simplifiée  
           <br />
           pour équipes et particuliers
