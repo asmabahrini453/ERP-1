@@ -114,7 +114,13 @@ const TestimonialsColumn = (
 
 export const Testimonials = () => {
   return (
-    <section  >
+    <section 
+    className="py-24 flex justify-center items-center bg-cover bg-top relative"
+    style={{
+         backgroundImage: "url('/secondary-illustration1.png')"  
+       
+        }}
+>
       <div className="container">
         <div className="section-heading">
           <div className="flex justify-center">

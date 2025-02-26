@@ -20,9 +20,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={twMerge(dmSans.className, "antialiased bg-[#F6F7FA]")}>
+      <body className={twMerge(dmSans.className, "antialiased  bg-[#F6F7FA]")}>
         {/*    antialiased is used to match the wanted font from the figma file khtr sa3at fl browser 
         the font looks bigger or bolder so this makes sure to match the exact font. */}
+
+
         {children}
       </body>
     </html>

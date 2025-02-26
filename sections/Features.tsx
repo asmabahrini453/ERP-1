@@ -18,10 +18,16 @@ const features = [
 
 export const Features = () => {
     return (
-        <section className="py-24 flex justify-center items-center">
-            <div className="container text-center">
+        <section 
+            className="py-24 flex justify-center items-center bg-cover bg-top relative"
+            style={{
+                 backgroundImage: "url('/secondary-illustration1.png')"  
+               
+                }}
+        >
+            <div className="container text-center relative z-10">
                 <div className="section-heading mb-12">
-                    <h2 className="section-title  font-bold">Fonctionnalités</h2>
+                    <h2 className="section-title font-bold">Fonctionnalités</h2>
                     <p className="section-description mt-5 text-muted-foreground">
                         Là où la puissance rencontre la simplicité
                     </p>
@@ -39,9 +45,7 @@ export const Features = () => {
                         description="Simplifiez la gestion des tâches et améliorez votre productivité."
                         className="md:col-span-2 lg:col-span-1"
                     >
-                        <motion.div 
-                            className="flex items-center justify-center overflow-hidden"
-                        >
+                        <motion.div className="flex items-center justify-center overflow-hidden">
                             <Image 
                                 src={taskflow} 
                                 alt="Gestion des tâches ERP" 
@@ -55,9 +59,7 @@ export const Features = () => {
                         description="Optimisez votre processus de travail grâce à notre ERP."
                         className="md:col-span-2 lg:col-span-1"
                     >
-                        <motion.div 
-                            className="flex items-center justify-center overflow-hidden"
-                        >
+                        <motion.div className="flex items-center justify-center overflow-hidden">
                             <Image 
                                 src={workflow} 
                                 alt="Flux de travail ERP" 
@@ -71,9 +73,7 @@ export const Features = () => {
                         description="Organisez votre travail efficacement avec notre système Kanban."
                         className="md:col-span-2 md:col-start-2 lg:col-span-1 lg:col-start-auto"
                     >
-                        <motion.div 
-                            className="flex items-center justify-center overflow-hidden"
-                        >
+                        <motion.div className="flex items-center justify-center overflow-hidden">
                             <Image 
                                 src={kanban} 
                                 alt="Kanban ERP" 
@@ -91,7 +91,7 @@ export const Features = () => {
                              items-center hover:scale-105 transition duration-500 group"
                         >
                             <span className="bg-[#023E8A] text-white size-5 rounded-full inline-flex items-center justify-center text-xl 
-                            group-hover:rotate-45 trasition  duration-500">
+                            group-hover:rotate-45 transition duration-500">
                                 &#10038;
                             </span>
                             <span className="font-medium md:text-lg">{feature}</span>

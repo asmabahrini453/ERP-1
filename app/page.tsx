@@ -13,27 +13,29 @@ import { FAQ } from "@/sections/FAQ";
 
 export default function Home() {
   return (
-    <div className="relative">
+    < >
+  
       <Header />
       <section id="hero-section" className="relative">
-        <ParticleNetwork />
+        <ParticleNetwork /> 
         <Hero />
       </section>
 
       <LogosBanner />
-     
-      
 
-        <ProductShowcase />
+      <ProductShowcase />
+
         <Features />
+     
+       
         <Pricing />
         <Testimonials />
         <FAQ/>
-
         <Services />
         <CallToAction />
-      <Footer />
+        <Footer />
+      
     
-      </div>
+      </>
   );
 }

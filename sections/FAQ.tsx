@@ -32,7 +32,13 @@ export const FAQ = () => {
     const [selectedIndex,setselectedIndex] = useState(0);
 
     return (
-        <section className="py-24">
+        <section 
+        className="py-24 flex justify-center items-center bg-cover bg-top relative"
+        style={{
+             backgroundImage: "url('/secondary-illustration1.png')"  
+           
+            }}
+    >
             <div className="container">
                 <div className="section-heading mb-12">
                     <h2 className="section-title">FAQ</h2>
