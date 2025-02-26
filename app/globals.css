@@ -4,6 +4,24 @@
 
 /* Here we define all utility classes for reusable component styles */
 @layer components {
+
+  @keyframes float {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-float {
+    animation: float 8s ease-in-out infinite;
+  }
+  
+  
   /*   .falling-star {
         position: absolute;
         width: 8px;

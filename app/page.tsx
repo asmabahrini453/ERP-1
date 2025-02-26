@@ -10,6 +10,7 @@ import { ProductShowcase } from "@/sections/ProductShowcase";
 import { Testimonials } from "@/sections/Testimonials";
 import { Features } from "@/sections/Features";
 import { FAQ } from "@/sections/FAQ";
+import Planet from "@/sections/Planet";
 
 export default function Home() {
   return (
@@ -26,7 +27,8 @@ export default function Home() {
       <ProductShowcase />
 
         <Features />
-     
+     {/* this is a test component */}
+       <Planet/>
        
         <Pricing />
         <Testimonials />

@@ -32,7 +32,7 @@ export const FAQ = () => {
     const [selectedIndex, setselectedIndex] = useState(0);
 
     return (
-        <section className="py-24 lg:relative ">
+        <section className="pt-24 lg:relative ">
             {/* Large Device Section */}
             <div 
                 className="lg:absolute lg:inset-0 lg:bg-cover lg:z-0 top-10"

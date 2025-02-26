@@ -40,10 +40,12 @@ export const Features = () => {
                     viewport={{ once: true, amount: 0.5 }} 
                     transition={{ duration: 0.5 }} 
                 >
+                    
                     <FeatureCard
                         title="Gestion optimisée des tâches"
                         description="Simplifiez la gestion des tâches et améliorez votre productivité."
                         className="md:col-span-2 lg:col-span-1"
+                       
                     >
                         <motion.div className="flex items-center justify-center overflow-hidden">
                             <Image 
@@ -69,7 +71,7 @@ export const Features = () => {
                     </FeatureCard>
 
                     <FeatureCard
-                        title="Organisation avec Kanban"
+                        title="Organisation optimisée avec Kanban"
                         description="Organisez votre travail efficacement avec notre système Kanban."
                         className="md:col-span-2 md:col-start-2 lg:col-span-1 lg:col-start-auto"
                     >
@@ -98,6 +100,8 @@ export const Features = () => {
                         </div>
                     ))}
                 </div>
+
+                
             </div>
         </section>
     );

@@ -12,7 +12,7 @@ import Logo09 from "@/assets/images/money-management.png";
 
 export default function Services() {
     return (
-      <section >
+      <section>
         <div className="mx-auto max-w-6xl px-4 sm:px-5 ">
           <div className="pb-12 md:pb-20">
             {/* Tab panels */}
