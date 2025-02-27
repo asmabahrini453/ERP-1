@@ -43,8 +43,7 @@ export const Taskflow: React.FC = () => (
         </motion.div>
 
 
-      <motion.div
-        variants={planetVariants('right')}
+      <div
         className="flex-1 flex justify-center items-center"
       >
         <Image
@@ -52,7 +51,7 @@ export const Taskflow: React.FC = () => (
           alt="get-started"
           className="w-[90%] h-[90%] object-contain"
         />
-      </motion.div>
+      </div>
     </motion.div>
   </section>
 );

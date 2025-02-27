@@ -25,8 +25,7 @@ export const Kanban: React.FC = () => (
       viewport={{ once: false, amount: 0.25 }}
       className="2xl:max-w-[1280px] w-full mx-auto flex lg:flex-row flex-col gap-8"
     >
-      <motion.div
-        variants={planetVariants('left')}
+      <div
         className="flex-1 flex justify-center items-center"
       >
         <Image
@@ -34,7 +33,7 @@ export const Kanban: React.FC = () => (
           alt="get-started"
           className="w-[80%] h-[80%] object-contain"
         />
-      </motion.div>
+      </div>
 
       <motion.div
         variants={fadeIn('left', 'tween', 0.2, 1)}

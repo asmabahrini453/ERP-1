@@ -23,8 +23,8 @@ export const Workflow: React.FC = () => (
       viewport={{ once: false, amount: 0.25 }}
       className="2xl:max-w-[1280px] w-full mx-auto flex lg:flex-row flex-col gap-8"
     >
-      <motion.div
-        variants={planetVariants('left')}
+      <div
+     
         className="flex-1 flex justify-center items-center"
       >
         <Image
@@ -32,7 +32,7 @@ export const Workflow: React.FC = () => (
           alt="get-started"
           className="w-[90%] h-[90%] object-contain"
         />
-      </motion.div>
+      </div>
 
       <motion.div
   variants={fadeIn('right', 'tween', 0.2, 1)} 
