@@ -323,7 +323,7 @@ export default function Services() {
                     {features.map((feature) => (
                         <div
                             key={feature}
-                            className="bg-[#EEEEF1] border-white/10 inline-flex px-4 md:px-6 py-2 md:py-3 rounded-2xl gap-3
+                            className="bg-white shadow-lg border-white/10 inline-flex px-4 md:px-6 py-2 md:py-3 rounded-2xl gap-3
                              items-center hover:scale-105 transition duration-500 group"
                         >
                             <span className="bg-[#023E8A] text-white size-5 rounded-full inline-flex items-center justify-center text-xl 
