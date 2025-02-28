@@ -1,6 +1,7 @@
 import { Workflow } from "@/sections/Workflow"; 
 import { Kanban } from "@/sections/Kanban";
 import Taskflow from "@/sections/Taskflow";
+import { Calendar } from "./Calendar";
 
 export const AllFeatures = () => {
     return (
@@ -11,7 +12,7 @@ export const AllFeatures = () => {
                     backgroundImage: "url('/blurred-shape1.png')",
                     backgroundPosition: "center top",
                     backgroundSize: "80%",
-                    transform: "translateY(-10%)"
+                    transform: "translateY(-5%)"
                 }}
             ></div>
 
@@ -27,6 +28,7 @@ export const AllFeatures = () => {
                     <Workflow />
                     <Taskflow />
                     <Kanban />
+                    <Calendar/>
                 </div>
             </div>
         </section>
