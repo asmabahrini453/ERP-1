@@ -10,12 +10,8 @@ import { LogosBanner } from "@/sections/LogosBanner";
 import { Pricing } from "@/sections/Pricing";
 import { ProductShowcase } from "@/sections/ProductShowcase";
 import { Testimonials } from "@/sections/Testimonials";
-import { Features } from "@/sections/Features";
 import { FAQ } from "@/sections/FAQ";
 import Planet from "@/sections/Planet";
-import { Workflow } from "@/sections/Workflow"; 
-import { Kanban } from "@/sections/Kanban";
-import Taskflow from "@/sections/Taskflow";
 import { AllFeatures } from "@/sections/AllFeatures";
 
 export default function Home() {
@@ -29,7 +25,6 @@ export default function Home() {
 
       <LogosBanner />
       <ProductShowcase />
-
       <Services />
 
      

@@ -1,6 +1,6 @@
 import { Workflow } from "@/sections/Workflow"; 
 import { Kanban } from "@/sections/Kanban";
-import Taskflow from "@/sections/Taskflow";
+import {Taskflow} from "@/sections/Taskflow";
 import { Calendar } from "./Calendar";
 
 export const AllFeatures = () => {

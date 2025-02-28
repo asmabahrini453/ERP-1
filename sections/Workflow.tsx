@@ -38,7 +38,7 @@ export const Workflow: React.FC = () => (
   variants={fadeIn('right', 'tween', 0.2, 1)} 
   className="flex-[0.75] flex justify-center flex-col"
 >
-  <TypingText title="| la vue Taskflow" />
+  <TypingText title="| la vue Workflow" />
   <TitleText title={<span>Automatisation des processus</span>} /> 
 
   <div className="mt-[31px] flex flex-col max-w-[370px] gap-[24px]">

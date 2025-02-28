@@ -14,7 +14,7 @@ export const startingFeatures = [
   ' Spécifiez une date limite pour assurer le suivi.'
 ];
 
-export const Taskflow: React.FC = () => (
+export  const Taskflow: React.FC = () => (
   <section className="sm:pl-28 xs:p-8 px-6  py-12 relative z-10">
     <motion.div
       variants={staggerContainer(0.2, 0.5)} 
@@ -29,7 +29,7 @@ export const Taskflow: React.FC = () => (
         className="flex-[0.75] flex justify-center flex-col"
         >
         <TypingText title="| la vue Taskflow" />
-        <TitleText title={<span>Automatisation des processus</span>} /> 
+        <TitleText title={<span>Gestion optimisée des tâches</span>} /> 
 
         <div className="mt-[31px] flex flex-col max-w-[370px] gap-[24px]">
             {startingFeatures.map((feature: string, index: number) => (
@@ -56,4 +56,4 @@ export const Taskflow: React.FC = () => (
   </section>
 );
 
-export default Taskflow;
+

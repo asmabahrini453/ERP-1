@@ -31,7 +31,7 @@ export const Kanban: React.FC = () => (
         <Image
           src={kanban}
           alt="get-started"
-          className="w-[80%] h-[80%] object-contain"
+          className="w-[80%] h-[80%] object-contain mr-24"
         />
       </div>
 
