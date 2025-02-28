@@ -11,8 +11,7 @@ export const AllFeatures = () => {
                 style={{ 
                     backgroundImage: "url('/blurred-shape1.png')",
                     backgroundPosition: "center top",
-                    backgroundSize: "80%",
-                    transform: "translateY(-5%)"
+                    backgroundSize: "90%",
                 }}
             ></div>
 

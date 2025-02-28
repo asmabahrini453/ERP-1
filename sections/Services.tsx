@@ -18,6 +18,8 @@ const features = [
   "Disposition automatique",
   "Recherche rapide",
   "Guides intelligents",
+  "Recherche rapide",
+
 ]; 
 
 export default function Services() {
@@ -206,7 +208,7 @@ export default function Services() {
                   </div>
                 </div>
               </div>
-  
+           
               <div className="relative flex flex-col">
                 <article className="flex h-full w-full items-center justify-center focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300">
                   <div className="absolute -translate-x-[136px]">
@@ -318,7 +320,6 @@ export default function Services() {
                 </article>
               </div>
             </div>
-
             <div className="mt-12 flex flex-wrap gap-3 justify-center">
                     {features.map((feature) => (
                         <div
@@ -334,6 +335,8 @@ export default function Services() {
                         </div>
                     ))}
                 </div>
+
+           
           </div>
         </div>
       </section>
