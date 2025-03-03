@@ -1,12 +1,13 @@
 'use client'
 
 import { useState } from 'react';
-import Head from 'next/head';
 import Image from 'next/image';
 import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button'; 
 import ValiderIcon from '@/assets/icons/valider-icon.png'
-import { AlignVerticalDistributeEnd, Copy, Pencil, Plus, Printer } from 'lucide-react';
+import filterIcon from '@/assets/icons/filter.png'
+
+import {  Copy, Pencil,Printer,Share2Icon} from 'lucide-react';
 
 const ArticlePage = () => {
   const [activeTab, setActiveTab] = useState('details');
@@ -27,27 +28,48 @@ const ArticlePage = () => {
   return (
     
     <div className="space-y-6">
-    <div className="flex items-center justify-between">
-      <div>
-        <div className="text-sm text-muted-foreground">Stock /</div>
-        <h1 className="text-xl font-semibold">Article</h1>
-      </div>
-      <div className="flex items-center gap-2">
-        <Button variant="outline" className='rounded-full shadow-md ' size="icon">
-          <Copy className="h-4 w-4 " />
-        </Button>
-        <Button variant="outline" size="icon" className='rounded-full shadow-md '>
+    <div className="flex items-center justify-between"> 
+    <div >
+      <div className="text-sm text-muted-foreground sm:text-[12px]">Stock /</div>
+      <h1 className="text-xl font-semibold text-[#383861] sm:text-[16px]">Article</h1>
+    </div>
+
+    <div className="flex items-center md:gap-4   sm:gap-1 sm:mt-1">
+      <div className="flex items-center md:gap-2 sm:gap-1">
+        <div className="relative flex justify-center items-center  w-10 h-10 rounded-full bg-white shadow-lg shadow-black/5 before:absolute before:inset-0 before:m-[8.334%] before:rounded-[inherit] before:border before:border-gray-700/5 before:bg-gray-200/60 before:[mask-image:linear-gradient(to_bottom,black,transparent)]">
+          <Copy className="h-4 w-4" />
+        </div>
+
+        <div className="relative flex justify-center items-center w-10 h-10 rounded-full bg-white shadow-lg shadow-black/5 before:absolute before:inset-0 before:m-[8.334%] before:rounded-[inherit] before:border before:border-gray-700/5 before:bg-gray-200/60 before:[mask-image:linear-gradient(to_bottom,black,transparent)]">
           <Pencil className="h-4 w-4" />
-        </Button>
-        <Button variant="outline" size="icon" className='rounded-full shadow-md '>
+        </div>
+
+        <div className="relative flex justify-center items-center  w-10 h-10 rounded-full bg-white shadow-lg shadow-black/5 before:absolute before:inset-0 before:m-[8.334%] before:rounded-[inherit] before:border before:border-gray-700/5 before:bg-gray-200/60 before:[mask-image:linear-gradient(to_bottom,black,transparent)]">
           <Printer className="h-4 w-4" />
+        </div>
+
+        <div className="relative flex justify-center items-center  w-10 h-10 rounded-full bg-white shadow-lg shadow-black/5 before:absolute before:inset-0 before:m-[8.334%] before:rounded-[inherit] before:border before:border-gray-700/5 before:bg-gray-200/60 before:[mask-image:linear-gradient(to_bottom,black,transparent)]">
+          <Share2Icon className="h-4 w-4" />
+        </div>
+      </div>
+
+      <div className="border-l border mx-4 sm:mx-2 h-8 " /> 
+
+      <div className="flex  md:gap-4 sm:gap-1 sm:mr-2">
+        <Button className="bg-transparent hover:bg-[#3BCEAB] text-muted-foreground border">
+          <Image src={filterIcon} alt="filtrer icon" className="h-4 w-4" />
+          <span className="hidden md:inline">Filtrer</span> 
         </Button>
-        <Button className='bg-[#3BCEAB] hover:bg-[#3BCEAB]' >
-          <Image src={ValiderIcon} alt="valider icon" className="h-4 w-4 text-white" />
-          valider
+        <Button className="bg-[#3BCEAB] hover:bg-[#3BCEAB] text-[#F2F9F3]">
+          <Image src={ValiderIcon} alt="valider icon" className="h-4 w-4" />
+          <span className="hidden md:inline">Valider</span> 
         </Button>
       </div>
     </div>
+    </div>
+
+
+    
     <div className="flex space-x-2 mb-6 border-b">
               {tabs.map((tab) => (
                 <button
@@ -66,7 +88,7 @@ const ArticlePage = () => {
                 {activeTab === 'details' && (
                   <div className="bg-white rounded-lg shadow p-6 mb-6">
                     <div className="flex items-center justify-between mb-4">
-                      <h2 className="text-lg font-medium">Détails</h2>
+                      <h2 className="text-lg font-medium ">Détails</h2>
                       <div className="flex items-center text-gray-300">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                           <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />

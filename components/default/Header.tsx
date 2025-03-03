@@ -15,23 +15,23 @@ import Image from "next/image";
 
 export function Header() {
   return (
-    <header className="h-16 border-b bg-white flex items-center justify-between px-4 relative">
-      <div className="flex items-center gap-1">
+    <header className="h-16 border-b bg-white flex items-center justify-between  px-4 relative">
+      <div className="flex items-center gap-1 ">
         <Image src={Logo} alt="logo" height={50} width={50} />
-        <span className="font-bold tracking-tight text-[#383861] hidden lg:flex">ERP PRO</span>
+        <span className="font-bold tracking-tight text-[#383861] hidden md:flex">ERP PRO</span>
       </div>
 
-      <div className="absolute left-1/2 transform -translate-x-1/2 w-[40%] max-w-md">
+      <div className="absolute left-1/2 transform -translate-x-1/2 md:w-[60%]  sm:w-[70%]   max-w-md sm:ml-12">
         <div className="relative">
-          <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500" />
-          <Input className="pl-8 bg-[#F6F7FA] w-full" placeholder="Effectuer une recherche..." type="search" />
+          <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 h-4 w-4 sm:h-3 sm:w-3 text-gray-500" />
+          <Input className="pl-8 bg-[#F6F7FA] w-full sm:text-[12px]" placeholder="Effectuer une recherche..." type="search" />
         </div>
       </div>
 
       <div className="flex items-center gap-4">
-        <DropdownMenu>
+        <DropdownMenu >
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" size="sm" className="w-16 flex items-center">
+            <Button variant="outline" size="sm" className="hidden lg:w-16 md:flex md:items-center">
               <img src="/france.png" alt="FR" className="w-4 h-4 mr-[6px]" />
               Fr
             </Button>
@@ -44,13 +44,13 @@ export function Header() {
           </DropdownMenuContent>
         </DropdownMenu>
 
-        <div className="flex justify-center items-center p-2 gap-3 cursor-pointer">
+        <div className="hidden md:flex md:justify-center md:items-center md:p-2 md:gap-3 md:cursor-pointer">
           <Image src={message} alt="message" />
           <Image src={notification} alt="notification" />
           <Image src={calendar} alt="calendrier" />
         </div>
 
-        <div className="border rounded-sm p-1 flex items-center gap-2">
+        <div className="hidden lg:border lg:rounded-sm lg:p-1 lg:flex lg:items-center gap-2">
           <div className="mr-8 ml-2">
             <h4 className="text-[16px] text-[#383861] font-semibold">Asma Bahrini</h4>
             <p className="text-[12px] text-muted-foreground">TN, Tunisie</p>
