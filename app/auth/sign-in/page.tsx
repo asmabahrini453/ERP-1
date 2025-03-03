@@ -13,11 +13,12 @@ const SignInPage = () => {
           <div className="flex flex-col gap-3">
             <LoginForm />
             <div className="w-full flex flex-col gap-3 items-center">
-              <Button
-                type="submit"
-                className="w-full bg-[#023E8A] text-white font-medium inline-flex justify-center py-2 px-4 rounded-lg tracking-tight; hover:bg-[#3BCEAB]">
+            <Link
+              href="/pages/article/create"
+              className="w-full bg-[#023E8A] text-white font-medium inline-flex justify-center py-2 px-4 rounded-lg tracking-tight hover:bg-[#3BCEAB]"
+            >
                 Confirmer
-              </Button>
+              </Link>
               <p>
                 Vous n'avez pas de compte ?{' '}
                 <Link

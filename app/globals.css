@@ -35,40 +35,7 @@
     animation: fadeInLayout 1.2s ease-out forwards;
   }
   
-  
-  /*   .falling-star {
-        position: absolute;
-        width: 8px;
-        height: 8px;
-        background: #00d1b2;
-        border-radius: 50%;
-        opacity: 0.5;
-        animation: fall linear infinite;
-      }
-      
-      @keyframes fall {
-        0% {
-          transform: translateY(-10vh) scale(1);
-          opacity: 0;
-        }
-        10% {
-          opacity: 0.5;
-        }
-        12% {
-          opacity: 1;
-          box-shadow: 0 0 3px 0 #fff;
-        }
-        15% {
-          opacity: 0.5;
-        }
-        50% {
-          opacity: 0;
-        }
-        100% {
-          transform: translateY(100vh) scale(0.5);
-          opacity: 0;
-        }
-      } */
+
 
     .btn {
         @apply bg-[#023E8A] text-white font-medium inline-flex justify-center py-2 px-4 rounded-lg tracking-tight ;
@@ -168,4 +135,19 @@
   body {
     @apply bg-background text-foreground;
     }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+   
+ 
+  }
+  body {
+    @apply bg-background text-foreground;
+   
+ 
+  }
+   
+ 
 }
