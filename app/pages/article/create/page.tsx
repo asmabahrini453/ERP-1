@@ -30,8 +30,8 @@ const ArticlePage = () => {
     <div className="space-y-6">
     <div className="flex items-center justify-between"> 
     <div >
-      <div className="text-sm text-muted-foreground sm:text-[12px]">Stock /</div>
-      <h1 className="text-xl font-semibold text-[#383861] sm:text-[16px]">Article</h1>
+      <div className="md:text-sm text-muted-foreground sm:text-[12px]">Stock /</div>
+      <h1 className="md:text-xl font-semibold text-[#383861] sm:text-[16px]">Article</h1>
     </div>
 
     <div className="flex items-center md:gap-4   sm:gap-1 sm:mt-1">
