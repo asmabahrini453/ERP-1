@@ -1,14 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import ValiderIcon from "@/assets/icons/valider-icon.png";
 import filterIcon from "@/assets/icons/filter.png";
+import {
+  Copy,
+  Pencil,
+  Printer,
+  Share2Icon,
+} from "lucide-react";
+import ProductCard from "@/components/ProductCard";
 import downArrow from "@/assets/icons/down-arrow.png";
-
-import { Copy, Pencil, Printer, Share2Icon } from "lucide-react";
+import Image from "next/image";
 
 const ArticlePage = () => {
   const [activeTab, setActiveTab] = useState("details");
@@ -24,7 +29,24 @@ const ArticlePage = () => {
     { id: "stock", label: "Stock" },
     { id: "taxe", label: "Taxe" },
     { id: "qualite", label: "Qualité" },
+    { id: "parametrage", label: "Paramétrage de l'inventaire" },
+    { id: "champs", label: "Champs Personnalisés" },
   ];
+  // Styles for the tabs
+  const tabStyles = {
+    container: "flex items-center justify-between border-b",
+    tab: (isActive: boolean) =>
+      `md:px-6 sm:px-4 md:py-2.5 sm:py-1 md:text-sm sm:text-[10px] font-medium transition-colors relative
+    ${
+      isActive ? "bg-[#023E8A] text-white" : "text-gray-600 hover:text-gray-800"
+    }
+    ${isActive ? "rounded-t-md" : ""}
+    `,
+    separator: "h-5 w-px bg-gray-200 mx-1",
+    tabContent: "flex items-center space-x-2",
+  };
+
+ 
   // to track if the form is open or closed
   const [isOpen, setIsOpen] = useState(false);
 
@@ -32,6 +54,37 @@ const ArticlePage = () => {
   const toggleAccordion = () => {
     setIsOpen(!isOpen);
   };
+
+  // Product data for the card
+  const productData = {
+    codeArticle: "A808001",
+    description: "Veste légère",
+    uniteVente: "PCS",
+    stockActuel: 120,
+    coutUnitaire: 88,
+    prixVente: 120,
+    referenceFournisseur: "3200",
+    modeEvaluationStock: "FIFO",
+    codeModeleRangement: "1896-S",
+    dateDebutInventaire: "12/02/2025",
+    dateFinInventaire: "17/02/2025",
+  };
+
+  const activityData = [
+    {
+      user: "Rafik Hafsa",
+      action: "a créé ceci",
+      date: "23/01/2025",
+      time: "13:28",
+    },
+    {
+      user: "Vous",
+      action: "avez édité ceci",
+      date: "23/01/2025",
+      time: "10:28",
+    },
+  ];
+
   return (
     <div className="space-y-6 overflow-x-hidden">
       <div className="flex items-center justify-between">
@@ -59,11 +112,11 @@ const ArticlePage = () => {
           <div className="border-l border mx-4 sm:mx-2 h-8" />
 
           <div className="flex md:gap-4 sm:gap-1 sm:mr-2">
-            <Button className="bg-transparent hover:bg-white text-muted-foreground border">
+          <Button className="bg-transparent hover:bg-white text-muted-foreground border">
               <Image src={filterIcon} alt="filter icon" className="h-4 w-4" />
               <span className="hidden md:inline">Filtrer</span>
             </Button>
-            <Button className="bg-[#3BCEAB] hover:bg-[#3BCEAB] text-[#F2F9F3] w-[120px] ">
+            <Button className="bg-[#3BCEAB] hover:bg-[#3BCEAB] text-[#F2F9F3] md:w-[120px] ">
               <Image
                 src={ValiderIcon}
                 alt="validate icon"
@@ -74,20 +127,22 @@ const ArticlePage = () => {
           </div>
         </div>
       </div>
+
       {/* Nav contenu */}
-      <div className="flex overflow-x-auto space-x-2 mb-6 border-b">
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            className={`px-4 py-2 text-sm whitespace-nowrap ${
-              activeTab === tab.id
-                ? "border-b-2 border-blue-600 text-blue-600 font-medium"
-                : "text-gray-500"
-            }`}
-            onClick={() => setActiveTab(tab.id)}
-          >
-            {tab.label}
-          </button>
+      <div className={tabStyles.container}>
+        {tabs.map((tab, index) => (
+          <>
+            {index > 0 && <div className={tabStyles.separator} />}
+            <button
+              key={tab.id}
+              className={tabStyles.tab(activeTab === tab.id)}
+              onClick={() => setActiveTab(tab.id)}
+            >
+              <div className={tabStyles.tabContent}>
+                <span>{tab.label}</span>
+              </div>
+            </button>
+          </>
         ))}
       </div>
       {/* Form Contenu */}
@@ -494,6 +549,231 @@ const ArticlePage = () => {
               )}
             </div>
           )}
+          {/*Inventaire  */}
+          {activeTab === "parametrage" && (
+            <div className="bg-white rounded-lg shadow p-6 mb-6">
+              <div className="flex items-start flex-col mb-4">
+                <div
+                  className="flex items-center justify-center gap-2 mb-[10px]"
+                  onClick={toggleAccordion}
+                >
+                  <h2 className="text-lg font-bold text-[#023E8A]">
+                    Paramétrage de l'inventaire
+                  </h2>
+                  <Image
+                    src={downArrow}
+                    alt="voir plus"
+                    className={`h-4 w-4 transition-transform duration-300 ${
+                      isOpen ? "-rotate-90" : "rotate-90"
+                    }`}
+                  />
+                </div>
+                <div className="border-l border mx-8 sm:mx-2 w-full" />
+              </div>
+              {!isOpen && (
+                <div className="space-y-6 border p-[23px] rounded-[4px]">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Durée de conservation en jours
+                      </label>
+                      <input
+                        type="number"
+                        className="w-full p-2 border border-gray-300 rounded-md"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Date dern. inventaire
+                      </label>
+                      <input
+                        type="date"
+                        className="w-full p-2 border border-gray-300 rounded-md"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Proch. date début d'inventaire
+                      </label>
+                      <input
+                        type="date"
+                        className="w-full p-2 border border-gray-300 rounded-md"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Proch. date fin d'inventaire
+                      </label>
+                      <input
+                        type="date"
+                        className="w-full p-2 border border-gray-300 rounded-md"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Poids par unité
+                      </label>
+                      <input
+                        type="number"
+                        step="0.01"
+                        className="w-full p-2 border border-gray-300 rounded-md"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        UdM de poids
+                      </label>
+                      <select className="w-full p-2 border border-gray-300 rounded-md">
+                        <option value="kg">Kilogramme (kg)</option>
+                        <option value="g">Gramme (g)</option>
+                        <option value="lb">Livre (lb)</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* Méthode de valorisation */}
+                  <div className="space-y-4">
+                    <label className="block text-sm font-medium text-gray-700">
+                      Méthode de valorisation
+                    </label>
+                    <div className="grid grid-cols-3 gap-4">
+                      <div className="relative">
+                        <input
+                          type="radio"
+                          name="valorisation"
+                          value="fifo"
+                          id="fifo"
+                          className="peer hidden"
+                          defaultChecked
+                        />
+                        <label
+                          htmlFor="fifo"
+                          className="flex items-center justify-center p-2 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-emerald-400 peer-checked:bg-emerald-400 peer-checked:text-white hover:text-gray-600 hover:bg-gray-100"
+                        >
+                          FIFO
+                        </label>
+                      </div>
+                      <div className="relative">
+                        <input
+                          type="radio"
+                          name="valorisation"
+                          value="lifo"
+                          id="lifo"
+                          className="peer hidden"
+                        />
+                        <label
+                          htmlFor="lifo"
+                          className="flex items-center justify-center p-2 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-emerald-400 peer-checked:bg-emerald-400 peer-checked:text-white hover:text-gray-600 hover:bg-gray-100"
+                        >
+                          LIFO
+                        </label>
+                      </div>
+                      <div className="relative">
+                        <input
+                          type="radio"
+                          name="valorisation"
+                          value="moyenne"
+                          id="moyenne"
+                          className="peer hidden"
+                        />
+                        <label
+                          htmlFor="moyenne"
+                          className="flex items-center justify-center p-2 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-emerald-400 peer-checked:bg-emerald-400 peer-checked:text-white hover:text-gray-600 hover:bg-gray-100"
+                        >
+                          Moyenne Mobile
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Type de requete */}
+                  <div className="space-y-4">
+                    <label className="block text-sm font-medium text-gray-700">
+                      Type de requete de matériaux par défaut
+                    </label>
+                    <div className="grid grid-cols-3 gap-4">
+                      <div className="relative">
+                        <input
+                          type="radio"
+                          name="type-requete"
+                          value="achat"
+                          id="achat"
+                          className="peer hidden"
+                        />
+                        <label
+                          htmlFor="achat"
+                          className="flex items-center justify-center p-2 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-emerald-400 peer-checked:bg-emerald-400 peer-checked:text-white hover:text-gray-600 hover:bg-gray-100"
+                        >
+                          Achat
+                        </label>
+                      </div>
+                      <div className="relative">
+                        <input
+                          type="radio"
+                          name="type-requete"
+                          value="production"
+                          id="production"
+                          className="peer hidden"
+                          defaultChecked
+                        />
+                        <label
+                          htmlFor="production"
+                          className="flex items-center justify-center p-2 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-emerald-400 peer-checked:bg-emerald-400 peer-checked:text-white hover:text-gray-600 hover:bg-gray-100"
+                        >
+                          Production
+                        </label>
+                      </div>
+                      <div className="relative">
+                        <input
+                          type="radio"
+                          name="type-requete"
+                          value="transfert"
+                          id="transfert"
+                          className="peer hidden"
+                        />
+                        <label
+                          htmlFor="transfert"
+                          className="flex items-center justify-center p-2 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-emerald-400 peer-checked:bg-emerald-400 peer-checked:text-white hover:text-gray-600 hover:bg-gray-100"
+                        >
+                          Transfert de matériel
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+          {/*Champs Personnalisés  */}
+          {activeTab === "champs" && (
+            <div className="bg-white rounded-lg shadow p-6 mb-6">
+              <div className="flex  items-start flex-col mb-4">
+                <div className="flex items-center justify-between mb-[10px]">
+                  <div
+                    className="flex items-center justify-center gap-2 "
+                    onClick={toggleAccordion}
+                  >
+                    <h2 className="text-lg font-bold  text-[#023E8A]">
+                      Champs Personnalisés
+                    </h2>
+                    <Image
+                      src={downArrow}
+                      alt="voir plus"
+                      className={`h-4 w-4 transition-transform duration-300 ${
+                        isOpen ? "rotate-90" : "-rotate-90"
+                      }`}
+                    />
+                  </div>
+                 
+                </div>
+
+                <div className=" border-l border mx-8 sm:mx-2 w-full" />
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="md:w-1/3 md:block hidden">
+          <ProductCard productDetails={productData} activities={activityData} />
         </div>
       </div>
     </div>
