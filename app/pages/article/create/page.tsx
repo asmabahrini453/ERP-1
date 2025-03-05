@@ -17,7 +17,7 @@ import Image from "next/image";
 import ArticleForm from "@/components/article/ArticleForm";
 
 const ArticlePage = () => {
-  const [activeTab, setActiveTab] = useState("details");
+  const [activeTab, setActiveTab] = useState("details"); //by default details section is open
   const [maximizeStock, setMaximizeStock] = useState(false);
   const [stockBlocked, setStockBlocked] = useState(false);
   const [purchaseBlocked, setPurchaseBlocked] = useState(false);
@@ -30,7 +30,7 @@ const ArticlePage = () => {
     { id: "stock", label: "Stock" },
     { id: "taxe", label: "Taxe" },
     { id: "qualite", label: "Qualité" },
-    { id: "parametrage", label: "Paramétrage de l'inventaire" },
+    { id: "inventaire", label: "Paramétrage de l'inventaire" },
     { id: "champs", label: "Champs Personnalisés" },
   ];
   // Styles for the tabs
@@ -45,15 +45,6 @@ const ArticlePage = () => {
     `,
     separator: "h-5 w-px bg-gray-200 mx-1",
     tabContent: "flex items-center space-x-2",
-  };
-
- 
-  // to track if the form is open or closed
-  const [isOpen, setIsOpen] = useState(false);
-
-  // ki teclicki 3al arrow it will open the form in the accordion way
-  const toggleAccordion = () => {
-    setIsOpen(!isOpen);
   };
 
   // Product data for the card
@@ -150,18 +141,8 @@ const ArticlePage = () => {
       <div className="flex flex-col md:flex-row">
         <div className="md:w-2/3 w-full pr-4">
         <ArticleForm
-            activeTab={activeTab}
-            toggleAccordion={toggleAccordion}
-            isOpen={isOpen}
-            downArrow={downArrow}
-            maximizeStock={maximizeStock}
-            setMaximizeStock={setMaximizeStock}
-            stockBlocked={stockBlocked}
-            setStockBlocked={setStockBlocked}
-            purchaseBlocked={purchaseBlocked}
-            setPurchaseBlocked={setPurchaseBlocked}
-            salesBlocked={salesBlocked}
-            setSalesBlocked={setSalesBlocked}
+        activeTab={activeTab}
+          downArrow={downArrow}
           />
         </div>
         <div className="md:w-1/3 md:block hidden">
