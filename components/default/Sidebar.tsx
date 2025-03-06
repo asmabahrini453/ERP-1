@@ -1,3 +1,4 @@
+"use client"
 import { LayoutDashboard, ShoppingCart, Box, FileText, BarChart, Users, Settings, LogOut } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -35,4 +36,3 @@ export function Sidebar() {
     </div>
   )
 }
-
