@@ -14,6 +14,7 @@ import Image from "next/image";
 import { useState } from "react";
 import NewEntreprise from "@/components/entreprise/NewEntreprise";
 import NewEntrepriseCard from "@/components/entreprise/NewEntrepriseCard";
+import EntrepriseFiche from "@/components/entreprise/EntrepriseFiche";
 
 
 const tabs = [
@@ -51,7 +52,7 @@ const tabs = [
     },
   ];
 
-const EntreprisePage =()=>{
+const EntrepriseProfile =()=>{
       const [activeTab, setActiveTab] = useState("details"); //by default details section is open
     
     return(
@@ -117,7 +118,7 @@ const EntreprisePage =()=>{
         {/* Form Contenu */}
         <div className="flex flex-col md:flex-row">
           <div className="md:w-[80%] w-full pr-4">
-          <NewEntreprise
+          <EntrepriseFiche
           activeTab={activeTab}
             downArrow={downArrow}
             />
@@ -130,4 +131,4 @@ const EntreprisePage =()=>{
     )
 }
 
-export default EntreprisePage;
+export default EntrepriseProfile;

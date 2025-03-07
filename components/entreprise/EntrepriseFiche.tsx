@@ -3,50 +3,23 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import AddressMap from "@/components/AddressMap";
-
+import downArrow from "@/assets/icons/down-arrow.png";
+import { Checkbox } from "../ui/checkbox";
+import { Button } from "../ui/button";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 
 interface NewEntrepriseProps {
   activeTab: string;
   downArrow: any;
 }
 
-const NewEntreprise = ({ activeTab, downArrow }: NewEntrepriseProps) => {
+const EntrepriseFiche = ({ activeTab, downArrow }: NewEntrepriseProps) => {
   const generaleRef = useRef<HTMLDivElement>(null);
   const comptableRef = useRef<HTMLDivElement>(null);
-
-  const [address, setAddress] = useState<string>("");
-  const [codePostal, setCodePostal] = useState<string>("");
-  const [gouvernorat, setGouvernorat] = useState<string>("Monastir");
-  const [pays, setPays] = useState<string>("Tunisie");
-  // Add this new state to trigger map updates
-  const [updateMap, setUpdateMap] = useState<number>(0);
-  // Add this function to handle all address-related changes
-  const handleAddressChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-    field: "address" | "codePostal" | "gouvernorat" | "pays"
-  ) => {
-    const value = e.target.value;
-
-    switch (field) {
-      case "address":
-        setAddress(value);
-        break;
-      case "codePostal":
-        setCodePostal(value);
-        break;
-      case "gouvernorat":
-        setGouvernorat(value);
-        break;
-      case "pays":
-        setPays(value);
-        break;
-    }
-
-    // Trigger map update after a short delay
-    setTimeout(() => {
-      setUpdateMap((prev) => prev + 1);
-    }, 300);
-  };
+  const notificationsRef = useRef<HTMLDivElement>(null)
+  const abonnementRef = useRef<HTMLDivElement>(null)
+  const servicesRef = useRef<HTMLDivElement>(null)
+  const securiteRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const scrollToSection = () => {
@@ -65,6 +38,10 @@ const NewEntreprise = ({ activeTab, downArrow }: NewEntrepriseProps) => {
   const [isOpen, setIsOpen] = useState<Record<string, boolean>>({
     generale: true,
     comptable: false,
+    notifications: false,
+    abonnement: false,
+    services: false,
+    securite: false,
   });
 
   const toggleSection = (section: string) => {
@@ -109,6 +86,8 @@ const NewEntreprise = ({ activeTab, downArrow }: NewEntrepriseProps) => {
               </label>
               <input
                 type="text"
+                disabled
+                value="DevPro Solution"
                 className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
@@ -116,9 +95,12 @@ const NewEntreprise = ({ activeTab, downArrow }: NewEntrepriseProps) => {
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Activité <span className="text-red-500">*</span>
               </label>
-              <select className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <option>Technologie</option>
-              </select>
+              <input
+                type="text"
+                disabled
+                value="Technologie"
+                className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
             </div>
 
             <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -126,9 +108,12 @@ const NewEntreprise = ({ activeTab, downArrow }: NewEntrepriseProps) => {
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Langue des PDF <span className="text-red-500">*</span>
                 </label>
-                <select className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                  <option>Français</option>
-                </select>
+                <input
+                  type="text"
+                  disabled
+                  value="Français"
+                  className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -136,6 +121,8 @@ const NewEntreprise = ({ activeTab, downArrow }: NewEntrepriseProps) => {
                 </label>
                 <input
                   type="text"
+                  disabled
+                  value="devpro-solution.com"
                   className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
@@ -145,6 +132,8 @@ const NewEntreprise = ({ activeTab, downArrow }: NewEntrepriseProps) => {
                 </label>
                 <input
                   type="text"
+                  disabled
+                  value="+216 99 888 444"
                   className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
@@ -158,10 +147,9 @@ const NewEntreprise = ({ activeTab, downArrow }: NewEntrepriseProps) => {
               </label>
               <input
                 type="text"
-                value={address}
-                onChange={(e) => handleAddressChange(e, "address")}
+                disabled
+                value="B 24, Immeuble Ibn Arafa, Avenue Ibn Sina"
                 className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Example: Rue de la République"
               />
             </div>
 
@@ -170,36 +158,12 @@ const NewEntreprise = ({ activeTab, downArrow }: NewEntrepriseProps) => {
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Gouvernorat <span className="text-red-500">*</span>
                 </label>
-                <select
-                  value={gouvernorat}
-                  onChange={(e) => handleAddressChange(e, "gouvernorat")}
+                <input
+                  type="text"
+                  value="Monastir"
+                  disabled
                   className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  <option value="Ariana">Ariana</option>
-                  <option value="Béja">Béja</option>
-                  <option value="Ben Arous">Ben Arous</option>
-                  <option value="Bizerte">Bizerte</option>
-                  <option value="Gabès">Gabès</option>
-                  <option value="Gafsa">Gafsa</option>
-                  <option value="Jendouba">Jendouba</option>
-                  <option value="Kairouan">Kairouan</option>
-                  <option value="Kasserine">Kasserine</option>
-                  <option value="Kébili">Kébili</option>
-                  <option value="Le Kef">Le Kef</option>
-                  <option value="Mahdia">Mahdia</option>
-                  <option value="Manouba">Manouba</option>
-                  <option value="Médenine">Médenine</option>
-                  <option value="Monastir">Monastir</option>
-                  <option value="Nabeul">Nabeul</option>
-                  <option value="Sfax">Sfax</option>
-                  <option value="Sidi Bouzid">Sidi Bouzid</option>
-                  <option value="Siliana">Siliana</option>
-                  <option value="Sousse">Sousse</option>
-                  <option value="Tataouine">Tataouine</option>
-                  <option value="Tozeur">Tozeur</option>
-                  <option value="Tunis">Tunis</option>
-                  <option value="Zaghouan">Zaghouan</option>
-                </select>
+                />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -207,25 +171,21 @@ const NewEntreprise = ({ activeTab, downArrow }: NewEntrepriseProps) => {
                 </label>
                 <input
                   type="text"
-                  value={codePostal}
-                  onChange={(e) => handleAddressChange(e, "codePostal")}
+                  disabled
                   className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Exemple: 4000"
+                  value="5000"
                 />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Pays <span className="text-red-500">*</span>
                 </label>
-                <select
-                  value={pays}
-                  onChange={(e) => handleAddressChange(e, "pays")}
+                <input
+                  type="text"
+                  disabled
                   className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  <option>Tunisie</option>
-                  <option value="Algérie">Algérie</option>
-                  <option value="France">France</option>
-                </select>
+                  value="Tunisie"
+                />
               </div>
             </div>
 
@@ -234,11 +194,10 @@ const NewEntreprise = ({ activeTab, downArrow }: NewEntrepriseProps) => {
                 Carte
               </label>
               <AddressMap
-                address={address}
-                codePostal={codePostal}
-                gouvernorat={gouvernorat}
-                pays={pays}
-                key={updateMap}
+                address="B 24"
+                codePostal="5000"
+                gouvernorat="Monastir"
+                pays="Tunisie"
               />
             </div>
           </div>
@@ -263,7 +222,7 @@ const NewEntreprise = ({ activeTab, downArrow }: NewEntrepriseProps) => {
               src={downArrow}
               alt="voir plus"
               className={`h-4 w-4 transition-transform duration-300 ${
-                isOpen.taxe ? "rotate-90" : "-rotate-90"
+                isOpen.comptable ? "rotate-90" : "-rotate-90"
               }`}
             />
           </div>
@@ -278,6 +237,8 @@ const NewEntreprise = ({ activeTab, downArrow }: NewEntrepriseProps) => {
               </label>
               <input
                 type="text"
+                value="1361232E"
+                disabled
                 className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
@@ -285,23 +246,31 @@ const NewEntreprise = ({ activeTab, downArrow }: NewEntrepriseProps) => {
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Année Fiscale
               </label>
-              <select className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <option>2025</option>
-              </select>
+              <input
+                type="text"
+                value="2012"
+                disabled
+                className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Devise Principale <span className="text-red-500">*</span>
               </label>
-              <select className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <option>TND</option>
-              </select>
+              <input
+                type="text"
+                value="TND"
+                disabled
+                className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
             </div>
           </div>
         )}
       </div>
+
+     
     </>
   );
 };
-export default NewEntreprise;
+export default EntrepriseFiche;

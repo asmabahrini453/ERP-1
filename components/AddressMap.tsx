@@ -1,124 +1,135 @@
-import { useEffect, useRef, useState } from "react";
-import L from "leaflet";
-import "leaflet/dist/leaflet.css";
+"use client"
+
+import { useEffect, useRef } from "react"
+import L from "leaflet"
+import "leaflet/dist/leaflet.css"
 
 interface AddressMapProps {
-  address: string;
-  codePostal?: string;
-  gouvernorat?: string;
-  pays?: string;
-  height?: string;
-  className?: string;
+  address: string
+  codePostal?: string
+  gouvernorat?: string
+  pays?: string
+  height?: string
+  className?: string
+  // Add a fullAddress prop that can be used directly
+  fullAddress?: string
 }
 
 const AddressMap = ({
   address,
   codePostal = "",
-  gouvernorat = "Tunisie",
+  gouvernorat = "",
   pays = "Tunisie",
   height = "16rem",
   className = "",
+  fullAddress,
 }: AddressMapProps) => {
-  const mapRef = useRef<HTMLDivElement>(null);
-  const mapInstanceRef = useRef<L.Map | null>(null);
-  const markerRef = useRef<L.Marker | null>(null);
-  const [mapKey, setMapKey] = useState(0); 
+  const mapRef = useRef<HTMLDivElement>(null)
+  const mapInstanceRef = useRef<L.Map | null>(null)
+  const markerRef = useRef<L.Marker | null>(null)
 
-  // Force re-render when address inputs change
-  useEffect(() => {
-    setMapKey(prev => prev + 1);
-  }, [address, codePostal, gouvernorat, pays]);
+  // Create a formatted address from the individual components or use the provided fullAddress
+  const getFormattedAddress = () => {
+    if (fullAddress) return fullAddress
 
-  // Initialize and update map
+    // Combine all address parts, filtering out empty ones
+    const addressParts = [address, gouvernorat, codePostal, pays].filter(Boolean)
+    return addressParts.join(", ")
+  }
+
+  // Initialize map when component mounts
   useEffect(() => {
-    if (!mapRef.current) return;
+    if (!mapRef.current) return
 
     // Initialize map if not already done
     if (!mapInstanceRef.current) {
-      mapInstanceRef.current = L.map(mapRef.current).setView([36.8065, 10.1815], 6);
+      mapInstanceRef.current = L.map(mapRef.current).setView([36.8065, 10.1815], 6)
 
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: "",
-      }).addTo(mapInstanceRef.current);
+      }).addTo(mapInstanceRef.current)
     }
 
-    // Don't proceed if there's no meaningful address data
-    if (!address && !gouvernorat) return;
+    // Get the formatted address
+    const searchAddress = getFormattedAddress()
+    if (!searchAddress) return
 
-    const fullAddress = `${address || ""}, ${codePostal ? codePostal + ", " : ""}${gouvernorat || ""}, ${pays}`;
-    console.log("Updating map with address:", fullAddress);
+    // Create a custom icon for the marker
+    const customIcon = L.icon({
+      iconUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png",
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      shadowUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png",
+      shadowSize: [41, 41],
+    })
 
-    const fetchCoordinates = async () => {
+    // Function to geocode the address and update the map
+    const geocodeAddress = async () => {
       try {
-        // Add a timestamp to prevent caching
-        const response = await fetch(
-          `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(fullAddress)}&_=${Date.now()}`
-        );
-        
-        const data = await response.json();
-        console.log("Geocoding response:", data);
+        // Ensure we're searching in Tunisia by adding the country code
+        const searchQuery = `${searchAddress}${searchAddress.includes("Tunisie") ? "" : ", Tunisie"}`
+        const apiUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(searchQuery)}&countrycodes=tn&limit=1&_=${Date.now()}`
 
-        if (data && data.length > 0 && mapInstanceRef.current) {
-          const { lat, lon } = data[0];
-          const latNum = parseFloat(lat);
-          const lonNum = parseFloat(lon);
+        console.log("Searching for address:", searchQuery)
 
-          console.log("Found coordinates:", latNum, lonNum);
+        const response = await fetch(apiUrl)
+        const data = await response.json()
 
-          // Set view to new coordinates
-          mapInstanceRef.current.setView([latNum, lonNum], 15);
+        console.log("Geocoding response:", data)
+
+        if (data.length > 0 && mapInstanceRef.current) {
+          const { lat, lon } = data[0]
+          const latNum = Number.parseFloat(lat)
+          const lonNum = Number.parseFloat(lon)
+
+          console.log("Found coordinates:", latNum, lonNum)
+
+          // Set view to new coordinates with appropriate zoom level
+          mapInstanceRef.current.setView([latNum, lonNum], 16)
 
           // Remove existing marker if any
           if (markerRef.current) {
-            markerRef.current.remove();
+            markerRef.current.remove()
           }
 
-          // Add new marker
-          markerRef.current = L.marker([latNum, lonNum], {
-            icon: L.icon({
-              iconUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png",
-              iconSize: [25, 41],
-              iconAnchor: [12, 41],
-              popupAnchor: [1, -34],
-            }),
-          })
+          // Add new marker with popup
+          markerRef.current = L.marker([latNum, lonNum], { icon: customIcon })
             .addTo(mapInstanceRef.current)
-            .bindPopup(fullAddress)
-            .openPopup();
+            .bindPopup(searchAddress)
+            .openPopup()
         } else {
-          console.log("No coordinates found for address:", fullAddress);
+          console.warn("No location found for address:", searchAddress)
         }
       } catch (error) {
-        console.error("Error fetching location:", error);
+        console.error("Error geocoding address:", error)
       }
-    };
+    }
 
     // Add a delay to avoid too many requests while typing
     const timeoutId = setTimeout(() => {
-      fetchCoordinates();
-    }, 800);
+      geocodeAddress()
+    }, 800)
 
-    return () => clearTimeout(timeoutId);
-  }, [address, codePostal, gouvernorat, pays, mapKey]);
+    return () => clearTimeout(timeoutId)
+  }, [address, codePostal, gouvernorat, pays, fullAddress])
 
   // Clean up on unmount
   useEffect(() => {
     return () => {
       if (mapInstanceRef.current) {
-        mapInstanceRef.current.remove();
-        mapInstanceRef.current = null;
+        mapInstanceRef.current.remove()
+        mapInstanceRef.current = null
       }
-    };
-  }, []);
+    }
+  }, [])
 
+  return (
+    <div className={`relative ${className}`} style={{ height }}>
+      <div ref={mapRef} style={{ width: "100%", height: "100%" }} />
+    </div>
+  )
+}
 
-    return (
-        <div className={`relative ${className}`} style={{ height }}>
-          <div ref={mapRef} style={{ width: "100%", height: "100%" }} />
-        </div>
-    
-      
-  );
-};
+export default AddressMap
 
-export default AddressMap;
