@@ -52,9 +52,8 @@ const NewEntrepriseCard = ({ activities }: NewEntrepriseCardProps) => {
         </div>
         <div className="flex justify-center p-2">
           <div className="relative flex items-center justify-center w-40 h-40">
-            {/* Display Image */}
             <Image
-              src={Logo || "/default-image.png"} // Fallback to default image
+              src={Logo || "/default-image.png"} 
               alt="Logo de l'entreprise"
               className="w-full h-full object-contain rounded-md"
               width={160}

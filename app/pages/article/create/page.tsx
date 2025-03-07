@@ -17,7 +17,7 @@ import Image from "next/image";
 import ArticleForm from "@/components/article/ArticleForm";
 
 const ArticlePage = () => {
-  const [activeTab, setActiveTab] = useState("details"); //by default details section is open
+  const [activeTab, setActiveTab] = useState(''); 
   const [maximizeStock, setMaximizeStock] = useState(false);
   const [stockBlocked, setStockBlocked] = useState(false);
   const [purchaseBlocked, setPurchaseBlocked] = useState(false);

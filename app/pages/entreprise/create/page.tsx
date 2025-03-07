@@ -12,7 +12,6 @@ import {
 import ProductCard from "@/components/article/ProductCard";
 import downArrow from "@/assets/icons/down-arrow.png";
 import Image from "next/image";
-import ArticleForm from "@/components/article/ArticleForm";
 import { useState } from "react";
 import NewEntreprise from "@/components/entreprise/NewEntreprise";
 import NewEntrepriseCard from "@/components/entreprise/NewEntrepriseCard";
