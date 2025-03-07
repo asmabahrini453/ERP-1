@@ -20,6 +20,12 @@ import EntrepriseFiche from "@/components/entreprise/EntrepriseFiche";
 const tabs = [
     { id: "generale", label: "Information Générales " },
     { id: "comptable", label: "Information Comptables " },
+    { id: "securite", label: "Sécurité" },
+    { id: "supprimer", label: "Supprimer mon compte " },
+    { id: "notifications", label: "Notifications " },  
+    { id: "abonnement", label: "Abonnement - Gestion d’abonnement" },
+    { id: "services", label: "Services Tiers" },
+   
 
   ];
   // Styles for the tabs
