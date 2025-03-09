@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import ValiderIcon from "@/assets/icons/valider-icon.png";
 import filterIcon from "@/assets/icons/filter.png";
@@ -18,10 +17,7 @@ import ArticleForm from "@/components/article/ArticleForm";
 
 const ArticlePage = () => {
   const [activeTab, setActiveTab] = useState(''); 
-  const [maximizeStock, setMaximizeStock] = useState(false);
-  const [stockBlocked, setStockBlocked] = useState(false);
-  const [purchaseBlocked, setPurchaseBlocked] = useState(false);
-  const [salesBlocked, setSalesBlocked] = useState(false);
+ 
 
   const tabs = [
     { id: "details", label: "Détails" },

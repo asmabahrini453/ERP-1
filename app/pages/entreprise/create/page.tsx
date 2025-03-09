@@ -52,8 +52,8 @@ const tabs = [
   ];
 
 const EntreprisePage =()=>{
-      const [activeTab, setActiveTab] = useState("details"); //by default details section is open
-    
+      const [activeTab, setActiveTab] = useState(""); 
+      
     return(
         <div className="space-y-6 overflow-x-hidden">
         <div className="flex items-center justify-between">

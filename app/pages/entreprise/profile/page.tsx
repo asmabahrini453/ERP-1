@@ -1,16 +1,16 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import ValiderIcon from "@/assets/icons/valider-icon.png"
-import filterIcon from "@/assets/icons/filter.png"
-import { Copy, Pencil, Printer, Share2 } from "lucide-react"
+
+import { Copy, Pencil,  Printer, Share2 } from "lucide-react"
 import downArrow from "@/assets/icons/down-arrow.png"
+import plus from "@/assets/icons/plus.png"
 import Image from "next/image"
 import { useState } from "react"
 import EntrepriseStats from "@/components/entreprise/EntrepriseStats"
-import NewEntrepriseCard from "@/components/entreprise/NewEntrepriseCard"
 import EntrepriseFiche from "@/components/entreprise/EntrepriseFiche"
 import EntrepriseProfileCard from "@/components/entreprise/EntrepriseProfileCard"
+import Link from "next/link"
 
 const tabs = [
   { id: "generale", label: "Information Générales " },
@@ -50,8 +50,7 @@ const activityData = [
 ]
 
 const EntrepriseProfile = () => {
-  const [activeTab, setActiveTab] = useState("generale") // Changed default to match your tabs
-
+  const [activeTab, setActiveTab] = useState("") 
   return (
     <div className="space-y-6 overflow-x-hidden">
       <div className="flex items-center justify-between">
@@ -73,17 +72,18 @@ const EntrepriseProfile = () => {
           </div>
 
           <div className="border-l border mx-4 sm:mx-2 h-8" />
+          
+          <div className="flex justify-center items-center">
+      <Link
+        href="/pages/entreprise/create"
+        className="bg-[#023E8A] text-[#F2F9F3] inline-flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#0353A4] transition"
+      >
+        <Image src={plus} alt="validate icon" className="h-4 w-4" />
+        <span className="hidden md:inline">Créer une entreprise</span>
+      </Link>
+    </div>
 
-          <div className="flex md:gap-4 sm:gap-1 sm:mr-2">
-            <Button className="bg-transparent hover:bg-white text-muted-foreground border">
-              <Image src={filterIcon || "/placeholder.svg"} alt="filter icon" className="h-4 w-4" />
-              <span className="hidden md:inline">Filtrer</span>
-            </Button>
-            <Button className="bg-[#3BCEAB] hover:bg-[#3BCEAB] text-[#F2F9F3] md:w-[120px] ">
-              <Image src={ValiderIcon || "/placeholder.svg"} alt="validate icon" className="h-4 w-4" />
-              <span className="hidden md:inline">Valider</span>
-            </Button>
-          </div>
+         
         </div>
       </div>
 
