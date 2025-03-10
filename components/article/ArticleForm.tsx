@@ -442,7 +442,7 @@ const ArticleForm = ({ activeTab, downArrow }: ArticleFormProps) => {
           >
             <h2 className="text-lg font-bold text-[#023E8A]">Stocks</h2>
             <Image
-              src={downArrow || "/placeholder.svg"}
+              src={downArrow}
               alt="voir plus"
               className={`h-4 w-4 transition-transform duration-300 ${
                 isOpen.stock ? "rotate-90" : "-rotate-90"

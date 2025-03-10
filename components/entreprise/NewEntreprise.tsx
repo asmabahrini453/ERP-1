@@ -18,9 +18,9 @@ const NewEntreprise = ({ activeTab, downArrow }: NewEntrepriseProps) => {
   const [codePostal, setCodePostal] = useState<string>("");
   const [gouvernorat, setGouvernorat] = useState<string>("Monastir");
   const [pays, setPays] = useState<string>("Tunisie");
-  // Add this new state to trigger map updates
+  //  this new state to trigger map updates
   const [updateMap, setUpdateMap] = useState<number>(0);
-  // Add this function to handle all address-related changes
+  //  this function to handle all address-related changes
   const handleAddressChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
     field: "address" | "codePostal" | "gouvernorat" | "pays"
