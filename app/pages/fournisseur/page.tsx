@@ -3,8 +3,8 @@
 import { Copy, Pencil, Printer, Share2 } from "lucide-react";
 import downArrow from "@/assets/icons/down-arrow.png";
 import { useState } from "react";
-import CollaboratorCard from "@/components/collaborator/CollaboratorCard";
 import CollaboratorFiche from "@/components/collaborator/CollaboratorFiche";
+import CollaboratorCard from "@/components/collaborator/CollaboratorCard";
 
 const tabs = [
   { id: "generale", label: "Information Générales " },
@@ -65,7 +65,7 @@ const ClientPage = () => {
             Contact /
           </div>
           <h1 className="md:text-xl font-bold text-[#383861] sm:text-[16px]">
-            Nouveau Client
+            Nouveau Fournisseur
           </h1>
         </div>
 
@@ -102,7 +102,7 @@ const ClientPage = () => {
       {/* Form Contenu */}
       <div className="flex flex-col md:flex-row">
         <div className="md:w-[80%] w-full pr-4">
-          <CollaboratorFiche activeTab={activeTab} downArrow={downArrow} />
+        <CollaboratorFiche activeTab={activeTab} downArrow={downArrow} />
         </div>
         <div className="md:w-[1/3] md:block hidden">
         <CollaboratorCard collaboratorDetails={clientData} activities={activityData}/>

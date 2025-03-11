@@ -6,12 +6,12 @@ import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import AddressMap from "@/components/AddressMap"
 
-interface NewClientProps {
+interface NewCollaboratorProps {
   activeTab: string
   downArrow: any
 }
 
-const ClientFiche = ({ activeTab, downArrow }: NewClientProps) => {
+const CollaboratorFiche = ({ activeTab, downArrow }: NewCollaboratorProps) => {
   const generaleRef = useRef<HTMLDivElement>(null);
   const professionalRef = useRef<HTMLDivElement>(null);
   const addressFRef = useRef<HTMLDivElement>(null);
@@ -530,5 +530,5 @@ const ClientFiche = ({ activeTab, downArrow }: NewClientProps) => {
     </>
   );
 };
-export default ClientFiche;
+export default CollaboratorFiche;
 

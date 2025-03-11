@@ -3,8 +3,8 @@ import { Pencil, ChevronDown, Info, Paperclip  } from "lucide-react"
 import Avatar from "@/assets/images/asma.jpg"
 import Image from "next/image"
 import { useState } from "react"
-interface ClientCardProps {
-    clientDetails: {
+interface CollaboratorCardProps {
+  collaboratorDetails: {
     nomDeFamille: string
     prenom: string
     description: string
@@ -23,10 +23,10 @@ interface ClientCardProps {
   }>
 }
 
-const ClientCard = ({
-    clientDetails,
+const CollaboratorCard = ({
+  collaboratorDetails,
   activities,
-}: ClientCardProps) => {
+}: CollaboratorCardProps) => {
 
     
   const [activeTopTab, setActiveTopTab] = useState("details")
@@ -76,7 +76,7 @@ const ClientCard = ({
           <div className="relative w-32 h-32  flex items-center justify-center ">
             <Image
               src={Avatar}
-              alt={clientDetails.description}
+              alt={collaboratorDetails.description}
               className="max-h-full max-w-full object-contain rounded-lg"
             />
           </div>
@@ -101,7 +101,7 @@ const ClientCard = ({
         </div>
 
         <div className="space-y-3">
-          {Object.entries(clientDetails).map(([key, value], index, array) => {
+          {Object.entries(collaboratorDetails).map(([key, value], index, array) => {
             //  labels for each key
             const labels: Record<string, string> = {
                 nomDeFamille: "Nom de famille",
@@ -163,5 +163,5 @@ const ClientCard = ({
   )
 }
 
-export default ClientCard
+export default CollaboratorCard
 
