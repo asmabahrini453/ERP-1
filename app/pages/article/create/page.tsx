@@ -135,13 +135,13 @@ const ArticlePage = () => {
       </div>
       {/* Form Contenu */}
       <div className="flex flex-col md:flex-row">
-        <div className="md:w-2/3 w-full pr-4">
+        <div className="md:w-[80%] w-full pr-4">
         <ArticleForm
         activeTab={activeTab}
           downArrow={downArrow}
           />
         </div>
-        <div className="md:w-1/3 md:block hidden">
+        <div className="md:w-[1/3] md:block hidden">
           <ProductCard productDetails={productData} activities={activityData} />
         </div>
       </div>

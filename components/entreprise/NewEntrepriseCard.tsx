@@ -25,7 +25,7 @@ const NewEntrepriseCard = ({ activities }: NewEntrepriseCardProps) => {
 
   return (
     <div
-      className="bg-transparent rounded-lg shadow-md border-[#383861] overflow-hidden"
+      className="bg-white rounded-lg shadow-md border-[#383861] overflow-hidden"
       style={{ borderWidth: "0.3px" }}
     >
       {/* Top Nav */}

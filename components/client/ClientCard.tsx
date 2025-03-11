@@ -37,7 +37,7 @@ const ClientCard = ({
 
   return (
 <div
-      className="bg-transparent rounded-lg shadow-md border-[#383861] overflow-hidden"
+      className="bg-white rounded-lg shadow-md border-[#383861] overflow-hidden"
       style={{ borderWidth: "0.3px" }}
     >
       {/* Top Nav */}
@@ -73,11 +73,11 @@ const ClientCard = ({
           </svg>
         </div>
         <div className="flex justify-center p-2">
-          <div className="relative w-32 h-32  flex items-center justify-center">
+          <div className="relative w-32 h-32  flex items-center justify-center ">
             <Image
               src={Avatar}
               alt={clientDetails.description}
-              className="max-h-full max-w-full object-contain"
+              className="max-h-full max-w-full object-contain rounded-lg"
             />
           </div>
         </div>

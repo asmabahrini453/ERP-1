@@ -1,12 +1,14 @@
-"use client";
+"use client"
 
-import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import AddressMap from "@/components/AddressMap";
+import type React from "react"
+
+import { useEffect, useRef, useState } from "react"
+import Image from "next/image"
+import AddressMap from "@/components/AddressMap"
 
 interface NewClientProps {
-  activeTab: string;
-  downArrow: any;
+  activeTab: string
+  downArrow: any
 }
 
 const ClientFiche = ({ activeTab, downArrow }: NewClientProps) => {
@@ -14,8 +16,6 @@ const ClientFiche = ({ activeTab, downArrow }: NewClientProps) => {
   const professionalRef = useRef<HTMLDivElement>(null);
   const addressFRef = useRef<HTMLDivElement>(null);
   const addressLRef = useRef<HTMLDivElement>(null);
-
-  {/** adresse de facturation */}
   const [addressF, setAddressF] = useState<string>("");
   const [codePostalF, setCodePostalF] = useState<string>("");
   const [gouvernoratF, setGouvernoratF] = useState<string>("Monastir");
@@ -49,9 +49,6 @@ const ClientFiche = ({ activeTab, downArrow }: NewClientProps) => {
       setUpdateMapF((prev) => prev + 1);
     }, 300);
   };
-
-
- {/** adresse de Livraison */}
   const [addressL, setAddressL] = useState<string>("");
   const [codePostalL, setCodePostalL] = useState<string>("");
   const [gouvernoratL, setGouvernoratL] = useState<string>("Monastir");
@@ -122,6 +119,7 @@ const ClientFiche = ({ activeTab, downArrow }: NewClientProps) => {
 
   return (
     <>
+   
       {/* info generale */}
       <div
         ref={generaleRef}
@@ -137,7 +135,7 @@ const ClientFiche = ({ activeTab, downArrow }: NewClientProps) => {
               Information Générales
             </h2>
             <Image
-              src={downArrow}
+              src={downArrow || "/placeholder.svg"}
               alt="voir plus"
               className={`h-4 w-4 transition-transform duration-300 ${
                 isOpen.generale ? "rotate-90" : "-rotate-90"
@@ -243,7 +241,7 @@ const ClientFiche = ({ activeTab, downArrow }: NewClientProps) => {
               Information Professionnelles
             </h2>
             <Image
-              src={downArrow}
+              src={downArrow || "/placeholder.svg"}
               alt="voir plus"
               className={`h-4 w-4 transition-transform duration-300 ${
                 isOpen.professional ? "rotate-90" : "-rotate-90"
@@ -332,49 +330,38 @@ const ClientFiche = ({ activeTab, downArrow }: NewClientProps) => {
           </div>
         )}
       </div>
-      
-  {/* Adresse de facturation */}
-  <div
-        ref={addressFRef}
-        id="addressF"
-        className="bg-white rounded-lg shadow-md p-6 mb-6 border w-1/2 flex-none"
-      >
-        <div className="flex flex-col mb-4">
-          <div
-            className="flex items-center gap-2 mb-4 cursor-pointer"
-            onClick={() => toggleSection("addressF")}
-          >
-            <h2 className="text-lg font-bold text-[#023E8A]">
-              Adresse De Facturation
-            </h2>
-            <Image
-              src={downArrow}
-              alt="voir plus"
-              className={`h-4 w-4 transition-transform duration-300 ${
-                isOpen.addressF ? "rotate-90" : "-rotate-90"
-              }`}
-            />
-          </div>
-          <div className="border-b w-full" />
-        </div>
-        {isOpen.addressF && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border p-6 rounded-md">
-             <div className="col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Adresse
-              </label>
-              <input
-                type="text"
-                value={addressF}
-                onChange={(e) => handleAddressFChange(e, "addressF")}
-                className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Example: Rue de la République"
+      <div className="relative">
+        {/* Adresse de facturation */}
+        <div
+          ref={addressFRef}
+          id="addressF"
+          className="bg-white rounded-lg shadow-md p-6 mb-6 border inline-block align-top w-full md:w-[calc(50%-8px)] md:mr-4"
+        >
+          <div className="flex flex-col mb-4">
+            <div className="flex items-center gap-2 mb-4 cursor-pointer" onClick={() => toggleSection("addressF")}>
+              <h2 className="text-lg font-bold text-[#023E8A]">Adresse De Facturation</h2>
+              <Image
+                src={downArrow}
+                alt="voir plus"
+                className={`h-4 w-4 transition-transform duration-300 ${isOpen.addressF ? "rotate-90" : "-rotate-90"}`}
               />
             </div>
-            <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1 w-1/2">
-                  Gouvernorat 
-                </label>
+            <div className="border-b w-full" />
+          </div>
+          {isOpen.addressF && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border p-6 rounded-md">
+              <div className="col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Adresse</label>
+                <input
+                  type="text"
+                  value={addressF}
+                  onChange={(e) => handleAddressFChange(e, "addressF")}
+                  className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Example: Rue de la République"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1 w-1/2">Gouvernorat</label>
                 <select
                   value={gouvernoratF}
                   onChange={(e) => handleAddressFChange(e, "gouvernoratF")}
@@ -405,24 +392,20 @@ const ClientFiche = ({ activeTab, downArrow }: NewClientProps) => {
                   <option value="Tunis">Tunis</option>
                   <option value="Zaghouan">Zaghouan</option>
                 </select>
-            </div>
-            <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Code Postal
-                </label>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Code Postal</label>
                 <input
                   type="text"
                   value={codePostalF}
                   onChange={(e) => handleAddressFChange(e, "codePostalF")}
                   className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="4000"
+                  placeholder="4000"
                 />
-            </div>
-            <div className="col-span-2">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Pays
-              </label>
-              <select
+              </div>
+              <div className="col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Pays</label>
+                <select
                   value={paysF}
                   onChange={(e) => handleAddressFChange(e, "paysF")}
                   className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -431,66 +414,52 @@ const ClientFiche = ({ activeTab, downArrow }: NewClientProps) => {
                   <option value="Algérie">Algérie</option>
                   <option value="France">France</option>
                 </select>
+              </div>
+              <div className="col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Carte</label>
+                <AddressMap
+                  address={addressF}
+                  codePostal={codePostalF}
+                  gouvernorat={gouvernoratF}
+                  pays={paysF}
+                  key={updateMapF}
+                />
+              </div>
             </div>
-            <div className="col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Carte
-              </label>
-              <AddressMap
-                address={addressF}
-                codePostal={codePostalF}
-                gouvernorat={gouvernoratF}
-                pays={paysF}
-                key={updateMapF}
-              />
-            </div>
-          </div>
-        )}
-      </div>
-
-     
-      {/** Adresse de Livraison */}
-      <div
-        ref={addressLRef}
-        id="addressL"
-        className="bg-white rounded-lg shadow-md p-6 mb-6 border w-1/2 flex-none"
-      >
-        <div className="flex flex-col mb-4">
-          <div
-            className="flex items-center gap-2 mb-4 cursor-pointer"
-            onClick={() => toggleSection("addressL")}
-          >
-            <h2 className="text-lg font-bold text-[#023E8A]">
-              Adresse De Livraison
-            </h2>
-            <Image
-              src={downArrow}
-              alt="voir plus"
-              className={`h-4 w-4 transition-transform duration-300 ${
-                isOpen.addressL ? "rotate-90" : "-rotate-90"
-              }`}
-            />
-          </div>
-          <div className="border-b w-full" />
+          )}
         </div>
-        {isOpen.addressL && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border p-6 rounded-md">
-             <div className="col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Adresse
-              </label>
-              <input
-                type="text"
-                value={addressL}
-                onChange={(e) => handleAddressLChange(e, "addressL")}
-                className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Example: Rue de la République"
+
+        {/** Adresse de Livraison */}
+        <div
+          ref={addressLRef}
+          id="addressL"
+          className="bg-white rounded-lg shadow-md p-6 mb-6 border inline-block align-top w-full md:w-[calc(50%-8px)]"
+        >
+          <div className="flex flex-col mb-4">
+            <div className="flex items-center gap-2 mb-4 cursor-pointer" onClick={() => toggleSection("addressL")}>
+              <h2 className="text-lg font-bold text-[#023E8A]">Adresse De Livraison</h2>
+              <Image
+                src={downArrow}
+                alt="voir plus"
+                className={`h-4 w-4 transition-transform duration-300 ${isOpen.addressL ? "rotate-90" : "-rotate-90"}`}
               />
             </div>
-            <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1 w-1/2">
-                  Gouvernorat 
-                </label>
+            <div className="border-b w-full" />
+          </div>
+          {isOpen.addressL && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border p-6 rounded-md">
+              <div className="col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Adresse</label>
+                <input
+                  type="text"
+                  value={addressL}
+                  onChange={(e) => handleAddressLChange(e, "addressL")}
+                  className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Example: Rue de la République"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1 w-1/2">Gouvernorat</label>
                 <select
                   value={gouvernoratL}
                   onChange={(e) => handleAddressLChange(e, "gouvernoratL")}
@@ -521,24 +490,20 @@ const ClientFiche = ({ activeTab, downArrow }: NewClientProps) => {
                   <option value="Tunis">Tunis</option>
                   <option value="Zaghouan">Zaghouan</option>
                 </select>
-            </div>
-            <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Code Postal
-                </label>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Code Postal</label>
                 <input
                   type="text"
                   value={codePostalL}
                   onChange={(e) => handleAddressLChange(e, "codePostalL")}
                   className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="4000"
+                  placeholder="4000"
                 />
-            </div>
-            <div className="col-span-2">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Pays
-              </label>
-              <select
+              </div>
+              <div className="col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Pays</label>
+                <select
                   value={paysL}
                   onChange={(e) => handleAddressLChange(e, "paysL")}
                   className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -547,25 +512,23 @@ const ClientFiche = ({ activeTab, downArrow }: NewClientProps) => {
                   <option value="Algérie">Algérie</option>
                   <option value="France">France</option>
                 </select>
+              </div>
+              <div className="col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Carte</label>
+                <AddressMap
+                  address={addressL}
+                  codePostal={codePostalL}
+                  gouvernorat={gouvernoratL}
+                  pays={paysL}
+                  key={updateMapL}
+                />
+              </div>
             </div>
-            <div className="col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Carte
-              </label>
-              <AddressMap
-                address={addressL}
-                codePostal={codePostalL}
-                gouvernorat={gouvernoratL}
-                pays={paysL}
-                key={updateMapL}
-              />
-            </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
-
-
     </>
   );
 };
 export default ClientFiche;
+
