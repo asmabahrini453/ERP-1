@@ -14,7 +14,6 @@ interface OperationsProps {
   downArrow: any
 }
 
-// Define the type for an operation row
 interface OperationRow {
   id: number
   numero: number
@@ -80,7 +79,6 @@ const Operations = ({ downArrow }: OperationsProps) => {
     setOperations(updatedOperations)
   }
 
-  // Handle form input changes
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setEditForm({
@@ -89,7 +87,6 @@ const Operations = ({ downArrow }: OperationsProps) => {
     })
   }
 
-  // Handle select changes
   const handleSelectChange = (name: string, value: string) => {
     setEditForm({
       ...editForm,
