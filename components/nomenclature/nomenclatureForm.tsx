@@ -39,12 +39,12 @@ const NomenclatureForm = ({ activeTab, downArrow }: NomenclatureFormProps) => {
     scrollToSection()
   }, [activeTab])
 
-  // State to manage open/closed sections
+ 
   const [isOpen, setIsOpen] = useState<Record<string, boolean>>({
-    details: true, // Details section open by default
-    achat: false,
     article: true,
     cost: false,
+    matiere:false,
+    operations:false
   })
 
   // Toggle section open/closed

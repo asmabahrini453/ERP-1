@@ -33,14 +33,14 @@ const NomenclaturePage = () => {
     tabContent: "flex items-center space-x-2",
   };
 
- const productData = {
+ const articleData = {
   codeArticle: "A808001",
   UdMdeArticle: "PCS",
   Quantite: 120,
   stockActuel: 188,
   prixUnitaire: 120,
-  devise: "TND",
   montant: 14400, 
+  devise: "TND",
   avecDesOperations: "Non", 
 }
 
@@ -126,7 +126,7 @@ const NomenclaturePage = () => {
           <NomenclatureForm activeTab={activeTab} downArrow={downArrow} />
         </div>
         <div className="md:w-[1/3] md:block hidden">
-        <NomenclatureCard articleDetails={productData} activities={activityData} />
+        <NomenclatureCard articleDetails={articleData} activities={activityData} />
         </div>
       </div>
     </div>

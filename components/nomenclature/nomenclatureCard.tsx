@@ -7,7 +7,7 @@ interface  NomenclatureCardProps {
     articleDetails: {
     codeArticle: string
     UdMdeArticle: string
-    Quantite: string
+    Quantite: number
     stockActuel: number
     prixUnitaire: number
     montant: number

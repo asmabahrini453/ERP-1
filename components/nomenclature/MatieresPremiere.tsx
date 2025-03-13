@@ -23,7 +23,7 @@ interface MaterialRow {
 }
 
 const MatieresPremiere = ({ downArrow }: MatieresPremiereProps) => {
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
 
   const [materials, setMaterials] = useState<MaterialRow[]>([
     {

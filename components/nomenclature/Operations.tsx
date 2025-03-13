@@ -25,10 +25,10 @@ interface OperationRow {
 }
 
 const Operations = ({ downArrow }: OperationsProps) => {
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
   const [avecOperations, setAvecOperations] = useState(false)
   const [transfererMateriel, setTransfererMateriel] = useState(false)
-  const [fabricationType, setFabricationType] = useState("ordre") // "ordre" or "carte"
+  const [fabricationType, setFabricationType] = useState("ordre") 
 
   // Operations data
   const [operations, setOperations] = useState<OperationRow[]>([])
