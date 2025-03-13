@@ -5,18 +5,17 @@ import { Button } from "@/components/ui/button";
 import ValiderIcon from "@/assets/icons/valider-icon.png";
 import filterIcon from "@/assets/icons/filter.png";
 import { Copy, Pencil, Printer, Share2Icon } from "lucide-react";
-import downArrow from "@/assets/icons/down-arrow.png";
 import Image from "next/image";
-import OfForm from "@/components/OF/OfForm";
-import OfCard from "@/components/OF/OfCard";
+import EntrepotForm from "@/components/entrepot/EntrepotForm";
+import downArrow from "@/assets/icons/down-arrow.png"
+import EntrepotCard from "@/components/entrepot/EntrepotCard";
 
-const OfPage = () => {
+const entrepotPage = () => {
   const [activeTab, setActiveTab] = useState("");
 
   const tabs = [
-    { id: "details", label: "Détails de l’article de production" },
-    { id: "entrepot", label: "Entrepôt" },
-    { id: "temps", label: "Temps" },
+    { id: "details", label: "Détails" },
+    { id: "contact", label: "Informations de conatct" },
   ];
   const tabStyles = {
     container: "flex items-center justify-center border-b",
@@ -33,16 +32,17 @@ const OfPage = () => {
     tabContent: "flex items-center justify-center space-x-2",
   };
 
-  const OfData = {
-    numSerie: "A808001",
-    titre: "Veste légère",
-    uniteVente: "PCS",
-    numNomenclature: "3200BC",
-    quantiteProduire: 88,
-    entrepotSource: "Entrepôt 1",
-    entrepotCible: "Entrepôt 2",
-    dateDebutReel: "12/02/2025",
-    dateFinReelle: "17/02/2025",
+  const Data = {
+    nomDeEntrepot: "entrepôt 1",
+    societe: "Devpro Solutions",
+    reference: "2321",
+    type: "Transit",
+    statut: "Actif",
+    categorie: "Entrepôt collectif",
+    tel: "25-096-055",
+    adresse: "B24, rue ibn arafa",        
+    gouvernerat: "Monastir",        
+    pays: "Tunisie",        
   };
 
   const activityData = [
@@ -65,10 +65,10 @@ const OfPage = () => {
       <div className="flex items-center justify-between">
         <div>
           <div className="md:text-sm text-muted-foreground sm:text-[12px]">
-            Production/
+          Stock/
           </div>
           <h1 className="md:text-xl font-bold text-[#383861] sm:text-[16px]">
-            Ordre de fabrication
+          Entrepôt
           </h1>
         </div>
 
@@ -123,14 +123,14 @@ const OfPage = () => {
       {/* Form Contenu */}
       <div className="flex flex-col md:flex-row">
         <div className="md:w-[80%] w-full pr-4">
-          <OfForm activeTab={activeTab} downArrow={downArrow} />
+            <EntrepotForm activeTab={activeTab} downArrow={downArrow} />
         </div>
         <div className="md:w-[1/3] md:block hidden">
-          <OfCard articleDetails={OfData} activities={activityData} />
+            <EntrepotCard activities={activityData}  entrepotDetails={Data}/>
         </div>
       </div>
     </div>
   );
 };
 
-export default OfPage;
+export default entrepotPage;

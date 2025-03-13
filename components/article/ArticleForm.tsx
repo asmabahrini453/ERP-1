@@ -613,15 +613,8 @@ const ArticleForm = ({ activeTab, downArrow }: ArticleFormProps) => {
                   className="w-full p-2 border border-gray-300 rounded-md"
                 />
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Date dern. inventaire
-                </label>
-                <input
-                  type="date"
-                  className="w-full p-2 border border-gray-300 rounded-md"
-                />
-              </div>
+              
+              
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Proch. date début d'inventaire
