@@ -86,7 +86,7 @@ const NomenclatureForm = ({ activeTab, downArrow }: NomenclatureFormProps) => {
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Article <span className="text-red-500">*</span>
                 </label>
-                <Image src={info || "/placeholder.svg"} alt="voir plus" />
+                <Image src={info} alt="voir plus" />
               </div>
               <select className="w-full p-2 border border-gray-300 rounded-md">
                 <option>AD08001</option>

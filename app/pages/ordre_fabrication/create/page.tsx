@@ -4,54 +4,45 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import ValiderIcon from "@/assets/icons/valider-icon.png";
 import filterIcon from "@/assets/icons/filter.png";
-import {
-  Copy,
-  Pencil,
-  Printer,
-  Share2Icon,
-} from "lucide-react";
-import ProductCard from "@/components/article/ProductCard";
+import { Copy, Pencil, Printer, Share2Icon } from "lucide-react";
 import downArrow from "@/assets/icons/down-arrow.png";
 import Image from "next/image";
-import ArticleForm from "@/components/article/ArticleForm";
+import OfForm from "@/components/OF/OfForm";
+import OfCard from "@/components/OF/OfCard";
 
 const ArticlePage = () => {
-  const [activeTab, setActiveTab] = useState(''); 
- 
+  const [activeTab, setActiveTab] = useState("");
 
   const tabs = [
     { id: "details", label: "Détails de l’article de production" },
     { id: "entrepot", label: "Entrepôt" },
-    { id: "operation", label: "Opérations" },
-
+    { id: "temps", label: "Temps" },
   ];
-  // Styles for the tabs
   const tabStyles = {
     container: "flex items-center justify-center border-b",
     tab: (isActive: boolean) =>
-      `md:px-6 sm:px-4 w-full md:py-2.5 sm:py-1 md:text-sm sm:text-[10px]  font-medium transition-colors relative
-    ${
-      isActive ? "bg-[#023E8A] text-white" : "text-gray-600 hover:text-gray-800"
-    }
-    ${isActive ? "rounded-t-md" : ""}
-    `,
+      `md:px-6 sm:px-4 w-full md:py-2.5 sm:py-1 md:text-sm sm:text-[10px] font-medium transition-colors relative text-center
+      ${
+        isActive
+          ? "bg-[#023E8A] text-white"
+          : "text-gray-600 hover:text-gray-800"
+      }
+      ${isActive ? "rounded-t-md" : ""}
+      `,
     separator: "h-5 w-px bg-gray-200 mx-1",
-    tabContent: "flex items-center space-x-2",
+    tabContent: "flex items-center justify-center space-x-2",
   };
 
-  // Product data for the card
-  const productData = {
-    codeArticle: "A808001",
-    description: "Veste légère",
+  const OfData = {
+    numSerie: "A808001",
+    titre: "Veste légère",
     uniteVente: "PCS",
-    stockActuel: 120,
-    coutUnitaire: 88,
-    prixVente: 120,
-    referenceFournisseur: "3200",
-    modeEvaluationStock: "FIFO",
-    codeModeleRangement: "1896-S",
-    dateDebutInventaire: "12/02/2025",
-    dateFinInventaire: "17/02/2025",
+    numNomenclature: "3200BC",
+    quantiteProduire: 88,
+    entrepotSource: "Entrepôt 1",
+    entrepotCible: "Entrepôt 2",
+    dateDebutReel: "12/02/2025",
+    dateFinReelle: "17/02/2025",
   };
 
   const activityData = [
@@ -74,10 +65,10 @@ const ArticlePage = () => {
       <div className="flex items-center justify-between">
         <div>
           <div className="md:text-sm text-muted-foreground sm:text-[12px]">
-          Production/
+            Production/
           </div>
           <h1 className="md:text-xl font-bold text-[#383861] sm:text-[16px]">
-          Ordre de fabrication
+            Ordre de fabrication
           </h1>
         </div>
 
@@ -96,7 +87,7 @@ const ArticlePage = () => {
           <div className="border-l border mx-4 sm:mx-2 h-8" />
 
           <div className="flex md:gap-4 sm:gap-1 sm:mr-2">
-          <Button className="bg-transparent hover:bg-white text-muted-foreground border">
+            <Button className="bg-transparent hover:bg-white text-muted-foreground border">
               <Image src={filterIcon} alt="filter icon" className="h-4 w-4" />
               <span className="hidden md:inline">Filtrer</span>
             </Button>
@@ -132,13 +123,10 @@ const ArticlePage = () => {
       {/* Form Contenu */}
       <div className="flex flex-col md:flex-row">
         <div className="md:w-[80%] w-full pr-4">
-        <ArticleForm
-        activeTab={activeTab}
-          downArrow={downArrow}
-          />
+          <OfForm activeTab={activeTab} downArrow={downArrow} />
         </div>
         <div className="md:w-[1/3] md:block hidden">
-          <ProductCard productDetails={productData} activities={activityData} />
+          <OfCard articleDetails={OfData} activities={activityData} />
         </div>
       </div>
     </div>
