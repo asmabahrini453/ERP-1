@@ -4,9 +4,8 @@ import type React from "react";
 
 import { useState, useRef, useEffect } from "react";
 import { Switch } from "@/components/ui/switch";
-import { Button } from "@/components/ui/button";
-import { Plus, Pencil, Trash2 } from "lucide-react";
 import Image from "next/image";
+import CustomFields from "./CustomFields";
 
 interface ArticleFormProps {
   activeTab: string;
@@ -50,6 +49,12 @@ const ArticleForm = ({ activeTab, downArrow }: ArticleFormProps) => {
   const [isOpen, setIsOpen] = useState<Record<string, boolean>>({
     details: true, // Details section open by default
     achat: false,
+    ventes: false,
+    stock: false,
+    taxe: false,
+    qualite: false,
+    inventaire: false,
+    champs: false,
   });
 
   // Toggle section open/closed
@@ -65,109 +70,11 @@ const ArticleForm = ({ activeTab, downArrow }: ArticleFormProps) => {
   const [stockBlocked, setStockBlocked] = useState(false);
   const [purchaseBlocked, setPurchaseBlocked] = useState(false);
   const [salesBlocked, setSalesBlocked] = useState(false);
-  //----------------------------------------------------------------------------------------------------
-  //champs
-  //custom
-  const [customFields, setCustomFields] = useState<
-    Array<{
-      id: string;
-      name: string;
-      value: string;
-      important: boolean;
-    }>
-  >([
-    {
-      id: "1",
-      name: "Référence externe",
-      value: "REF-2023-001",
-      important: true,
-    },
-    {
-      id: "2",
-      name: "Numéro de lot",
-      value: "LOT-A12345",
-      important: false,
-    },
-  ]);
-
-  //  new custom field form
-  const [isAddingField, setIsAddingField] = useState(false);
-  const [newField, setNewField] = useState({
-    name: "",
-    value: "",
-    important: false,
-  });
-
-  // Function to add a new custom field
-  const addCustomField = () => {
-    if (newField.name.trim() === "") return;
-
-    setCustomFields([
-      ...customFields,
-      {
-        id: Date.now().toString(),
-        name: newField.name,
-        value: newField.value,
-        important: newField.important,
-      },
-    ]);
-
-    // Reset form
-    setNewField({
-      name: "",
-      value: "",
-      important: false,
-    });
-    setIsAddingField(false);
-  };
-
-  // Function to delete a custom field
-  const deleteCustomField = (id: string) => {
-    setCustomFields(customFields.filter((field) => field.id !== id));
-  };
-
-  // Function to updaete a custom field
-  const [editingField, setEditingField] = useState<string | null>(null);
-  const [editForm, setEditForm] = useState({
-    name: "",
-    value: "",
-    important: false,
-  });
-
-  const startEditing = (field: {
-    id: string;
-    name: string;
-    value: string;
-    important: boolean;
-  }) => {
-    setEditingField(field.id);
-    setEditForm({
-      name: field.name,
-      value: field.value,
-      important: field.important,
-    });
-  };
-
-  const saveEdit = (id: string) => {
-    setCustomFields(
-      customFields.map((field) =>
-        field.id === id
-          ? {
-              ...field,
-              name: editForm.name,
-              value: editForm.value,
-              important: editForm.important,
-            }
-          : field
-      )
-    );
-    setEditingField(null);
-  };
 
   return (
     <>
-      {/* Détails */}
-      <div
+        {/* Détails */}
+        <div
         ref={detailsRef}
         id="details"
         className="bg-white rounded-lg shadow-md p-6 mb-6 border"
@@ -613,8 +520,7 @@ const ArticleForm = ({ activeTab, downArrow }: ArticleFormProps) => {
                   className="w-full p-2 border border-gray-300 rounded-md"
                 />
               </div>
-              
-              
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Proch. date début d'inventaire
@@ -765,276 +671,14 @@ const ArticleForm = ({ activeTab, downArrow }: ArticleFormProps) => {
           </div>
         )}
       </div>
-
+  
       {/* Champs Personnalisés */}
-      <div
-        ref={champsRef}
-        id="champs"
-        className="bg-white rounded-lg shadow p-6 mb-6"
-      >
-        <div className="flex items-start flex-col mb-4">
-          <div className="flex items-center justify-between w-full mb-[10px]">
-            <div
-              className="flex items-center justify-center gap-2  cursor-pointer"
-              onClick={() => toggleSection("champs")}
-            >
-              <h2 className="text-lg font-bold text-[#023E8A]">
-                Champs Personnalisés
-              </h2>
-              <Image
-                src={downArrow || "/placeholder.svg"}
-                alt="voir plus"
-                className={`h-4 w-4 transition-transform duration-300 ${
-                  isOpen.champs ? "rotate-90" : "-rotate-90"
-                }`}
-              />
-            </div>
-            <Button
-              onClick={() => setIsAddingField(true)}
-              className={`bg-[#3BCEAB] text-[#FFFFFF] ${
-                !isOpen.champs ? "hidden" : ""
-              }`}
-            >
-              <Plus className="h-4 w-4 border rounded-full" />
-              Créer un champ
-            </Button>
-          </div>
-          <div className="border-l border mx-8 sm:mx-2 w-full" />
-        </div>
-        {isOpen.champs && (
-          <>
-            {isAddingField && (
-              <div className="mb-6 p-4 border rounded-md bg-gray-50">
-                <h4 className="text-sm font-medium mb-3">
-                  Nouveau champ personnalisé
-                </h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs text-gray-600 mb-1">
-                      Nom du champ <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      value={newField.name}
-                      onChange={(e) =>
-                        setNewField({ ...newField, name: e.target.value })
-                      }
-                      className="w-full p-2 text-sm border border-gray-300 rounded-md"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs text-gray-600 mb-1">
-                      Contenu
-                    </label>
-                    <input
-                      type="text"
-                      value={newField.value}
-                      onChange={(e) =>
-                        setNewField({ ...newField, value: e.target.value })
-                      }
-                      className="w-full p-2 text-sm border border-gray-300 rounded-md"
-                    />
-                  </div>
-                  <div className="flex items-center col-span-2">
-                    <input
-                      type="checkbox"
-                      id="important-field"
-                      checked={newField.important}
-                      onChange={(e) =>
-                        setNewField({
-                          ...newField,
-                          important: e.target.checked,
-                        })
-                      }
-                      className="mr-2"
-                    />
-                    <label
-                      htmlFor="important-field"
-                      className="text-xs text-gray-600"
-                    >
-                      Important
-                    </label>
-                  </div>
-                  <div className="col-span-2 flex space-x-2">
-                    <Button
-                      onClick={addCustomField}
-                      className="bg-[#023E8A] w-40 text-white"
-                    >
-                      Ajouter
-                    </Button>
-                    <Button
-                      onClick={() => setIsAddingField(false)}
-                      variant="outline"
-                      className="border-gray-300 w-40 hover:bg-white"
-                    >
-                      Annuler
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            )}
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      Champ personnalisé
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      Contenu
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      Important
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      Actions
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {customFields.length > 0 ? (
-                    customFields.map((field) => (
-                      <tr key={field.id}>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                          {editingField === field.id ? (
-                            <input
-                              type="text"
-                              value={editForm.name}
-                              onChange={(e) =>
-                                setEditForm({
-                                  ...editForm,
-                                  name: e.target.value,
-                                })
-                              }
-                              className="w-full p-1.5 text-sm border border-gray-300 rounded-md"
-                            />
-                          ) : (
-                            field.name
-                          )}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {editingField === field.id ? (
-                            <input
-                              type="text"
-                              value={editForm.value}
-                              onChange={(e) =>
-                                setEditForm({
-                                  ...editForm,
-                                  value: e.target.value,
-                                })
-                              }
-                              className="w-full p-1.5 text-sm border border-gray-300 rounded-md"
-                            />
-                          ) : (
-                            field.value
-                          )}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {editingField === field.id ? (
-                            <Switch
-                              checked={editForm.important}
-                              onCheckedChange={(checked) =>
-                                setEditForm({ ...editForm, important: checked })
-                              }
-                            />
-                          ) : (
-                            <Switch
-                              checked={field.important}
-                              disabled={editingField !== field.id}
-                            />
-                          )}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          <div className="flex space-x-2">
-                            {editingField === field.id ? (
-                              <>
-                                <Button
-                                  onClick={() => saveEdit(field.id)}
-                                  className="bg-green-500 hover:bg-green-600 text-white h-8 w-8 p-0"
-                                >
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-4 w-4"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                  >
-                                    <path
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                      strokeWidth={2}
-                                      d="M5 13l4 4L19 7"
-                                    />
-                                  </svg>
-                                </Button>
-                                <Button
-                                  onClick={() => setEditingField(null)}
-                                  className="bg-gray-500 hover:bg-gray-600 text-white h-8 w-8 p-0"
-                                >
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-4 w-4"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                  >
-                                    <path
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                      strokeWidth={2}
-                                      d="M6 18L18 6M6 6l12 12"
-                                    />
-                                  </svg>
-                                </Button>
-                              </>
-                            ) : (
-                              <>
-                                <Button
-                                  onClick={() => startEditing(field)}
-                                  className="bg-[#023E8A] text-white h-8 w-8 p-0"
-                                >
-                                  <Pencil className="h-4 w-4" />
-                                </Button>
-                                <Button
-                                  onClick={() => deleteCustomField(field.id)}
-                                  className="bg-red-500 hover:bg-red-600 text-white h-8 w-8 p-0"
-                                >
-                                  <Trash2 className="h-4 w-4" />
-                                </Button>
-                              </>
-                            )}
-                          </div>
-                        </td>
-                      </tr>
-                    ))
-                  ) : (
-                    <tr>
-                      <td
-                        colSpan={4}
-                        className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center"
-                      >
-                        Aucun champ personnalisé. Cliquez sur "Créer" pour
-                        ajouter un nouveau champ.
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
-          </>
-        )}
+      <div ref={champsRef} id="champs">
+        <CustomFields 
+          downArrow={downArrow} 
+          isOpen={isOpen.champs}
+          toggleSection={() => toggleSection('champs')}
+        />
       </div>
     </>
   );
