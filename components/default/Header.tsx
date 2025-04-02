@@ -21,7 +21,7 @@ export function Header() {
         <span className="font-bold tracking-tight text-[#383861] hidden md:flex">ERP PRO</span>
       </div>
 
-      <div className="absolute left-1/2 transform -translate-x-1/2 md:w-[60%]  sm:w-[70%]   max-w-md sm:ml-12">
+      <div className="absolute left-1/2 transform -translate-x-3/4 sm:w-[40%]  md:w-[30%] sm:ml-12">
         <div className="relative">
           <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 h-4 w-4 sm:h-3 sm:w-3 text-gray-500" />
           <Input className="pl-8 bg-[#F6F7FA] w-full sm:text-[12px]" placeholder="Effectuer une recherche..." type="search" />
