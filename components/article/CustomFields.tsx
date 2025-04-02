@@ -3,7 +3,14 @@
 import React from "react";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
-import { Plus, Pencil, Copy, EllipsisVertical, Trash } from "lucide-react";
+import {
+  Plus,
+  Pencil,
+  Copy,
+  EllipsisVertical,
+  Trash,
+  ShieldOffIcon,
+} from "lucide-react";
 import Image from "next/image";
 import {
   Drawer,
@@ -414,13 +421,23 @@ const CustomFields = ({
                   ))
                 ) : (
                   <tr>
-                    <td
-                      colSpan={4}
-                      className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center"
-                    >
-                      Aucun champ personnalisé.
-                    </td>
-                  </tr>
+                  <td
+                    colSpan={4}
+                    className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center"
+                  >
+                    <div className="flex flex-col items-center gap-3">
+                      <div className="rounded-full bg-accent w-20 h-20 flex items-center justify-center">
+                        <ShieldOffIcon size={40} className="stroke-primary" />
+                      </div>
+                      <div className="flex flex-col gap-1 text-center">
+                        <p className="font-bold">Aucun champ personnalisé.</p>
+                        <p className="text-sm text-muted-foreground">
+                        Cliquer sur "Créer" pour créer un nouveau champs.                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                
                 )}
               </tbody>
             </table>
