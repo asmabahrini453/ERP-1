@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import { Article } from "@/components/article/columns";
-import { DataTable } from "@/components/article/data-table";
+import type { Article } from "@/components/article/columns"
+import { DataTable } from "@/components/article/data-table"
 
 export const data: Article[] = [
   {
@@ -22,7 +22,7 @@ export const data: Article[] = [
     unitCost: 30.5,
     salePrice: 59.99,
     stock: 30,
-    unit:"pcs",
+    unit: "pcs",
   },
   {
     id: "3",
@@ -32,7 +32,7 @@ export const data: Article[] = [
     unitCost: 40.0,
     salePrice: 79.99,
     stock: 45,
-    unit:"pcs",
+    unit: "pcs",
   },
   {
     id: "4",
@@ -105,7 +105,7 @@ export const data: Article[] = [
     unit: "pcs",
   },
   {
-    id: "5",
+    id: "11",
     serieNbr: "CF741852",
     title: "Chaussures en cuir",
     category: "Production",
@@ -115,7 +115,7 @@ export const data: Article[] = [
     unit: "pcs",
   },
   {
-    id: "6",
+    id: "12",
     serieNbr: "CF852963",
     title: "Sac à main en cuir",
     category: "Matière première",
@@ -125,7 +125,7 @@ export const data: Article[] = [
     unit: "pcs",
   },
   {
-    id: "7",
+    id: "13",
     serieNbr: "CF369258",
     title: "Bonnet en laine",
     category: "Accessoires",
@@ -135,7 +135,7 @@ export const data: Article[] = [
     unit: "pcs",
   },
   {
-    id: "8",
+    id: "14",
     serieNbr: "CF147258",
     title: "Écharpe en cachemire",
     category: "Matière première",
@@ -145,7 +145,7 @@ export const data: Article[] = [
     unit: "pcs",
   },
   {
-    id: "9",
+    id: "15",
     serieNbr: "CF963741",
     title: "Gants en cuir",
     category: "Accessoires",
@@ -155,7 +155,7 @@ export const data: Article[] = [
     unit: "pcs",
   },
   {
-    id: "10",
+    id: "16",
     serieNbr: "CF258369",
     title: "Montre en acier inoxydable",
     category: "Matière première",
@@ -164,15 +164,21 @@ export const data: Article[] = [
     stock: 10,
     unit: "pcs",
   },
-];
+]
 
-
- const ArticleList=()=> {
+const ArticleList = () => {
   return (
-    <div className="container mx-auto py-10">
-      <h1 className="text-2xl font-bold mb-4">Liste d'articles</h1>
-      <DataTable data={data} />
+    <div className="p-6">
+      <div className="mb-6">
+        <h1 className="text-2xl font-bold">Liste d'articles</h1>
+        <p className="text-muted-foreground mt-1">Gérez votre inventaire et vos produits</p>
+      </div>
+      <div className="bg-white rounded-lg shadow-sm p-4">
+        <DataTable data={data} />
+      </div>
     </div>
-  );
+  )
 }
-export default ArticleList;
+
+export default ArticleList
+

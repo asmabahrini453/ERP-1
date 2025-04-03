@@ -1,50 +1,44 @@
-"use client";
-//buisness logic ta3 table
-import * as React from "react";
+"use client"
+
+import * as React from "react"
 import {
-  ColumnFiltersState,
-  SortingState,
-  VisibilityState,
+  type ColumnFiltersState,
+  type SortingState,
+  type VisibilityState,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-} from "@tanstack/react-table";
-import { ChevronDown } from "lucide-react";
-import { columns, Article } from "./columns";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+} from "@tanstack/react-table"
+import { ChevronDown, Search } from "lucide-react"
+import { columns, type Article } from "./columns"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { DataTablePagination } from "../data-table-pagination";
+} from "@/components/ui/dropdown-menu"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { DataTablePagination } from "../data-table-pagination"
 
 // Define the props for DataTable, which expects an array of article objects
 interface DataTableProps {
-  data: Article[];
+  data: Article[]
 }
 
 export function DataTable({ data }: DataTableProps) {
   // State variables for table functionalities
-  const [sorting, setSorting] = React.useState<SortingState>([]); // Manages sorting state
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
-  ); // Manages filters
-  const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({}); // Manages visibility of columns
-  const [rowSelection, setRowSelection] = React.useState({}); // Manages row selection
+  const [sorting, setSorting] = React.useState<SortingState>([]) // Manages sorting state
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]) // Manages filters
+  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({
+    // Hide these columns by default to match the screenshot
+    unitCost: true,
+    unit: true,
+  }) // Manages visibility of columns
+  const [rowSelection, setRowSelection] = React.useState({}) // Manages row selection
 
   // Create table instance using useReactTable hook
   const table = useReactTable({
@@ -64,20 +58,21 @@ export function DataTable({ data }: DataTableProps) {
       columnVisibility,
       rowSelection,
     },
-  });
+  })
 
   return (
-    <div className="w-full ">
-      {/* Search input for filtering titre */}
-      <div className="flex items-center py-4">
-        <Input
-          placeholder="Filtrer par titre..."
-          value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("title")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
+    <div className="w-full">
+      {/* Search and filter controls */}
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-4">
+        <div className="relative w-full sm:max-w-xs">
+          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+          <Input
+            placeholder="Filtrer par titre..."
+            value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
+            onChange={(event) => table.getColumn("title")?.setFilterValue(event.target.value)}
+            className="pl-9 w-full"
+          />
+        </div>
 
         {/* Dropdown menu for selecting visible columns */}
         <DropdownMenu>
@@ -86,37 +81,37 @@ export function DataTable({ data }: DataTableProps) {
               Colonnes <ChevronDown className="ml-2 h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
+          <DropdownMenuContent align="end" className="w-48">
             {table
               .getAllColumns()
               .filter((column) => column.getCanHide())
               .map((column) => {
-                let headerText;
+                let headerText
 
                 switch (column.id) {
                   case "serieNbr":
-                    headerText = "N° de Série";
-                    break;
+                    headerText = "N° de Série"
+                    break
                   case "title":
-                    headerText = "Titre";
-                    break;
+                    headerText = "Titre"
+                    break
                   case "category":
-                    headerText = "Categorie";
-                    break;
+                    headerText = "Categorie"
+                    break
                   case "unitCost":
-                    headerText = "Coût Unitaire";
-                    break;
+                    headerText = "Coût Unitaire"
+                    break
                   case "salePrice":
-                    headerText = "Prix de Vente";
-                    break;
+                    headerText = "Prix de Vente"
+                    break
                   case "stock":
-                    headerText = "Stock";
-                    break;
+                    headerText = "Stock"
+                    break
                   case "unit":
-                    headerText = "Unité de vente";
-                    break;
+                    headerText = "Unité de vente"
+                    break
                   default:
-                    headerText = column.id;
+                    headerText = column.id
                 }
 
                 return (
@@ -124,72 +119,69 @@ export function DataTable({ data }: DataTableProps) {
                     key={column.id}
                     className="capitalize"
                     checked={column.getIsVisible()}
-                    onCheckedChange={(value) =>
-                      column.toggleVisibility(!!value)
-                    }
+                    onCheckedChange={(value) => column.toggleVisibility(!!value)}
                   >
                     {headerText}
                   </DropdownMenuCheckboxItem>
-                );
+                )
               })}
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
 
       {/* Table layout */}
-      <div className="rounded-md border bg-white ">
-        <Table>
-          <TableHeader>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id}>
-                    {header.isPlaceholder
-                      ? null
-                      : header.column.columnDef.header &&
-                        React.createElement(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                  </TableHead>
+      <div className="border rounded-md">
+        <div className="relative w-full">
+          <div className="overflow-auto">
+            <Table>
+              <TableHeader>
+                {table.getHeaderGroups().map((headerGroup) => (
+                  <TableRow key={headerGroup.id} className="bg-gray-50">
+                    {headerGroup.headers.map((header) => (
+                      <TableHead key={header.id} className="px-4 py-3 text-left font-medium text-gray-700">
+                        {header.isPlaceholder
+                          ? null
+                          : header.column.columnDef.header &&
+                            React.createElement(header.column.columnDef.header, header.getContext())}
+                      </TableHead>
+                    ))}
+                  </TableRow>
                 ))}
-              </TableRow>
-            ))}
-          </TableHeader>
-          <TableBody>
-            {table.getRowModel().rows.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {cell.column.columnDef.cell &&
-                        React.createElement(
-                          cell.column.columnDef.cell,
-                          cell.getContext()
-                        )}
+              </TableHeader>
+              <TableBody>
+                {table.getRowModel().rows.length ? (
+                  table.getRowModel().rows.map((row) => (
+                    <TableRow
+                      key={row.id}
+                      data-state={row.getIsSelected() && "selected"}
+                      className="hover:bg-gray-50 transition-colors"
+                    >
+                      {row.getVisibleCells().map((cell) => (
+                        <TableCell key={cell.id} className="px-4 py-3 whitespace-nowrap">
+                          {cell.column.columnDef.cell &&
+                            React.createElement(cell.column.columnDef.cell, cell.getContext())}
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell colSpan={columns.length} className="h-24 text-center text-gray-500">
+                      Aucun résultat.
                     </TableCell>
-                  ))}
-                </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center"
-                >
-                  Aucune résultat.
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </div>
+        </div>
       </div>
 
       {/* Pagination controls */}
-      <DataTablePagination table={table} />
+      <div className="mt-4">
+        <DataTablePagination table={table} />
+      </div>
     </div>
-  );
+  )
 }
+
