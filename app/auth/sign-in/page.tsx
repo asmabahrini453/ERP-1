@@ -14,7 +14,7 @@ const SignInPage = () => {
             <LoginForm />
             <div className="w-full flex flex-col gap-3 items-center">
             <Link
-              href="/pages/article/create"
+              href="/pages/article"
               className="w-full bg-[#023E8A] text-white font-medium inline-flex justify-center py-2 px-4 rounded-lg tracking-tight hover:bg-[#3BCEAB]"
             >
                 Confirmer

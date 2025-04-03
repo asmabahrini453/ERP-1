@@ -14,7 +14,7 @@ const Layout = async ({ children }: Props) => {
       <Sidebar />
       <div className="flex-1">
         <Header />
-        <main className="p-6">{children}</main>
+        <main >{children}</main>
         <Footer/>
       </div>
       

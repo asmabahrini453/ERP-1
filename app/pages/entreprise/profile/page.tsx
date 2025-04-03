@@ -22,7 +22,7 @@ const tabs = [
 
 // Styles for the tabs
 const tabStyles = {
-  container: "flex items-center justify-start border-b",
+  container: "flex items-center justify-start border-b ",
   tab: (isActive: boolean) => `
     md:px-6 sm:px-4 md:py-2.5 sm:py-1 md:text-sm sm:text-[10px] font-medium transition-colors relative
     ${isActive ? "bg-[#023E8A] text-white" : "text-gray-600 hover:text-gray-800"}
@@ -50,7 +50,7 @@ const activityData = [
 const EntrepriseProfile = () => {
   const [activeTab, setActiveTab] = useState("") 
   return (
-    <div className="space-y-6 overflow-x-hidden">
+    <div className="space-y-6 overflow-x-hidden  p-6">
       <div className="flex items-center justify-between">
         <div>
           <div className="md:text-sm text-muted-foreground sm:text-[12px]">Réglages /</div>

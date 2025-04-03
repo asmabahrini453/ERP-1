@@ -74,7 +74,7 @@ const ArticlePage = () => {
   ];
 
   return (
-    <div className="space-y-6 overflow-x-hidden">
+    <div className="space-y-6 overflow-x-hidden p-6">
       <div className="flex items-center justify-between">
         <div>
           <div className="md:text-sm text-muted-foreground sm:text-[12px]">
