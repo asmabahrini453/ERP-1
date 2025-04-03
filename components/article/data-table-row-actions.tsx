@@ -19,7 +19,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { Copy, Eye, MoreHorizontal, Pencil, Trash2 } from "lucide-react";
-import { label_options } from "@/components/filters";
 import EditDialog from "@/components/modals/edit-modal";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import DeleteDialog from "@/components/modals/delete-modal";
@@ -68,28 +67,28 @@ export function DataTableRowActions<TData>({
             onClick={() => navigator.clipboard}
           >
             <Copy className="mr-2 h-4 w-4" />
-            Copy Task ID
-          </DropdownMenuItem>
+            Dupliquer tâche       
+             </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DialogTrigger asChild onClick={() => {}}>
             <DropdownMenuItem>
               <Eye className="mr-2 h-4 w-4" />
-              View Details
+              Voir les détails
             </DropdownMenuItem>
           </DialogTrigger>
           <DialogTrigger asChild onClick={handleEditClick}>
             <DropdownMenuItem>
               <Pencil className="mr-2 h-4 w-4" />
-              Edit Details
-            </DropdownMenuItem>
+              Modifier les détails
+                          </DropdownMenuItem>
           </DialogTrigger>
           <DropdownMenuItem
             onSelect={() => setShowDeleteDialog(true)}
             className="text-red-600"
           >
             <Trash2 className="mr-2 h-4 w-4" />
-            Delete Details
-          </DropdownMenuItem>
+            Supprimer les détails
+                      </DropdownMenuItem>
          
         </DropdownMenuContent>
       </DropdownMenu>

@@ -26,21 +26,20 @@ import {
       <AlertDialog open={isOpen} onOpenChange={showActionToggle}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Are you sure absolutely sure ?</AlertDialogTitle>
+            <AlertDialogTitle>Êtes-vous absolument sûr ?</AlertDialogTitle>
             <AlertDialogDescription>
-              This action cannot be undone. You are about to delete Task
-              Details of 
+            Cette action est irréversible. Vous êtes sur le point de supprimer la tâche.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogCancel>Annuler</AlertDialogCancel>
             <Button
               variant='destructive'
               onClick={() => {
                 showActionToggle(false);
               }}
             >
-              Delete
+              Supprimer
             </Button>
           </AlertDialogFooter>
         </AlertDialogContent>

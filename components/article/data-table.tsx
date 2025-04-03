@@ -37,11 +37,13 @@ interface DataTableProps {
 }
 
 export function DataTable({ data }: DataTableProps) {
-
   // State variables for table functionalities
   const [sorting, setSorting] = React.useState<SortingState>([]); // Manages sorting state
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]); // Manages filters
-  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({}); // Manages visibility of columns
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    []
+  ); // Manages filters
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({}); // Manages visibility of columns
   const [rowSelection, setRowSelection] = React.useState({}); // Manages row selection
 
   // Create table instance using useReactTable hook
@@ -71,10 +73,11 @@ export function DataTable({ data }: DataTableProps) {
         <Input
           placeholder="Filtrer par titre..."
           value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
-          onChange={(event) => table.getColumn("title")?.setFilterValue(event.target.value)}
+          onChange={(event) =>
+            table.getColumn("title")?.setFilterValue(event.target.value)
+          }
           className="max-w-sm"
         />
-        
 
         {/* Dropdown menu for selecting visible columns */}
         <DropdownMenu>
@@ -84,18 +87,51 @@ export function DataTable({ data }: DataTableProps) {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            {table.getAllColumns()
+            {table
+              .getAllColumns()
               .filter((column) => column.getCanHide())
-              .map((column) => (
-                <DropdownMenuCheckboxItem
-                  key={column.id}
-                  className="capitalize"
-                  checked={column.getIsVisible()}
-                  onCheckedChange={(value) => column.toggleVisibility(!!value)}
-                >
-                  {column.id}
-                </DropdownMenuCheckboxItem>
-              ))}
+              .map((column) => {
+                let headerText;
+
+                switch (column.id) {
+                  case "serieNbr":
+                    headerText = "N° de Série";
+                    break;
+                  case "title":
+                    headerText = "Titre";
+                    break;
+                  case "category":
+                    headerText = "Categorie";
+                    break;
+                  case "unitCost":
+                    headerText = "Coût Unitaire";
+                    break;
+                  case "salePrice":
+                    headerText = "Prix de Vente";
+                    break;
+                  case "stock":
+                    headerText = "Stock";
+                    break;
+                  case "unit":
+                    headerText = "Unité de vente";
+                    break;
+                  default:
+                    headerText = column.id;
+                }
+
+                return (
+                  <DropdownMenuCheckboxItem
+                    key={column.id}
+                    className="capitalize"
+                    checked={column.getIsVisible()}
+                    onCheckedChange={(value) =>
+                      column.toggleVisibility(!!value)
+                    }
+                  >
+                    {headerText}
+                  </DropdownMenuCheckboxItem>
+                );
+              })}
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
@@ -110,8 +146,11 @@ export function DataTable({ data }: DataTableProps) {
                   <TableHead key={header.id}>
                     {header.isPlaceholder
                       ? null
-                      : header.column.columnDef.header && 
-                        React.createElement(header.column.columnDef.header, header.getContext())}
+                      : header.column.columnDef.header &&
+                        React.createElement(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
                   </TableHead>
                 ))}
               </TableRow>
@@ -120,26 +159,34 @@ export function DataTable({ data }: DataTableProps) {
           <TableBody>
             {table.getRowModel().rows.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && "selected"}
+                >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {cell.column.columnDef.cell && 
-                        React.createElement(cell.column.columnDef.cell, cell.getContext())}
+                      {cell.column.columnDef.cell &&
+                        React.createElement(
+                          cell.column.columnDef.cell,
+                          cell.getContext()
+                        )}
                     </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
-                 Aucune résultat.
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
+                  Aucune résultat.
                 </TableCell>
               </TableRow>
             )}
           </TableBody>
         </Table>
       </div>
-
 
       {/* Pagination controls */}
       <DataTablePagination table={table} />
