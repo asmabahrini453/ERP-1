@@ -9,12 +9,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
   DropdownMenuSeparator,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
@@ -22,6 +17,7 @@ import { Copy, Eye, MoreHorizontal, Pencil, Trash2 } from "lucide-react";
 import EditDialog from "@/components/modals/edit-modal";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import DeleteDialog from "@/components/modals/delete-modal";
+import { ArticleFormSchema } from "@/lib/validations/schema";
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
@@ -35,20 +31,14 @@ export function DataTableRowActions<TData>({
   const [showDeleteDialog, setShowDeleteDialog] =
     React.useState<boolean>(false);
 
-  // Directly using the row data to create the task object
-  const task = row.original; // Assuming 'row.original' has the required task data
+    //validate the row.original data against the schema per row
+  const task = ArticleFormSchema.parse(row.original);
 
   const handleEditClick = () => {
-    setDialogContent(<EditDialog task={{
-      id: "",
-      title: "",
-      status: "",
-      label: "",
-      priority: "",
-      due_date: null
-    }} />);
+    setDialogContent(<EditDialog articleData={task} />);//passing the validated article data to the dialog so it can be displayed and edited.
   };
 
+  
   return (
     <Dialog>
       <DropdownMenu>
@@ -63,14 +53,12 @@ export function DataTableRowActions<TData>({
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-[200px]">
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
-          <DropdownMenuItem
-            onClick={() => navigator.clipboard}
-          >
+          <DropdownMenuItem >
             <Copy className="mr-2 h-4 w-4" />
-            Dupliquer tâche       
-             </DropdownMenuItem>
+            Dupliquer tâche
+          </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DialogTrigger asChild onClick={() => {}}>
+          <DialogTrigger asChild >
             <DropdownMenuItem>
               <Eye className="mr-2 h-4 w-4" />
               Voir les détails
@@ -80,16 +68,18 @@ export function DataTableRowActions<TData>({
             <DropdownMenuItem>
               <Pencil className="mr-2 h-4 w-4" />
               Modifier les détails
-                          </DropdownMenuItem>
+            </DropdownMenuItem>
           </DialogTrigger>
           <DropdownMenuItem
-            onSelect={() => setShowDeleteDialog(true)}
+            onSelect={(e) => {
+              e.preventDefault();
+              setShowDeleteDialog(true);
+            }}
             className="text-red-600"
           >
             <Trash2 className="mr-2 h-4 w-4" />
             Supprimer les détails
-                      </DropdownMenuItem>
-         
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
       {dialogContent && <DialogContent>{dialogContent}</DialogContent>}

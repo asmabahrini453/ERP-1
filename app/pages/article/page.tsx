@@ -16,6 +16,7 @@ import Link from "next/link";
 
 
 const ArticleList = () => {
+  
   return (
     <div className="p-6">
       <div className="flex items-center justify-between mb-6">

@@ -1,22 +1,22 @@
-"use client"
+"use client";
 
-import type { ColumnDef } from "@tanstack/react-table"
-import { ArrowUpDown } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Badge } from "../ui/badge"
-import { DataTableRowActions } from "./data-table-row-actions"
+import type { ColumnDef } from "@tanstack/react-table";
+import { ArrowUpDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Badge } from "../ui/badge";
+import { DataTableRowActions } from "./data-table-row-actions";
 
 export type Article = {
-  id: string
-  serieNbr: string
-  title: string
-  category: string
-  unitCost: number
-  salePrice: number
-  stock: number
-  unit: string
-}
+  id: string;
+  serieNbr: string;
+  title: string;
+  category: string;
+  unitCost: number;
+  salePrice: number;
+  stock: number;
+  unit: string;
+};
 
 export const columns: ColumnDef<Article>[] = [
   {
@@ -25,12 +25,17 @@ export const columns: ColumnDef<Article>[] = [
       return (
         <div className="flex justify-center">
           <Checkbox
-            checked={table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate")}
-            onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+            checked={
+              table.getIsAllPageRowsSelected() ||
+              (table.getIsSomePageRowsSelected() && "indeterminate")
+            }
+            onCheckedChange={(value) =>
+              table.toggleAllPageRowsSelected(!!value)
+            }
             aria-label="Select all"
           />
         </div>
-      )
+      );
     },
     cell: ({ row }) => {
       return (
@@ -41,7 +46,7 @@ export const columns: ColumnDef<Article>[] = [
             aria-label="Select row"
           />
         </div>
-      )
+      );
     },
     enableSorting: false,
     enableHiding: false,
@@ -51,7 +56,9 @@ export const columns: ColumnDef<Article>[] = [
   {
     accessorKey: "serieNbr",
     header: () => <div className="text-left">N° de Série</div>,
-    cell: ({ row }) => <div className="font-medium">{row.getValue("serieNbr")}</div>,
+    cell: ({ row }) => (
+      <div className="font-medium">{row.getValue("serieNbr")}</div>
+    ),
     size: 120,
   },
 
@@ -66,9 +73,11 @@ export const columns: ColumnDef<Article>[] = [
         >
           Titre <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
-      )
+      );
     },
-    cell: ({ row }) => <div className="capitalize font-medium">{row.getValue("title")}</div>,
+    cell: ({ row }) => (
+      <div className="capitalize font-medium">{row.getValue("title")}</div>
+    ),
     minSize: 200,
     maxSize: 300,
   },
@@ -84,7 +93,7 @@ export const columns: ColumnDef<Article>[] = [
         >
           Categorie <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
-      )
+      );
     },
     cell: ({ row }) => (
       <div>
@@ -109,21 +118,21 @@ export const columns: ColumnDef<Article>[] = [
             Coût unitaire <ArrowUpDown className="ml-2 h-4 w-4" />
           </Button>
         </div>
-      )
+      );
     },
     cell: ({ row }) => {
-      const unitCost = Number.parseFloat(row.getValue("unitCost"))
+      const unitCost = Number.parseFloat(row.getValue("unitCost"));
       const formatted = new Intl.NumberFormat("fr-TN", {
         style: "currency",
         currency: "TND",
-      }).format(unitCost)
+      }).format(unitCost);
 
-      return <div className="text-right font-medium">{formatted}</div>
+      return <div className="text-right font-medium">{formatted}</div>;
     },
     sortingFn: (rowA, rowB) => {
-      const valueA = Number.parseFloat(rowA.getValue("unitCost"))
-      const valueB = Number.parseFloat(rowB.getValue("unitCost"))
-      return valueA - valueB
+      const valueA = Number.parseFloat(rowA.getValue("unitCost"));
+      const valueB = Number.parseFloat(rowB.getValue("unitCost"));
+      return valueA - valueB;
     },
     size: 120,
   },
@@ -137,26 +146,30 @@ export const columns: ColumnDef<Article>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           className="p-0 hover:bg-transparent text-right w-full"
         >
-          Prix de vente<ArrowUpDown className="ml-2 h-4 w-4 inline" />
+          Prix de vente
+          <ArrowUpDown className="ml-2 h-4 w-4 inline" />
         </Button>
-      )
+      );
     },
     cell: ({ row }) => {
-      const salePrice = Number.parseFloat(row.getValue("salePrice"))
+      const salePrice = Number.parseFloat(row.getValue("salePrice"));
       const formatted = new Intl.NumberFormat("fr-TN", {
         style: "currency",
         currency: "TND",
-      }).format(salePrice)
+      }).format(salePrice);
 
       // Format to match the screenshot (e.g., "49,990 DT")
-      const simplifiedFormat = formatted.replace(/TND/g, "DT").replace(/\s/g, "").replace(/\./, ",")
+      const simplifiedFormat = formatted
+        .replace(/TND/g, "DT")
+        .replace(/\s/g, "")
+        .replace(/\./, ",");
 
-      return <div className="text-right font-medium">{simplifiedFormat}</div>
+      return <div className="text-right font-medium">{simplifiedFormat}</div>;
     },
     sortingFn: (rowA, rowB) => {
-      const valueA = Number.parseFloat(rowA.getValue("salePrice"))
-      const valueB = Number.parseFloat(rowB.getValue("salePrice"))
-      return valueA - valueB
+      const valueA = Number.parseFloat(rowA.getValue("salePrice"));
+      const valueB = Number.parseFloat(rowB.getValue("salePrice"));
+      return valueA - valueB;
     },
     size: 120,
   },
@@ -172,16 +185,16 @@ export const columns: ColumnDef<Article>[] = [
         >
           Stock <ArrowUpDown className="ml-2 h-4 w-4 inline" />
         </Button>
-      )
+      );
     },
     cell: ({ row }) => {
-      const stock: number = row.getValue("stock")
-      return <div className="text-center font-medium">{stock}</div>
+      const stock: number = row.getValue("stock");
+      return <div className="text-center font-medium">{stock}</div>;
     },
     sortingFn: (rowA, rowB) => {
-      const valueA = Number.parseFloat(rowA.getValue("stock"))
-      const valueB = Number.parseFloat(rowB.getValue("stock"))
-      return valueA - valueB
+      const valueA = Number.parseFloat(rowA.getValue("stock"));
+      const valueB = Number.parseFloat(rowB.getValue("stock"));
+      return valueA - valueB;
     },
     size: 80,
   },
@@ -189,19 +202,22 @@ export const columns: ColumnDef<Article>[] = [
   {
     accessorKey: "unit",
     header: () => <div className="text-center">UdM</div>,
-    cell: ({ row }) => <div className="text-center uppercase">{row.getValue("unit")}</div>,
+    cell: ({ row }) => (
+      <div className="text-center uppercase">{row.getValue("unit")}</div>
+    ),
     size: 70,
   },
 
   {
     id: "actions",
     enableHiding: false,
-    cell: ({ row }) => (
+    cell: ({ row, table }) => (
       <div className="flex justify-end">
-        <DataTableRowActions row={row} />
+        <DataTableRowActions
+          row={row}
+        />
       </div>
     ),
     size: 50,
-  },
-]
-
+  }
+];
