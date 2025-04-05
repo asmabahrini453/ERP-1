@@ -12,11 +12,27 @@ import {
   Share2Icon,
 } from "lucide-react";
 import Link from "next/link";
-
-
+import { useState } from "react";
 
 const ArticleList = () => {
+  // State for articles
+  const [articles, setArticles] = useState<Article[]>(data);
+
+  const handleEdit = (updated: Article) => {
+    setArticles(prev =>
+      prev.map(article =>
+        article.id === updated.id ? updated : article
+      )
+    );
+  };
   
+  // Add the handleDelete function to actually remove articles
+  const handleDelete = (articleToDelete: Article) => {
+    setArticles(prev => 
+      prev.filter(article => article.id !== articleToDelete.id)
+    );
+  };
+
   return (
     <div className="p-6">
       <div className="flex items-center justify-between mb-6">
@@ -34,7 +50,7 @@ const ArticleList = () => {
 
         <div className="flex items-center md:gap-4 sm:gap-1 sm:mt-1">
           <div className="flex items-center md:gap-2 sm:gap-1 cursor-pointer">
-            {[Copy,Printer, Share2Icon].map((Icon, index) => (
+            {[Copy, Printer, Share2Icon].map((Icon, index) => (
               <div
                 key={index}
                 className="relative flex justify-center items-center w-10 h-10 rounded-full bg-white shadow-lg shadow-black/5 before:absolute before:inset-0 before:m-[8.334%] before:rounded-[inherit] before:border before:border-gray-700/5 before:bg-gray-200/60 before:[mask-image:linear-gradient(to_bottom,black,transparent)]"
@@ -57,7 +73,11 @@ const ArticleList = () => {
         </div>
       </div>
       <div className="bg-white rounded-lg shadow-sm p-4">
-        <DataTable data={data} />
+        <DataTable
+          data={articles} 
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+        /> 
       </div>
     </div>
   );

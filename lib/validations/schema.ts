@@ -4,6 +4,7 @@ export const categories=[ "Matière première","Produit","consommable","service"
 // ts reconize the array as an array of strings, so in order to make them immutable types we change type to ass const
 
 export const ArticleFormSchema= z.object({
+    id: z.string(), 
     serieNbr: z.string().min(1, "N° de série est obligatoire"),
     title: z.string().min(1, "Titre d'article est obligatoire"),
     category: z.enum(categories),

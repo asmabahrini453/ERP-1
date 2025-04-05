@@ -18,7 +18,11 @@ export type Article = {
   unit: string;
 };
 
-export const columns: ColumnDef<Article>[] = [
+// Modified to accept and use the onEdit function
+export const columns = (
+  onEdit: (updated: Article) => void,
+  onDelete:(deleted:Article) =>void
+): ColumnDef<Article>[] => [
   {
     id: "select",
     header: ({ table }) => {
@@ -211,13 +215,9 @@ export const columns: ColumnDef<Article>[] = [
   {
     id: "actions",
     enableHiding: false,
-    cell: ({ row, table }) => (
-      <div className="flex justify-end">
-        <DataTableRowActions
-          row={row}
-        />
-      </div>
+    cell: ({ row }) => (
+      <DataTableRowActions row={row} onEdit={onEdit} onDelete={onDelete} />
     ),
     size: 50,
-  }
+  },
 ];

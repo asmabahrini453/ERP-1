@@ -26,10 +26,12 @@ import { DataTablePagination } from "../data-table-pagination"
 
 // Define the props for DataTable, which expects an array of article objects
 interface DataTableProps {
-  data: Article[]
+  data: Article[],
+  onEdit: (updated: Article) => void; 
+  onDelete : (deleted:Article)=> void ; 
 }
 
-export function DataTable({ data }: DataTableProps) {
+export function DataTable({ data, onEdit,onDelete }: DataTableProps) {
   // State variables for table functionalities
   const [sorting, setSorting] = React.useState<SortingState>([]) // Manages sorting state
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]) // Manages filters
@@ -43,8 +45,8 @@ export function DataTable({ data }: DataTableProps) {
   // Create table instance using useReactTable hook
   const table = useReactTable({
     data,
-    columns,
-    onSortingChange: setSorting,
+    columns: columns(onEdit, onDelete), 
+        onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -184,4 +186,3 @@ export function DataTable({ data }: DataTableProps) {
     </div>
   )
 }
-

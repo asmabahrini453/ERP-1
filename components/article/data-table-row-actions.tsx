@@ -1,3 +1,4 @@
+// Fixed DataTableRowActions Component
 "use client";
 
 import * as React from "react";
@@ -18,26 +19,44 @@ import EditDialog from "@/components/modals/edit-modal";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import DeleteDialog from "@/components/modals/delete-modal";
 import { ArticleFormSchema } from "@/lib/validations/schema";
+import { Article } from "./columns";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
+  onEdit: (updated: Article) => void;
+  onDelete: (deleted: Article) => void;
 }
 
-export function DataTableRowActions<TData>({
-  row,
-}: DataTableRowActionsProps<TData>) {
-  const [dialogContent, setDialogContent] =
-    React.useState<React.ReactNode | null>(null);
-  const [showDeleteDialog, setShowDeleteDialog] =
-    React.useState<boolean>(false);
+export function DataTableRowActions<TData>({ row, onEdit, onDelete }: DataTableRowActionsProps<TData>) {
+  const [dialogContent, setDialogContent] = React.useState<React.ReactNode | null>(null);
+  const [showDeleteDialog, setShowDeleteDialog] = React.useState<boolean>(false);
+  const { toast } = useToast();
 
-    //validate the row.original data against the schema per row
-  const task = ArticleFormSchema.parse(row.original);
+  // Validate the row.original data against the schema per row
+  const article = ArticleFormSchema.parse(row.original);
 
   const handleEditClick = () => {
-    setDialogContent(<EditDialog articleData={task} />);//passing the validated article data to the dialog so it can be displayed and edited.
+    setDialogContent(
+      <EditDialog
+        articleData={article}
+        onSave={(updatedArticle) => {
+          onEdit(updatedArticle); // Call parent handler
+          setDialogContent(null); // Close dialog after save
+        }}
+      />
+    );
   };
-
+  
+  const handleDelete = () => {
+    onDelete(article);
+    toast({
+      title: "Success",
+      description: "Article supprimé avec succès!",
+    });
+        setShowDeleteDialog(false);
+  };
   
   return (
     <Dialog>
@@ -53,12 +72,12 @@ export function DataTableRowActions<TData>({
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-[200px]">
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
-          <DropdownMenuItem >
+          <DropdownMenuItem>
             <Copy className="mr-2 h-4 w-4" />
             Dupliquer tâche
           </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DialogTrigger asChild >
+          <DialogTrigger asChild>
             <DropdownMenuItem>
               <Eye className="mr-2 h-4 w-4" />
               Voir les détails
@@ -86,6 +105,7 @@ export function DataTableRowActions<TData>({
       <DeleteDialog
         isOpen={showDeleteDialog}
         showActionToggle={setShowDeleteDialog}
+        onDelete={handleDelete}
       />
     </Dialog>
   );

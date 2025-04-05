@@ -9,12 +9,16 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast"
 import { Button } from "@/components/ui/button"
 import { Article } from "../article/columns"
+import { useState } from "react"
+import { data } from "@/app/data"
 
 interface EditDialogProps {
-  articleData?: ArticleFormValues,
+  articleData?: ArticleFormValues, 
+   onSave: (updated: Article) => void;
  }
 
-const EditDialog = ({ articleData }: EditDialogProps) => {
+const EditDialog = ({ articleData , onSave}: EditDialogProps) => {
+
   const { toast } = useToast()
 
   //define the edit form
@@ -33,10 +37,18 @@ const EditDialog = ({ articleData }: EditDialogProps) => {
 
   function onSubmit(data: ArticleFormValues) {
     console.log(data)
+
+    const updatedArticle: Article={
+      ...data,
+      id:articleData?.id ?? "" ,
+    };
+    onSave(updatedArticle);
+
     toast({
       title: "Succès",
       description: "Article a été mis à jour avec succès",
     })
+    
   }
 
   return (
