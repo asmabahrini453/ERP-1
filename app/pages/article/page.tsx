@@ -18,7 +18,9 @@ const ArticleList = () => {
   // State for articles
   const [articles, setArticles] = useState<Article[]>(data);
 
+  //handleEdit receives the edited article changes as arg and updates them with setArticles()
   const handleEdit = (updated: Article) => {
+    //if articleID = updatedArticleId => update changes else if the ids don't match the article remains the same
     setArticles(prev =>
       prev.map(article =>
         article.id === updated.id ? updated : article
