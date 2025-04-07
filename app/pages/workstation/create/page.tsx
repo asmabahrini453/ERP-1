@@ -6,9 +6,9 @@ import ValiderIcon from "@/assets/icons/valider-icon.png";
 import filterIcon from "@/assets/icons/filter.png";
 import { Copy, Pencil, Printer, Share2Icon } from "lucide-react";
 import Image from "next/image";
-import EntrepotForm from "@/components/entrepot/EntrepotForm";
-import downArrow from "@/assets/icons/down-arrow.png"
-import EntrepotCard from "@/components/entrepot/EntrepotCard";
+import downArrow from "@/assets/icons/down-arrow.png";
+import WorkstationForm from "@/components/workstation/WorkstatioForm";
+import WorkstationCard from "@/components/workstation/workstationCard";
 
 const workstationPage = () => {
   const [activeTab, setActiveTab] = useState("");
@@ -17,7 +17,6 @@ const workstationPage = () => {
     { id: "details", label: "Détails" },
     { id: "statut", label: "Statut de station de travail" },
     { id: "cout", label: "Coûts d'Exploitation" },
-
   ];
   const tabStyles = {
     container: "flex items-center justify-center border-b",
@@ -35,16 +34,16 @@ const workstationPage = () => {
   };
 
   const Data = {
-    nomDeEntrepot: "entrepôt 1",
-    societe: "Devpro Solutions",
-    reference: "2321",
-    type: "Transit",
+    nom: "Poste A1",
+    capacite: "150 unités/jour",
+    type: "Assemblage",
+    entrepot: "Entrepôt Central",
     statut: "Actif",
-    categorie: "Entrepôt collectif",
-    tel: "25-096-055",
-    adresse: "B24, rue ibn arafa",        
-    gouvernerat: "Monastir",        
-    pays: "Tunisie",        
+    heures: "320 heures",
+    electricite: "1 200 TND",
+    location: "800 TND",
+    consommable: "450 TND",
+    salaireT: "3 500 TND",
   };
 
   const activityData = [
@@ -67,10 +66,10 @@ const workstationPage = () => {
       <div className="flex items-center justify-between">
         <div>
           <div className="md:text-sm text-muted-foreground sm:text-[12px]">
-          Production/
+            Production/
           </div>
           <h1 className="md:text-xl font-bold text-[#383861] sm:text-[16px]">
-          station de travail
+            station de travail
           </h1>
         </div>
 
@@ -125,10 +124,13 @@ const workstationPage = () => {
       {/* Form Contenu */}
       <div className="flex flex-col md:flex-row">
         <div className="md:w-[80%] w-full pr-4">
-            <EntrepotForm activeTab={activeTab} downArrow={downArrow} />
+          <WorkstationForm activeTab={activeTab} downArrow={downArrow} />
         </div>
         <div className="md:w-[1/3] md:block hidden">
-            <EntrepotCard activities={activityData}  entrepotDetails={Data}/>
+          <WorkstationCard
+            activities={activityData}
+            workstationDetails={Data}
+          />
         </div>
       </div>
     </div>
