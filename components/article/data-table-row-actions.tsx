@@ -72,11 +72,12 @@ export function DataTableRowActions<TData>({ row, onEdit, onDelete }: DataTableR
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-[200px]">
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
-          <DropdownMenuItem>
+          <DropdownMenuSeparator />
+         {/*  <DropdownMenuItem>
             <Copy className="mr-2 h-4 w-4" />
             Dupliquer tâche
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
+          </DropdownMenuItem> 
+          */}
           <DialogTrigger asChild>
             <DropdownMenuItem>
               <Eye className="mr-2 h-4 w-4" />
@@ -89,6 +90,7 @@ export function DataTableRowActions<TData>({ row, onEdit, onDelete }: DataTableR
               Modifier les détails
             </DropdownMenuItem>
           </DialogTrigger>
+          <DropdownMenuSeparator />
           <DropdownMenuItem
             onSelect={(e) => {
               e.preventDefault();
