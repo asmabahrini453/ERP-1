@@ -38,7 +38,7 @@ const ClientList = () => {
       <div className="flex items-center justify-between mb-6">
         <div>
           <div className="md:text-sm text-muted-foreground sm:text-[12px]">
-            Contact /
+          Utilisateurs /
           </div>
           <h1 className="text-2xl text-[#383861] font-bold">
             Liste des clients
