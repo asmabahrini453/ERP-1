@@ -63,7 +63,7 @@ export const columns = (
     cell: ({ row }) => (
       <div className="font-medium">{row.getValue("serieNbr")}</div>
     ),
-    size: 120,
+    size: 120, //w-[120px] 
   },
 
   {

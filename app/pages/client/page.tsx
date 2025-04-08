@@ -1,77 +1,56 @@
 "use client";
 
-import { Copy, Pencil, Printer, Share2 } from "lucide-react";
-import downArrow from "@/assets/icons/down-arrow.png";
+import { collaboratorData } from "@/app/data";
+
+import { Collaborator } from "@/components/collaborator/columns";
+import { DataTable } from "@/components/collaborator/data-table";
+import { Button } from "@/components/ui/button";
+
+import {
+  Copy,
+  PlusCircle,
+  Printer,
+  Share2Icon,
+} from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
-import CollaboratorCard from "@/components/collaborator/CollaboratorCard";
-import CollaboratorFiche from "@/components/collaborator/CollaboratorFiche";
 
-const tabs = [
-  { id: "generale", label: "Information Générales " },
-  { id: "professional", label: "Information Professionnelles " },
-  { id: "addressF", label: "Adresse De facturation" },
-  { id: "addressL", label: "Adresse De Livraison" },
-];
+const ClientList = () => {
+  // State for collaborators
+  const [collaborators, setCollaborators] = useState<Collaborator[]>(collaboratorData);
 
-// Styles for the tabs
-const tabStyles = {
-  container: "flex items-center justify-start border-b",
-  tab: (isActive: boolean) => `
-    md:px-6 sm:px-4 md:py-2.5 sm:py-1 md:text-sm sm:text-[10px] font-medium transition-colors relative
-    ${
-      isActive ? "bg-[#023E8A] text-white" : "text-gray-600 hover:text-gray-800"
-    }
-    ${isActive ? "rounded-t-md" : ""}
-  `,
-  separator: "h-5 w-px bg-gray-200 mx-1",
-  tabContent: "flex items-center space-x-2",
-};
+  const handleEdit = (updated: Collaborator) => {
+    setCollaborators(prev =>
+      prev.map(col =>
+        col.id === updated.id ? updated : col
+      )
+    );
+  };
+  
+  const handleDelete = (collaboratorToDelete: Collaborator) => {
+    setCollaborators(prev => 
+      prev.filter(col => col.id !== collaboratorToDelete.id)
+    );
+  };
 
-//  data for the card
-const clientData = {
-  nomDeFamille: "Bahrini",
-  prenom: "Asma" , 
-  description: "Description",
-  reference: "40F103",
-  type: "Entreprise",
-  idFiscale: "000-555",
-  activite: "IT",
-  devise: "TND",
-  condDePaiement: "Virement",
-};
-
-const activityData = [
-  {
-    user: "Rafik Hafsa",
-    action: "a créé ceci",
-    date: "23/01/2025",
-    time: "13:28",
-  },
-  {
-    user: "Vous",
-    action: "avez édité ceci",
-    date: "23/01/2025",
-    time: "10:28",
-  },
-];
-
-const ClientPage = () => {
-  const [activeTab, setActiveTab] = useState("");
   return (
-    <div className="space-y-6 overflow-x-hidden  p-6">
-      <div className="flex items-center justify-between">
+    <div className="p-6">
+      <div className="flex items-center justify-between mb-6">
         <div>
           <div className="md:text-sm text-muted-foreground sm:text-[12px]">
             Contact /
           </div>
-          <h1 className="md:text-xl font-bold text-[#383861] sm:text-[16px]">
-            Nouveau Client
+          <h1 className="text-2xl text-[#383861] font-bold">
+            Liste des clients
           </h1>
+          <p className="text-muted-foreground mt-1">
+            Gérez vos clients et leurs détails
+          </p>
         </div>
 
         <div className="flex items-center md:gap-4 sm:gap-1 sm:mt-1">
           <div className="flex items-center md:gap-2 sm:gap-1 cursor-pointer">
-            {[Copy, Pencil, Printer, Share2].map((Icon, index) => (
+            {[Copy, Printer, Share2Icon].map((Icon, index) => (
               <div
                 key={index}
                 className="relative flex justify-center items-center w-10 h-10 rounded-full bg-white shadow-lg shadow-black/5 before:absolute before:inset-0 before:m-[8.334%] before:rounded-[inherit] before:border before:border-gray-700/5 before:bg-gray-200/60 before:[mask-image:linear-gradient(to_bottom,black,transparent)]"
@@ -80,36 +59,28 @@ const ClientPage = () => {
               </div>
             ))}
           </div>
+
+          <div className="border-l border mx-4 sm:mx-2 h-8" />
+
+          <div className="flex md:gap-4 sm:gap-1 sm:mr-2">
+            <Link href="/pages/client/create">
+              <Button className="bg-[#023E8A] hover:bg-[#3BCEAB] text-[#F2F9F3] flex items-center">
+                <PlusCircle className="h-4 w-4" />
+                <span className="hidden md:inline">Nouveau client</span>
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
-      {/* Nav content */}
-      <div className={tabStyles.container}>
-        {tabs.map((tab, index) => (
-          <>
-            {index > 0 && <div className={tabStyles.separator} />}
-            <button
-              key={tab.id}
-              className={tabStyles.tab(activeTab === tab.id)}
-              onClick={() => setActiveTab(tab.id)}
-            >
-              <div className={tabStyles.tabContent}>
-                <span>{tab.label}</span>
-              </div>
-            </button>
-          </>
-        ))}
-      </div>
-      {/* Form Contenu */}
-      <div className="flex flex-col md:flex-row">
-        <div className="md:w-[80%] w-full pr-4">
-          <CollaboratorFiche activeTab={activeTab} downArrow={downArrow} />
-        </div>
-        <div className="md:w-[1/3] md:block hidden">
-        <CollaboratorCard collaboratorDetails={clientData} activities={activityData}/>
-        </div>
+      <div className="bg-white rounded-lg shadow-sm p-4">
+        <DataTable
+          data={collaborators} 
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+        /> 
       </div>
     </div>
   );
 };
 
-export default ClientPage;
+export default ClientList;

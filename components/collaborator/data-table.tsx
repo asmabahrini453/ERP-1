@@ -12,7 +12,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table"
 import { ChevronDown, Search } from "lucide-react"
-import { columns, type Article } from "./columns"
+import { columns, type Collaborator } from "./columns"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
@@ -24,11 +24,11 @@ import {
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { DataTablePagination } from "../data-table-pagination"
 
-// Define the props for DataTable, 
+// Define the props for DataTable, which expects an array of article objects
 interface DataTableProps {
-  data: Article[],
-  onEdit: (updated: Article) => void; 
-  onDelete : (deleted:Article)=> void ; 
+  data: Collaborator[],
+  onEdit: (updated: Collaborator) => void; 
+  onDelete : (deleted:Collaborator)=> void ; 
 }
 
 export function DataTable({ data, onEdit,onDelete }: DataTableProps) {

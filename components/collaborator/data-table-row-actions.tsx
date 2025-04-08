@@ -16,17 +16,17 @@ import {
 
 import { Copy, Eye, MoreHorizontal, Pencil, Trash2 } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { articleFormSchema } from "@/lib/validations/schema";
-import { Article } from "./columns";
-import { useState } from "react";
+
+import { Collaborator } from "./columns";
 import { useToast } from "@/hooks/use-toast";
-import EditDialog from "./modals/edit-modal";
+import { collaboratorFormSchema } from "@/lib/validations/schema";
 import DeleteDialog from "./modals/delete-modal";
+import EditDialog from "./modals/edit-modal";
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
-  onEdit: (updated: Article) => void;
-  onDelete: (deleted: Article) => void;
+  onEdit: (updated: Collaborator) => void;
+  onDelete: (deleted: Collaborator) => void;
 }
 
 export function DataTableRowActions<TData>({ row, onEdit, onDelete }: DataTableRowActionsProps<TData>) {
@@ -35,14 +35,14 @@ export function DataTableRowActions<TData>({ row, onEdit, onDelete }: DataTableR
   const { toast } = useToast();
 
   // Validate the row.original data against the schema per row
-  const article = articleFormSchema.parse(row.original);
+  const collaborator = collaboratorFormSchema.parse(row.original);
 
   const handleEditClick = () => {
     setDialogContent(
       <EditDialog
-        articleData={article}
-        onSave={(updatedArticle) => {
-          onEdit(updatedArticle); // Call parent handler
+      collaboratorData={collaborator}
+        onSave={(updatedCollaborator) => {
+          onEdit(updatedCollaborator); // Call parent handler
           setDialogContent(null); // Close dialog after save
         }}
       />
@@ -50,10 +50,10 @@ export function DataTableRowActions<TData>({ row, onEdit, onDelete }: DataTableR
   };
   
   const handleDelete = () => {
-    onDelete(article);
+    onDelete(collaborator);
     toast({
       title: "Success",
-      description: "Article supprimé avec succès!",
+      description: "Collaborateur supprimé avec succès!",
     });
         setShowDeleteDialog(false);
   };

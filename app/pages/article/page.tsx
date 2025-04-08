@@ -1,6 +1,6 @@
 "use client";
 
-import { data } from "@/app/data";
+import { articleData } from "@/app/data";
 import type { Article } from "@/components/article/columns";
 import { DataTable } from "@/components/article/data-table";
 import { Button } from "@/components/ui/button";
@@ -16,7 +16,7 @@ import { useState } from "react";
 
 const ArticleList = () => {
   // State for articles
-  const [articles, setArticles] = useState<Article[]>(data);
+  const [articles, setArticles] = useState<Article[]>(articleData);
 
   //handleEdit receives the edited article changes as arg and updates them with setArticles()
   const handleEdit = (updated: Article) => {
