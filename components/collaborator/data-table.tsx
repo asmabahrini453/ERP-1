@@ -46,7 +46,7 @@ export function DataTable({ data, onEdit,onDelete }: DataTableProps) {
   const table = useReactTable({
     data,
     columns: columns(onEdit, onDelete), 
-        onSortingChange: setSorting,
+   onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -69,9 +69,9 @@ export function DataTable({ data, onEdit,onDelete }: DataTableProps) {
         <div className="relative w-full sm:max-w-xs">
           <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="Filtrer par titre..."
-            value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
-            onChange={(event) => table.getColumn("title")?.setFilterValue(event.target.value)}
+            placeholder="Filtrer par Nom..."
+            value={(table.getColumn("nomDeFamille")?.getFilterValue() as string) ?? ""}
+            onChange={(event) => table.getColumn("nomDeFamille")?.setFilterValue(event.target.value)}
             className="pl-9 w-full"
           />
         </div>
@@ -91,26 +91,26 @@ export function DataTable({ data, onEdit,onDelete }: DataTableProps) {
                 let headerText
 
                 switch (column.id) {
-                  case "serieNbr":
-                    headerText = "N° de Série"
+                  case "reference":
+                    headerText = "Référence"
                     break
-                  case "title":
-                    headerText = "Titre"
+                    case "nomDeFamille":
+                      headerText = "Nom de famille"
+                      break
+                  case "prenom":
+                    headerText = "Prénom"
                     break
-                  case "category":
-                    headerText = "Categorie"
+                  case "idFiscale":
+                    headerText = "N° d'ID fiscale"
                     break
-                  case "unitCost":
-                    headerText = "Coût Unitaire"
+                  case "type":
+                    headerText = "Type"
                     break
-                  case "salePrice":
-                    headerText = "Prix de Vente"
+                  case "activite":
+                    headerText = "Activité"
                     break
-                  case "stock":
-                    headerText = "Stock"
-                    break
-                  case "unit":
-                    headerText = "Unité de vente"
+                  case "dateAjout":
+                    headerText = "Date d'ajout"
                     break
                   default:
                     headerText = column.id
