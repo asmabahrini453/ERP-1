@@ -1,5 +1,5 @@
 "use client"
-import { ArticleFormSchema, type ArticleFormValues, categories } from "@/lib/validations/schema"
+import { articleFormSchema, type ArticleFormValues, categories } from "@/lib/validations/schema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { Input } from "@/components/ui/input"
@@ -8,9 +8,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useToast } from "@/hooks/use-toast"
 import { Button } from "@/components/ui/button"
-import { Article } from "../article/columns"
-import { useState } from "react"
-import { data } from "@/app/data"
+import { Article } from "../columns"
 
 interface EditDialogProps {
   articleData?: ArticleFormValues, 
@@ -23,7 +21,7 @@ const EditDialog = ({ articleData , onSave}: EditDialogProps) => {
 
   //define the edit form
   const editForm = useForm<ArticleFormValues>({
-    resolver: zodResolver(ArticleFormSchema),
+    resolver: zodResolver(articleFormSchema),
     defaultValues: articleData || {
       serieNbr: "",
       title: "",

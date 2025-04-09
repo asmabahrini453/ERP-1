@@ -2,8 +2,8 @@
 
 import { collaboratorData } from "@/app/data";
 
-import { Collaborator } from "@/components/collaborator/columns";
-import { DataTable } from "@/components/collaborator/data-table";
+import { Collaborator, columns } from "@/components/collaborator/columns";
+import { DataTable } from "@/components/data-table";
 import { Button } from "@/components/ui/button";
 
 import {
@@ -73,11 +73,21 @@ const FournisseurList = () => {
         </div>
       </div>
       <div className="bg-white rounded-lg shadow-sm p-4">
-        <DataTable
-          data={collaborators} 
-          onEdit={handleEdit}
-          onDelete={handleDelete}
-        /> 
+             <DataTable
+                  data={collaborators}
+                  columns={columns(handleEdit, handleDelete)}
+                  filterKey="nomDeFamille"
+                  filterPlaceholder="Filtrer par Nom..."
+                  columnLabels={{
+                    reference: "Référence",
+                    nomDeFamille: "Nom de famille",
+                    prenom: "Prénom",
+                    idFiscale: "N° d'ID fiscale",
+                    type: "Type",
+                    activite: "Activité",
+                    dateAjout: "Date d'ajout",
+                  }}
+                />
       </div>
     </div>
   );

@@ -1,16 +1,11 @@
 "use client";
 
 import { articleData } from "@/app/data";
-import type { Article } from "@/components/article/columns";
-import { DataTable } from "@/components/article/data-table";
+import { columns, type Article } from "@/components/article/columns";
+import { DataTable } from "@/components/data-table";
 import { Button } from "@/components/ui/button";
 
-import {
-  Copy,
-  PlusCircle,
-  Printer,
-  Share2Icon,
-} from "lucide-react";
+import { Copy, PlusCircle, Printer, Share2Icon } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -21,17 +16,15 @@ const ArticleList = () => {
   //handleEdit receives the edited article changes as arg and updates them with setArticles()
   const handleEdit = (updated: Article) => {
     //if articleID = updatedArticleId => update changes else if the ids don't match the article remains the same
-    setArticles(prev =>
-      prev.map(article =>
-        article.id === updated.id ? updated : article
-      )
+    setArticles((prev) =>
+      prev.map((article) => (article.id === updated.id ? updated : article))
     );
   };
-  
+
   // Add the handleDelete function to actually remove articles
   const handleDelete = (articleToDelete: Article) => {
-    setArticles(prev => 
-      prev.filter(article => article.id !== articleToDelete.id)
+    setArticles((prev) =>
+      prev.filter((article) => article.id !== articleToDelete.id)
     );
   };
 
@@ -76,10 +69,20 @@ const ArticleList = () => {
       </div>
       <div className="bg-white rounded-lg shadow-sm p-4">
         <DataTable
-          data={articles} 
-          onEdit={handleEdit}
-          onDelete={handleDelete}
-        /> 
+          data={articles}
+          columns={columns(handleEdit, handleDelete)}
+          filterKey="title"
+          filterPlaceholder="Filtrer par titre..."
+          columnLabels={{
+            serieNbr: "N° de Série",
+            title: "Titre",
+            category: "Categorie",
+            unitCost: "Coût Unitaire",
+            salePrice: "Prix de Vente",
+            stock: "Stock",
+            unit: "Unité de vente",
+          }}
+        />
       </div>
     </div>
   );

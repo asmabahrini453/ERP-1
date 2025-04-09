@@ -2,34 +2,28 @@
 
 import { collaboratorData } from "@/app/data";
 
-import { Collaborator } from "@/components/collaborator/columns";
-import { DataTable } from "@/components/collaborator/data-table";
+import { Collaborator, columns } from "@/components/collaborator/columns";
+import { DataTable } from "@/components/data-table";
 import { Button } from "@/components/ui/button";
 
-import {
-  Copy,
-  PlusCircle,
-  Printer,
-  Share2Icon,
-} from "lucide-react";
+import { Copy, PlusCircle, Printer, Share2Icon } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
 const ClientList = () => {
   // State for collaborators
-  const [collaborators, setCollaborators] = useState<Collaborator[]>(collaboratorData);
+  const [collaborators, setCollaborators] =
+    useState<Collaborator[]>(collaboratorData);
 
   const handleEdit = (updated: Collaborator) => {
-    setCollaborators(prev =>
-      prev.map(col =>
-        col.id === updated.id ? updated : col
-      )
+    setCollaborators((prev) =>
+      prev.map((col) => (col.id === updated.id ? updated : col))
     );
   };
-  
+
   const handleDelete = (collaboratorToDelete: Collaborator) => {
-    setCollaborators(prev => 
-      prev.filter(col => col.id !== collaboratorToDelete.id)
+    setCollaborators((prev) =>
+      prev.filter((col) => col.id !== collaboratorToDelete.id)
     );
   };
 
@@ -38,7 +32,7 @@ const ClientList = () => {
       <div className="flex items-center justify-between mb-6">
         <div>
           <div className="md:text-sm text-muted-foreground sm:text-[12px]">
-          Utilisateurs /
+            Utilisateurs /
           </div>
           <h1 className="text-2xl text-[#383861] font-bold">
             Liste des clients
@@ -74,10 +68,20 @@ const ClientList = () => {
       </div>
       <div className="bg-white rounded-lg shadow-sm p-4">
         <DataTable
-          data={collaborators} 
-          onEdit={handleEdit}
-          onDelete={handleDelete}
-        /> 
+          data={collaborators}
+          columns={columns(handleEdit, handleDelete)}
+          filterKey="nomDeFamille"
+          filterPlaceholder="Filtrer par Nom..."
+          columnLabels={{
+            reference: "Référence",
+            nomDeFamille: "Nom de famille",
+            prenom: "Prénom",
+            idFiscale: "N° d'ID fiscale",
+            type: "Type",
+            activite: "Activité",
+            dateAjout: "Date d'ajout",
+          }}
+        />
       </div>
     </div>
   );
