@@ -1,4 +1,3 @@
-// Fixed DataTableRowActions Component
 "use client";
 
 import * as React from "react";
