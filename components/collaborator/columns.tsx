@@ -20,7 +20,6 @@ export type Collaborator = {
 
 };
 
-// Modified to accept and use the onEdit function
 export const columns = (
   onEdit: (updated: Collaborator) => void,
   onDelete:(deleted:Collaborator) =>void

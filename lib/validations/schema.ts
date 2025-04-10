@@ -52,3 +52,18 @@ export const nomenclatureFormSchema = z.object({
   avecDesOperations:  z.enum(ops),
 });
 export type nomenclatureFormValues = z.infer<typeof nomenclatureFormSchema> ; 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+export const ofFormSchema = z.object({
+  id: z.string(),
+  numSerie: z.string().min(1,"Code article est obligatoire"),
+  titre: z.string().min(1,"Code article est obligatoire"),
+  quantiteProduire: z.coerce.number().min(0, "Quantité est obligatoire"),
+  numNomenclature:  z.string().min(0, "N° nomenclature est obligatoire"),
+  dateDebutReel: z.date().transform((value) => new Date(value)),
+  dateFinReelle: z.date().transform((value) => new Date(value)),
+
+
+});
+export type ofFormValues = z.infer<typeof ofFormSchema> ; 
+

@@ -18,7 +18,6 @@ export type Article = {
   unit: string;
 };
 
-// Modified to accept and use the onEdit function
 export const columns = (
   onEdit: (updated: Article) => void,
   onDelete:(deleted:Article) =>void

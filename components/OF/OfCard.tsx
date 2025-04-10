@@ -113,7 +113,7 @@ const OfCard = ({ articleDetails, activities }: OfCardProps) => {
                 titre: "Titre",
                 uniteVente: "PCS",
                 numNomenclature: "N° Nomenclature",
-                quantiteProduire: "Duantité à produire",
+                quantiteProduire: "Quantité à produire",
                 entrepotSource: "Entrepôt source",
                 entrepotCible: "Entrepôt cible",
                 dateDebutReel: "Date de Début Réelle",
