@@ -6,7 +6,8 @@ import { TypingText } from '@/components/TypingText';
 import { TitleText } from "@/components/TitleText";
 import Image from 'next/image';
 import { Steps } from '@/components/Steps';
-import taskflow from '@/assets/images/calendrier.png';
+import calendar from '@/assets/images/calendrier.png';
+import ProfessionalImageCard from '@/components/ProfessionalImageCard';
 
 export const startingFeatures = [
     'Planifiez un événement avec un titre et une description.',
@@ -23,19 +24,15 @@ export const Calendar: React.FC = () => (
       viewport={{ once: false, amount: 0.25 }}
       className="2xl:max-w-[1280px] w-full mx-auto flex lg:flex-row flex-col gap-8"
     >
-      {/* Image */}
-      <div className="flex-1 flex justify-center items-center order-1 sm:order-1">
-        <Image
-          src={taskflow}
-          alt="get-started"
-          className="w-[90%] h-[90%] object-contain"
-        />
+      {/* Image section */}
+      <div className="flex-1 flex justify-center items-center order-1 sm:order-1 md:order-2">
+        <ProfessionalImageCard src={calendar} alt="calendar" />
       </div>
 
-      {/* Texte */}
+      {/* Text section */}
       <motion.div
         variants={fadeIn('left', 'tween', 0.2, 1)} 
-        className="flex-[0.75] flex justify-center flex-col order-2 sm:order-2"
+        className="flex-[0.75] flex justify-center flex-col order-2 sm:order-2 md:order-1"
       >
         <TypingText title="| la vue Calendrier" />
         <TitleText title={<span>Planification et Suivi de votre Calendrier</span>} />

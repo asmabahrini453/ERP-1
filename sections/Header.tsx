@@ -47,7 +47,7 @@ export const Header = () => {
             )}
 
             {/* Navbar */}
-            <div  className={`${scrolled ? "" : "py-4"}`}>
+            <div  className={`${scrolled ? "" : ""}`}>
               <div className="container mx-auto">
                 <div className="flex items-center justify-between  ">
                   {/* Logo */}
