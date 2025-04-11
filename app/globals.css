@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 /* Here we define all utility classes for reusable component styles */
+
 @layer components {
 
   @keyframes float {
