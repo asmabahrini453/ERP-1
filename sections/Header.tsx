@@ -29,9 +29,14 @@ export const Header = () => {
   return (
     <>
       <div className="fixed top-0 left-0 w-full z-50 flex justify-center">
-        <div  className={`transition-all duration-500 w-full ${
-            scrolled ? "max-w-3xl mx-auto mt-4 rounded-3xl shadow-lg" : ""
-          }`}>
+      <div
+  className={`transition-all duration-500 w-full ${
+    scrolled
+      ? "mx-auto mt-4 rounded-3xl shadow-lg max-w-[95%] sm:max-w-md md:max-w-2xl lg:max-w-3xl"
+      : ""
+  }`}
+>
+
           <header className={`w-full ${scrolled ? "bg-white py-1.5 rounded-3xl" : "bg-white"}`}>
             {/* Banner */}
             {!scrolled && (
@@ -47,7 +52,7 @@ export const Header = () => {
             )}
 
             {/* Navbar */}
-            <div  className={`${scrolled ? "" : ""}`}>
+            <div  className={`${scrolled ? " " : ""}`}>
               <div className="container mx-auto">
                 <div className="flex items-center justify-between  ">
                   {/* Logo */}

@@ -7,7 +7,7 @@ import { Steps } from "@/components/Steps"
 import { staggerContainer, fadeIn, planetVariants } from "@/utils/motion"
 import { TypingText } from "@/components/TypingText"
 import { TitleText } from "@/components/TitleText"
-import kanban from "@/assets/images/kanban.png"
+import kanban from "@/assets/images/exp2.png"
 import ProfessionalImageCard from "@/components/ProfessionalImageCard"
 
 export const startingFeatures = [

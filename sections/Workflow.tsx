@@ -5,8 +5,7 @@ import { Steps } from "@/components/Steps";
 import { staggerContainer, fadeIn, planetVariants } from "@/utils/motion";
 import { TypingText } from "@/components/TypingText";
 import { TitleText } from "@/components/TitleText";
-import workflow from "@/assets/images/workflow2.png";
-import Image from "next/image";
+import workflow from "@/assets/images/exp2.png";
 import ProfessionalImageCard from "@/components/ProfessionalImageCard";
 
 export const startingFeatures = [

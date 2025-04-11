@@ -16,7 +16,7 @@ export default function ProfessionalImageCard({ src, alt, className = "", varian
   const [isHovered, setIsHovered] = useState(false)
 
   return (
-    <motion.div variants={variants} className={`w-[80%] ${className}`}>
+    <motion.div variants={variants} className={`w-full ${className}`}>
       <Card
         className="overflow-hidden bg-white border-0 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 w-full"
         onMouseEnter={() => setIsHovered(true)}

@@ -29,8 +29,8 @@ export default function Planet() {
             </p>
           </div>
           {/* Planet */}
-          <div className="pb-16 md:pb-20" data-aos="zoom-y-out">
-            <div className="text-center">
+          <div className="hidden md:block pb-16 md:pb-20" data-aos="zoom-y-out">
+          <div className="text-center">
               <div className="relative inline-flex rounded-full before:absolute before:inset-0 before:-z-10 before:scale-[.85] before:animate-[pulse_4s_cubic-bezier(.4,0,.6,1)_infinite] before:bg-gradient-to-b before:from-blue-900 before:to-sky-700/50 before:blur-3xl after:absolute after:inset-0 after:rounded-[inherit] after:[background:radial-gradient(closest-side,theme(colors.blue.500),transparent)]">
                 <Image
                   className="rounded-full bg-gray-900"
@@ -39,7 +39,7 @@ export default function Planet() {
                   height={400}
                   alt="Planète"
                 />
-                <div className="pointer-events-none" aria-hidden="true">
+                <div className="pointer-events-none " aria-hidden="true">
                   <Image
                     className="absolute -right-64 -top-20 z-10 max-w-none"
                     src="/planet-overlay.svg"

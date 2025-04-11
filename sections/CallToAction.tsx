@@ -3,6 +3,9 @@ import Lottie from "lottie-react";
 import animationData from "@/assets/animations/animation.json"; 
 import ArrowRight from "@/assets/icons/arrow-right.svg";
 import Typewriter from 'typewriter-effect';
+import sideImg from "@/assets/images/exp2.png"
+import Image from "next/image";
+
 
 export const CallToAction = () => {
     return (
@@ -41,13 +44,13 @@ export const CallToAction = () => {
                 {/* Animation */}
                 <div className="hidden sm:hidden md:w-1/2 md:flex md:justify-end relative">
                     <div className="relative w-[300px] md:w-[350px]">
-                        <Lottie animationData={animationData} loop={true}/>
+                      {/* <Lottie animationData={animationData} loop={true}/>*/}  
                         
-                        {/* <Image 
-                            src={Logo} 
-                            alt="Logo ERP" 
-                            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 md:w-28"
-                        />  */}
+                         <Image 
+                            src={sideImg} 
+                            alt="ERP" 
+                            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:w-full shadow-xl rounded-md"
+                        />  
                     </div>
                 </div>
             </div>

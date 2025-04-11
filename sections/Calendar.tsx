@@ -6,7 +6,7 @@ import { TypingText } from '@/components/TypingText';
 import { TitleText } from "@/components/TitleText";
 import Image from 'next/image';
 import { Steps } from '@/components/Steps';
-import calendar from '@/assets/images/calendrier.png';
+import calendar from '@/assets/images/exp1.avif';
 import ProfessionalImageCard from '@/components/ProfessionalImageCard';
 
 export const startingFeatures = [

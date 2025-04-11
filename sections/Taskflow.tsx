@@ -4,9 +4,8 @@ import { motion } from "framer-motion";
 import { staggerContainer, fadeIn, planetVariants } from "@/utils/motion";
 import { TypingText } from "@/components/TypingText";
 import { TitleText } from "@/components/TitleText";
-import Image from "next/image";
 import { Steps } from "@/components/Steps";
-import taskflow from "@/assets/images/taskflow.png";
+import taskflow from "@/assets/images/exp1.avif";
 import ProfessionalImageCard from "@/components/ProfessionalImageCard";
 
 export const startingFeatures = [
