@@ -1,34 +1,23 @@
-'use client'
-import { Button } from '@/components/ui/button'
-import Link from 'next/link'
-import React from 'react'
-import { useFormContext } from 'react-hook-form'
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
-type Props = {}
+const ButtonHandler = () => {
+  return (
+    <div className="space-y-4">
+      <Button type="submit" className="w-full bg-[#023E8A] hover:bg-[#023E8A]/90">
+        S'inscrire
+      </Button>
 
-const ButtonHandler = (props: Props) => { 
-    return (
-      <div className="w-full flex flex-col gap-3 items-center">
-        <Button
-          type="submit"
-          className="w-full bg-[#023E8A] text-white font-medium inline-flex justify-center py-2 px-4 rounded-lg tracking-tight; hover:bg-[#3BCEAB]">
-       
-          Créer compte
-        </Button>
+      <div className="text-center text-sm">
         <p>
-         Vous avez un compte?{' '}
-          <Link
-            href="/auth/sign-in"
-            className="font-bold text-[#3BCEAB]"
-          >
-            connectez-vous
+          Vous avez déjà un compte ?{" "}
+          <Link href="/auth/sign-in" className="font-medium text-[#3BCEAB] hover:text-[#3BCEAB]/80 transition-colors">
+            Connectez-vous
           </Link>
         </p>
       </div>
-    )
-  }
-
- 
-
+    </div>
+  )
+}
 
 export default ButtonHandler

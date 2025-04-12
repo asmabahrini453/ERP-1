@@ -31,7 +31,7 @@ const Layout = async ({ children }: Props) => {
     
     <div className="w-[600px] ld:w-full flex flex-col items-center justify-center p-6 relative"> 
       
-      <div className="lg:h-[500px] mt-6 p-6 bg-[#F6F7FA] rounded-lg shadow-lg flex justify-center items-center w-full mx-auto">
+      <div >
         {children}
       </div>
   

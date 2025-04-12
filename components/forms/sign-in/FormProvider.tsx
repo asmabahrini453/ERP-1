@@ -1,21 +1,26 @@
-"use client";
-import React from "react";
-import { FormProvider, useForm } from "react-hook-form";
+"use client"
+import type React from "react"
+import { FormProvider, useForm } from "react-hook-form"
 
 type Props = {
-  children: React.ReactNode;
-};
+  children: React.ReactNode
+}
 
-const SignUpFormProvider = ({ children }: Props) => {
-  const methods = useForm(); 
+const SignInFormProvider = ({ children }: Props) => {
+  const methods = useForm()
+
+  const onSubmit = methods.handleSubmit((data) => {
+    console.log("Form submitted:", data)
+    // Handle form submission logic here
+  })
 
   return (
     <FormProvider {...methods}>
-      <form className="h-full">
+      <form onSubmit={onSubmit} className="h-full">
         <div className="flex flex-col justify-between gap-3 h-full">{children}</div>
       </form>
     </FormProvider>
-  );
-};
+  )
+}
 
-export default SignUpFormProvider;
+export default SignInFormProvider

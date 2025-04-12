@@ -1,37 +1,29 @@
-
-import SignInFormProvider from '@/components/forms/sign-in/FormProvider'
-import LoginForm from '@/components/forms/sign-in/LoginForm'
-import { Button } from '@/components/ui/button'
-import Link from 'next/link'
-import React from 'react'
+import SignInFormProvider from "@/components/forms/sign-in/FormProvider"
+import LoginForm from "@/components/forms/sign-in/LoginForm"
+import { Card, CardContent } from "@/components/ui/card"
+import Link from "next/link"
 
 const SignInPage = () => {
   return (
-    <div className="flex-1 py-36 md:px-16 w-full">
-      <div className="flex flex-col h-full gap-3">
-        <SignInFormProvider>
-          <div className="flex flex-col gap-3">
+    <div className="flex min-h-screen items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <Card className="w-full max-w-md ">
+        <CardContent className="pt-6">
+          <SignInFormProvider>
             <LoginForm />
-            <div className="w-full flex flex-col gap-3 items-center">
-            <Link
-              href="/pages/article"
-              className="w-full bg-[#023E8A] text-white font-medium inline-flex justify-center py-2 px-4 rounded-lg tracking-tight hover:bg-[#3BCEAB]"
-            >
-                Confirmer
-              </Link>
+            <div className="mt-6 text-center text-sm">
               <p>
-                Vous n'avez pas de compte ?{' '}
+                Vous n'avez pas de compte ?{" "}
                 <Link
-                    href="/auth/sign-up"
-                    className="font-bold text-[#3BCEAB]"
+                  href="/auth/sign-up"
+                  className="font-medium text-[#3BCEAB] hover:text-[#3BCEAB]/80 transition-colors"
                 >
-                    Créez-en un
+                  Créez-en un
                 </Link>
-                </p>
+              </p>
             </div>
-          </div>
-        </SignInFormProvider>
-      </div>
+          </SignInFormProvider>
+        </CardContent>
+      </Card>
     </div>
   )
 }
