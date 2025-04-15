@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import ParticleNetwork from "@/components/particle-network";
 import { CallToAction } from "@/sections/CallToAction";
@@ -13,13 +13,15 @@ import { Testimonials } from "@/sections/Testimonials";
 import { FAQ } from "@/sections/FAQ";
 import Planet from "@/sections/Planet";
 import { AllFeatures } from "@/sections/AllFeatures";
-
+import { useLenis } from "@/hooks/useLenis";
 export default function Home() {
+  //smooth scrolling effect from useLenis package
+  useLenis();
   return (
     <>
       <Header />
       <section id="hero-section" className="relative">
-        <ParticleNetwork /> 
+        <ParticleNetwork />
         <Hero />
       </section>
 
@@ -27,11 +29,9 @@ export default function Home() {
       <ProductShowcase />
       <Services />
 
-     
-      <AllFeatures/>
+      <AllFeatures />
 
-     
-      <Planet /> 
+      <Planet />
       <Pricing />
       <Testimonials />
       <FAQ />

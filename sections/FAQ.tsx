@@ -32,7 +32,7 @@ export const FAQ = () => {
     const [selectedIndex, setselectedIndex] = useState(0);
 
     return (
-        <section className="lg:relative ">
+        <section className="lg:relative  ">
             {/* Large Device Section */}
             <div 
                 className="lg:absolute lg:inset-0 lg:bg-cover lg:z-0 top-10"
@@ -59,7 +59,7 @@ export const FAQ = () => {
                         </p>
                     </div>
 
-                    <div className="grid gap-6 grid-cols-1">
+                    <div className="grid gap-6 grid-cols-1 ">
                         {faqs.map((faq, faqIndex) => (
                             <div
                                 key={faq.question}

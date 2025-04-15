@@ -37,7 +37,7 @@ export const Header = () => {
   }`}
 >
 
-          <header className={`w-full ${scrolled ? "bg-white py-1.5 rounded-3xl" : "bg-white"}`}>
+          <header className={`w-full ${scrolled ? "bg-white py-1.5 rounded-3xl" : "bg-[#F6F7FA]"}`}>
             {/* Banner */}
             {!scrolled && (
               <div className="flex justify-center items-center py-1 bg-[#023E8A] text-white text-sm gap-3">
