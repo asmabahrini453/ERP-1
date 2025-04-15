@@ -4,7 +4,7 @@ import Link from "next/link"
 const ButtonHandler = () => {
   return (
     <div className="space-y-4">
-      <Button type="submit" className="w-full bg-[#023E8A] hover:bg-[#023E8A]/90">
+      <Button type="submit" className="w-full bg-[#023E8A] hover:bg-[#3BCEAB]">
         S'inscrire
       </Button>
 

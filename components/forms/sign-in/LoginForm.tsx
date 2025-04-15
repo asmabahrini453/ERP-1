@@ -5,6 +5,7 @@ import { USER_LOGIN_FORM } from "@/constants/forms"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Linkedin } from "lucide-react"
+import Link from "next/link"
 
 const LoginForm = () => {
   const {
@@ -26,7 +27,9 @@ const LoginForm = () => {
       </div>
 
       <Button type="submit" className="w-full bg-[#023E8A] hover:bg-[#3BCEAB]">
-        Confirmer
+      <Link href="/pages/article" >
+            Connectez-vous
+          </Link>
       </Button>
 
       <div className="flex items-center gap-2 my-4">

@@ -11,10 +11,7 @@ const SignUp = () => {
       <CardContent className="pt-6">
         <SignUpFormProvider>
           <div className="space-y-4">
-            <div className="space-y-1">
-              <h2 className="text-xl font-bold text-center md:text-2xl">Créer un compte</h2>
-              <p className="text-muted-foreground text-center text-sm">Remplissez le formulaire ci-dessous</p>
-            </div>
+           
 
             <RegisterForm />
 

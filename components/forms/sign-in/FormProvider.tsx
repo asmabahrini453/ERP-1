@@ -11,7 +11,6 @@ const SignInFormProvider = ({ children }: Props) => {
 
   const onSubmit = methods.handleSubmit((data) => {
     console.log("Form submitted:", data)
-    // Handle form submission logic here
   })
 
   return (
