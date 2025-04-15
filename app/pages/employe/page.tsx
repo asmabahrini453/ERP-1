@@ -3,6 +3,7 @@
 import { collaboratorData } from "@/app/data";
 
 import { Collaborator, columns } from "@/components/collaborator/columns";
+import CreateCollaboratorSheet from "@/components/collaborator/modals/create-collaborator";
 import { DataTable } from "@/components/data-table";
 import { Button } from "@/components/ui/button";
 
@@ -33,6 +34,11 @@ const EmployeList = () => {
     );
   };
 
+  const [sheetOpen, setSheetOpen] = useState(false)
+  const handleCreate = (newCol: Collaborator) => {
+   setCollaborators((prev) => [...prev, newCol])
+ }
+
   return (
     <div className="p-6">
       <div className="flex items-center justify-between mb-6">
@@ -62,13 +68,15 @@ const EmployeList = () => {
 
           <div className="border-l border mx-4 sm:mx-2 h-8" />
 
+       
           <div className="flex md:gap-4 sm:gap-1 sm:mr-2">
-            <Link href="/pages/employe/create">
-              <Button className="bg-[#023E8A] hover:bg-[#3BCEAB] text-[#F2F9F3] flex items-center">
-                <PlusCircle className="h-4 w-4" />
-                <span className="hidden md:inline">Nouveau Employé</span>
-              </Button>
-            </Link>
+            <Button
+              className="bg-[#023E8A] hover:bg-[#3BCEAB] text-[#F2F9F3] flex items-center"
+              onClick={() => setSheetOpen(true)}
+            >
+              <PlusCircle className="h-4 w-4 mr-2" />
+              <span className="hidden md:inline">Nouveau employé</span>
+            </Button>
           </div>
         </div>
       </div>
@@ -89,6 +97,9 @@ const EmployeList = () => {
                  }}
                />
       </div>
+
+      <CreateCollaboratorSheet open={sheetOpen} onOpenChange={setSheetOpen} onSave={handleCreate} />
+
     </div>
   );
 };

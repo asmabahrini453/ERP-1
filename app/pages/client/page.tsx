@@ -3,6 +3,7 @@
 import { collaboratorData } from "@/app/data";
 
 import { Collaborator, columns } from "@/components/collaborator/columns";
+import CreateCollaboratorSheet from "@/components/collaborator/modals/create-collaborator";
 import { DataTable } from "@/components/data-table";
 import { Button } from "@/components/ui/button";
 
@@ -26,6 +27,13 @@ const ClientList = () => {
       prev.filter((col) => col.id !== collaboratorToDelete.id)
     );
   };
+
+
+  const [sheetOpen, setSheetOpen] = useState(false)
+   // Handle creating a new client
+   const handleCreate = (newClient: Collaborator) => {
+    setCollaborators((prev) => [...prev, newClient])
+  }
 
   return (
     <div className="p-6">
@@ -56,13 +64,15 @@ const ClientList = () => {
 
           <div className="border-l border mx-4 sm:mx-2 h-8" />
 
+       
           <div className="flex md:gap-4 sm:gap-1 sm:mr-2">
-            <Link href="/pages/client/create">
-              <Button className="bg-[#023E8A] hover:bg-[#3BCEAB] text-[#F2F9F3] flex items-center">
-                <PlusCircle className="h-4 w-4" />
-                <span className="hidden md:inline">Nouveau client</span>
-              </Button>
-            </Link>
+            <Button
+              className="bg-[#023E8A] hover:bg-[#3BCEAB] text-[#F2F9F3] flex items-center"
+              onClick={() => setSheetOpen(true)}
+            >
+              <PlusCircle className="h-4 w-4 mr-2" />
+              <span className="hidden md:inline">Nouveau client</span>
+            </Button>
           </div>
         </div>
       </div>
@@ -83,7 +93,12 @@ const ClientList = () => {
           }}
         />
       </div>
+
+        {/* Sheet component for creating a new client */}
+        <CreateCollaboratorSheet open={sheetOpen} onOpenChange={setSheetOpen} onSave={handleCreate} />
     </div>
+
+    
   );
 };
 
