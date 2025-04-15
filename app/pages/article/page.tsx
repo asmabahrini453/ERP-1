@@ -2,6 +2,7 @@
 
 import { articleData } from "@/app/data";
 import { columns, type Article } from "@/components/article/columns";
+import CreateArticleSheet from "@/components/article/modals/create-article";
 import { DataTable } from "@/components/data-table";
 import { Button } from "@/components/ui/button";
 
@@ -12,6 +13,9 @@ import { useState } from "react";
 const ArticleList = () => {
   // State for articles
   const [articles, setArticles] = useState<Article[]>(articleData);
+
+   // State for sheet open/close
+   const [sheetOpen, setSheetOpen] = useState(false)
 
   //handleEdit receives the edited article changes as arg and updates them with setArticles()
   const handleEdit = (updated: Article) => {
@@ -27,6 +31,11 @@ const ArticleList = () => {
       prev.filter((article) => article.id !== articleToDelete.id)
     );
   };
+
+  // Handle creating a new article
+  const handleCreate = (newArticle: Article) => {
+    setArticles((prev) => [...prev, newArticle])
+  }
 
   return (
     <div className="p-6">
@@ -58,12 +67,13 @@ const ArticleList = () => {
           <div className="border-l border mx-4 sm:mx-2 h-8" />
 
           <div className="flex md:gap-4 sm:gap-1 sm:mr-2">
-            <Link href="/pages/article/create">
-              <Button className="bg-[#023E8A] hover:bg-[#3BCEAB] text-[#F2F9F3] flex items-center">
-                <PlusCircle className="h-4 w-4" />
-                <span className="hidden md:inline">Nouveau article</span>
-              </Button>
-            </Link>
+            <Button
+              className="bg-[#023E8A] hover:bg-[#3BCEAB] text-[#F2F9F3] flex items-center"
+              onClick={() => setSheetOpen(true)}
+            >
+              <PlusCircle className="h-4 w-4 mr-2" />
+              <span className="hidden md:inline">Nouveau article</span>
+            </Button>
           </div>
         </div>
       </div>
@@ -84,6 +94,9 @@ const ArticleList = () => {
           }}
         />
       </div>
+
+            {/* Sheet component for creating a new article */}
+            <CreateArticleSheet open={sheetOpen} onOpenChange={setSheetOpen} onSave={handleCreate} />
     </div>
   );
 };
