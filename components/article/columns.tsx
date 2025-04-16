@@ -16,6 +16,8 @@ export type Article = {
   salePrice: number;
   stock: number;
   unit: string;
+
+  
 };
 
 export const columns = (

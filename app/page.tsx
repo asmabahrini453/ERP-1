@@ -13,13 +13,30 @@ import { Testimonials } from "@/sections/Testimonials";
 import { FAQ } from "@/sections/FAQ";
 import Planet from "@/sections/Planet";
 import { AllFeatures } from "@/sections/AllFeatures";
+
 import { useLenis } from "@/hooks/useLenis";
+import LoadingScreen from "@/components/Loading";
+import { useEffect, useState } from "react";
+
+
 export default function Home() {
+  const [loading, setLoading]=useState(true)
   //smooth scrolling effect from useLenis package
   useLenis();
+
+  useEffect(()=>{
+    const timeout = setTimeout(()=>{
+      setLoading(false);
+    },2000);
+    return ()=> clearTimeout(timeout)
+  },[])
+
   return (
     <>
-      <Header />
+    {loading  && <LoadingScreen isVisible={loading}/>}
+    {!loading && (
+      <>
+       <Header />
       <section id="hero-section" className="relative">
         <ParticleNetwork />
         <Hero />
@@ -37,6 +54,9 @@ export default function Home() {
       <FAQ />
       <CallToAction />
       <Footer />
+      </>
+    )}
+     
     </>
   );
 }

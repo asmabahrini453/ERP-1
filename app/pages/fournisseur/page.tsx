@@ -5,7 +5,9 @@ import { collaboratorData } from "@/app/data";
 import { Collaborator, columns } from "@/components/collaborator/columns";
 import CreateCollaboratorSheet from "@/components/collaborator/modals/create-collaborator";
 import { DataTable } from "@/components/data-table";
+import LoadingScreen from "@/components/Loading";
 import { Button } from "@/components/ui/button";
+import { useLenis } from "@/hooks/useLenis";
 
 import {
   Copy,
@@ -13,10 +15,19 @@ import {
   Printer,
   Share2Icon,
 } from "lucide-react";
-import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const FournisseurList = () => {
+  const [loading, setLoading]=useState(true)
+  //smooth scrolling effect from useLenis package
+  useLenis();
+
+  useEffect(()=>{
+    const timeout = setTimeout(()=>{
+      setLoading(false);
+    },2000);
+    return ()=> clearTimeout(timeout)
+  },[])
   // State for collaborators
   const [collaborators, setCollaborators] = useState<Collaborator[]>(collaboratorData);
 
@@ -42,7 +53,10 @@ const FournisseurList = () => {
   }
 
   return (
-    <div className="p-6">
+    <>
+    {loading && <LoadingScreen isVisible={loading}/>}
+    {!loading && (
+      <div className="p-6">
       <div className="flex items-center justify-between mb-6">
         <div>
           <div className="md:text-sm text-muted-foreground sm:text-[12px]">
@@ -102,6 +116,8 @@ const FournisseurList = () => {
       <CreateCollaboratorSheet open={sheetOpen} onOpenChange={setSheetOpen} onSave={handleCreate} />
 
     </div>
+    ) }
+    </>
   );
 };
 

@@ -67,3 +67,27 @@ export const ofFormSchema = z.object({
 });
 export type ofFormValues = z.infer<typeof ofFormSchema> ; 
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+export const categoriesEntrepot = [
+  "Entrepôt collectif",
+  "Entrepôt de rebut",
+] as const;
+export const type = [
+  "Transit",
+  "Principal", 
+] as const;
+export const statuts = [
+  "Actif",
+  "Inactif", 
+] as const;
+
+
+export const entrepotSchema = z.object({
+  id: z.string(),
+  reference: z.string().min(1,"Réference est obligatoire"),
+  nomDeEntrepot: z.string().min(1,"Nom de l'entrepôt est obligatoire"),
+  type:z.enum(type),
+  statut:z.enum(statuts),
+  categorie: z.enum(categoriesEntrepot)
+});
+export type entrepotFormValues = z.infer<typeof entrepotSchema> ; 

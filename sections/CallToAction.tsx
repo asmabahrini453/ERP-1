@@ -1,6 +1,5 @@
 "use client"
-import Lottie from "lottie-react";
-import animationData from "@/assets/animations/animation.json"; 
+
 import ArrowRight from "@/assets/icons/arrow-right.svg";
 import Typewriter from 'typewriter-effect';
 import sideImg from "@/assets/images/exp2.png"

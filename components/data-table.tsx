@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 import {
   type ColumnFiltersState,
   type SortingState,
@@ -12,27 +12,49 @@ import {
   useReactTable,
   type ColumnDef,
   type Row,
-} from "@tanstack/react-table"
+} from "@tanstack/react-table";
 
-import { ChevronDown, Search } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { CheckCircle2, ChevronDown, Search, XCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { DataTablePagination } from "./data-table-pagination"
+} from "@/components/ui/dropdown-menu";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { DataTablePagination } from "./data-table-pagination";
 
 type DataTableProps<TData> = {
-  data: TData[]
-  columns: ColumnDef<TData, any>[]
-  filterKey: keyof TData
-  filterPlaceholder?: string
-  columnLabels?: Record<string, string>
-}
+  data: TData[];
+  columns: ColumnDef<TData, any>[];
+  filterKey: keyof TData;
+  filterPlaceholder?: string;
+  columnLabels?: Record<string, string>;
+};
+
+
+export const status_options = [
+  {
+    value: "actif",
+    label: "Actif",
+    icon: CheckCircle2,
+  },
+  {
+    value: "inactif",
+    label: "Inactif",
+    icon: XCircle,
+  },
+];
+
 
 export function DataTable<TData>({
   data,
@@ -41,10 +63,13 @@ export function DataTable<TData>({
   filterPlaceholder = "Rechercher...",
   columnLabels = {},
 }: DataTableProps<TData>) {
-  const [sorting, setSorting] = React.useState<SortingState>([])
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
-  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({})
-  const [rowSelection, setRowSelection] = React.useState({})
+  const [sorting, setSorting] = React.useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    []
+  );
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({});
+  const [rowSelection, setRowSelection] = React.useState({});
 
   const table = useReactTable({
     data,
@@ -63,7 +88,7 @@ export function DataTable<TData>({
       columnVisibility,
       rowSelection,
     },
-  })
+  });
 
   return (
     <div className="w-full">
@@ -73,12 +98,20 @@ export function DataTable<TData>({
           <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
           <Input
             placeholder={filterPlaceholder}
-            value={(table.getColumn(filterKey as string)?.getFilterValue() as string) ?? ""}
+            value={
+              (table
+                .getColumn(filterKey as string)
+                ?.getFilterValue() as string) ?? ""
+            }
             onChange={(event) =>
-              table.getColumn(filterKey as string)?.setFilterValue(event.target.value)
+              table
+                .getColumn(filterKey as string)
+                ?.setFilterValue(event.target.value)
             }
             className="pl-9 w-full"
           />
+
+        
         </div>
 
         {/* Column visibility */}
@@ -93,17 +126,19 @@ export function DataTable<TData>({
               .getAllColumns()
               .filter((column) => column.getCanHide())
               .map((column) => {
-                const label = columnLabels[column.id] ?? column.id
+                const label = columnLabels[column.id] ?? column.id;
                 return (
                   <DropdownMenuCheckboxItem
                     key={column.id}
                     className="capitalize"
                     checked={column.getIsVisible()}
-                    onCheckedChange={(value) => column.toggleVisibility(!!value)}
+                    onCheckedChange={(value) =>
+                      column.toggleVisibility(!!value)
+                    }
                   >
                     {label}
                   </DropdownMenuCheckboxItem>
-                )
+                );
               })}
           </DropdownMenuContent>
         </DropdownMenu>
@@ -121,7 +156,10 @@ export function DataTable<TData>({
                       {header.isPlaceholder
                         ? null
                         : header.column.columnDef.header &&
-                          React.createElement(header.column.columnDef.header, header.getContext())}
+                          React.createElement(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
                     </TableHead>
                   ))}
                 </TableRow>
@@ -138,14 +176,20 @@ export function DataTable<TData>({
                     {row.getVisibleCells().map((cell) => (
                       <TableCell key={cell.id}>
                         {cell.column.columnDef.cell &&
-                          React.createElement(cell.column.columnDef.cell, cell.getContext())}
+                          React.createElement(
+                            cell.column.columnDef.cell,
+                            cell.getContext()
+                          )}
                       </TableCell>
                     ))}
                   </TableRow>
                 ))
               ) : (
                 <TableRow>
-                  <TableCell colSpan={columns.length} className="h-24 text-center text-muted-foreground">
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center text-muted-foreground"
+                  >
                     Aucun résultat.
                   </TableCell>
                 </TableRow>
@@ -160,5 +204,5 @@ export function DataTable<TData>({
         <DataTablePagination table={table} />
       </div>
     </div>
-  )
+  );
 }

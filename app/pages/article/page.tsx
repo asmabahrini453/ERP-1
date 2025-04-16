@@ -4,13 +4,25 @@ import { articleData } from "@/app/data";
 import { columns, type Article } from "@/components/article/columns";
 import CreateArticleSheet from "@/components/article/modals/create-article";
 import { DataTable } from "@/components/data-table";
+import LoadingScreen from "@/components/Loading";
 import { Button } from "@/components/ui/button";
+import { useLenis } from "@/hooks/useLenis";
 
 import { Copy, PlusCircle, Printer, Share2Icon } from "lucide-react";
-import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const ArticleList = () => {
+
+   const [loading, setLoading]=useState(true)
+    //smooth scrolling effect from useLenis package
+    useLenis();
+  
+    useEffect(()=>{
+      const timeout = setTimeout(()=>{
+        setLoading(false);
+      },2000);
+      return ()=> clearTimeout(timeout)
+    },[])
   // State for articles
   const [articles, setArticles] = useState<Article[]>(articleData);
 
@@ -38,66 +50,73 @@ const ArticleList = () => {
   }
 
   return (
-    <div className="p-6">
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <div className="md:text-sm text-muted-foreground sm:text-[12px]">
-            Stock /
-          </div>
-          <h1 className="text-2xl text-[#383861] font-bold">
-            Liste d'articles
-          </h1>
-          <p className="text-muted-foreground mt-1">
-            Gérez vos articles et leurs détails
-          </p>
-        </div>
+<>
+{loading  && <LoadingScreen isVisible={loading}/>}
+{!loading && (
+   <div className="p-6">
+   <div className="flex items-center justify-between mb-6">
+     <div>
+       <div className="md:text-sm text-muted-foreground sm:text-[12px]">
+         Stock /
+       </div>
+       <h1 className="text-2xl text-[#383861] font-bold">
+         Liste d'articles
+       </h1>
+       <p className="text-muted-foreground mt-1">
+         Gérez vos articles et leurs détails
+       </p>
+     </div>
 
-        <div className="flex items-center md:gap-4 sm:gap-1 sm:mt-1">
-          <div className="flex items-center md:gap-2 sm:gap-1 cursor-pointer">
-            {[Copy, Printer, Share2Icon].map((Icon, index) => (
-              <div
-                key={index}
-                className="relative flex justify-center items-center w-10 h-10 rounded-full bg-white shadow-lg shadow-black/5 before:absolute before:inset-0 before:m-[8.334%] before:rounded-[inherit] before:border before:border-gray-700/5 before:bg-gray-200/60 before:[mask-image:linear-gradient(to_bottom,black,transparent)]"
-              >
-                <Icon className="h-4 w-4" />
-              </div>
-            ))}
-          </div>
+     <div className="flex items-center md:gap-4 sm:gap-1 sm:mt-1">
+       <div className="flex items-center md:gap-2 sm:gap-1 cursor-pointer">
+         {[Copy, Printer, Share2Icon].map((Icon, index) => (
+           <div
+             key={index}
+             className="relative flex justify-center items-center w-10 h-10 rounded-full bg-white shadow-lg shadow-black/5 before:absolute before:inset-0 before:m-[8.334%] before:rounded-[inherit] before:border before:border-gray-700/5 before:bg-gray-200/60 before:[mask-image:linear-gradient(to_bottom,black,transparent)]"
+           >
+             <Icon className="h-4 w-4" />
+           </div>
+         ))}
+       </div>
 
-          <div className="border-l border mx-4 sm:mx-2 h-8" />
+       <div className="border-l border mx-4 sm:mx-2 h-8" />
 
-          <div className="flex md:gap-4 sm:gap-1 sm:mr-2">
-            <Button
-              className="bg-[#023E8A] hover:bg-[#3BCEAB] text-[#F2F9F3] flex items-center"
-              onClick={() => setSheetOpen(true)}
-            >
-              <PlusCircle className="h-4 w-4 mr-2" />
-              <span className="hidden md:inline">Nouveau article</span>
-            </Button>
-          </div>
-        </div>
-      </div>
-      <div className="bg-white rounded-lg shadow-sm p-4">
-        <DataTable
-          data={articles}
-          columns={columns(handleEdit, handleDelete)}
-          filterKey="title"
-          filterPlaceholder="Filtrer par titre..."
-          columnLabels={{
-            serieNbr: "N° de Série",
-            title: "Titre",
-            category: "Categorie",
-            unitCost: "Coût Unitaire",
-            salePrice: "Prix de Vente",
-            stock: "Stock",
-            unit: "Unité de vente",
-          }}
-        />
-      </div>
+       <div className="flex md:gap-4 sm:gap-1 sm:mr-2">
+         <Button
+           className="bg-[#023E8A] hover:bg-[#3BCEAB] text-[#F2F9F3] flex items-center"
+           onClick={() => setSheetOpen(true)}
+         >
+           <PlusCircle className="h-4 w-4 mr-2" />
+           <span className="hidden md:inline">Nouveau article</span>
+         </Button>
+       </div>
+     </div>
+   </div>
+   <div className="bg-white rounded-lg shadow-sm p-4">
+     <DataTable
+       data={articles}
+       columns={columns(handleEdit, handleDelete)}
+       filterKey="title"
+       filterPlaceholder="Filtrer par titre..."
+       columnLabels={{
+         serieNbr: "N° de Série",
+         title: "Titre",
+         category: "Categorie",
+         unitCost: "Coût Unitaire",
+         salePrice: "Prix de Vente",
+         stock: "Stock",
+         unit: "Unité de vente",
+       }}
+     />
+   </div>
 
-            {/* Sheet component for creating a new article */}
-            <CreateArticleSheet open={sheetOpen} onOpenChange={setSheetOpen} onSave={handleCreate} />
-    </div>
+         {/* Sheet component for creating a new article */}
+         <CreateArticleSheet open={sheetOpen} onOpenChange={setSheetOpen} onSave={handleCreate} />
+ </div>
+
+)}
+   
+</>
   );
 };
 

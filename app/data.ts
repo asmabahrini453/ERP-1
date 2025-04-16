@@ -3,6 +3,7 @@
 import type { Article } from "@/components/article/columns";
 import { Collaborator } from "@/components/collaborator/columns";
 import { nomenclatureFormValues } from "@/lib/validations/schema";
+import { entrepotFormValues } from "@/lib/validations/schema";
 
 export const articleData: Article[] = [
   {
@@ -495,5 +496,33 @@ export const ofData = [
   
     dateDebutReel: new Date("2025-04-12"),
     dateFinReelle: new Date("2025-04-20"),
+  },
+];
+
+
+export const entrepotData: entrepotFormValues[] = [
+  {
+    id: "1",
+    reference: "ENTR-001",
+    nomDeEntrepot: "Entrepôt Central",
+    type: "Transit",
+    statut: "Actif",
+    categorie: "Entrepôt collectif",
+  },
+  {
+    id: "2",
+    reference: "ENTR-002",
+    nomDeEntrepot: "Zone de Rebut",
+    type: "Transit",
+    statut: "Inactif",
+    categorie: "Entrepôt de rebut",
+  },
+  {
+    id: "3",
+    reference: "ENTR-003",
+    nomDeEntrepot: "Entrepôt Sud",
+    type: "Transit",
+    statut: "Actif",
+    categorie: "Entrepôt collectif",
   },
 ];

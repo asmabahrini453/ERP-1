@@ -2,17 +2,18 @@
 
 import { nomenclatureData } from "@/app/data";
 import { DataTable } from "@/components/data-table";
+import LoadingScreen from "@/components/Loading";
 import { columns, Nomenclature } from "@/components/nomenclature/columns";
 import CreateNomenclatureSheet from "@/components/nomenclature/modals/create-nomenclature";
 import { Button } from "@/components/ui/button";
-
+import { useLenis } from "@/hooks/useLenis";
 import {
   Copy,
   PlusCircle,
   Printer,
   Share2Icon,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const NomenclatureList = () => {
   const [nomenclatures, setNomenclatures] = useState<Nomenclature[]>(nomenclatureData);
@@ -36,8 +37,23 @@ const NomenclatureList = () => {
     setNomenclatures((prev) => [...prev, newNomenclature])
   }
 
+  const [loading, setLoading]=useState(true)
+  //smooth scrolling effect from useLenis package
+  useLenis();
+
+  useEffect(()=>{
+    const timeout = setTimeout(()=>{
+      setLoading(false);
+    },2000);
+    return ()=> clearTimeout(timeout)
+  },[])
+
+
   return (
-    <div className="p-6">
+  <>
+    {loading && <LoadingScreen isVisible={loading}/>}
+    {!loading && (
+      <div className="p-6">
       <div className="flex items-center justify-between mb-6">
         <div>
           <div className="md:text-sm text-muted-foreground sm:text-[12px]">
@@ -98,6 +114,8 @@ const NomenclatureList = () => {
 
       <CreateNomenclatureSheet open={sheetOpen} onOpenChange={setSheetOpen} onSave={handleCreate} />
     </div>
+    )}
+  </>
   );
 };
 

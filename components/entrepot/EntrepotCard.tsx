@@ -1,8 +1,7 @@
 "use client"
 import { Pencil, ChevronDown, Info, Paperclip  } from "lucide-react"
-import Avatar from "@/assets/images/asma.jpg"
-import Image from "next/image"
 import { useState } from "react"
+
 interface EntrepotCardProps {
     entrepotDetails: {
     nomDeEntrepot: string
@@ -61,7 +60,7 @@ const EntrepotCard = ({
       {/* Attributes section */}
       <div className="p-4 border-b">
         <div className="flex items-center justify-center mb-4 mt-2">
-          <span className="text-[16px] font-semibold text-[#747487]">Attributs d'article</span>
+          <span className="text-[16px] font-semibold text-[#747487]">Attributs</span>
           <svg
             className="h-4 w-4 text-[#747487] ml-[10px]"
             viewBox="0 0 24 24"
