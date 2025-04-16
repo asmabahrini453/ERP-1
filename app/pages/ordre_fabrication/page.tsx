@@ -13,6 +13,7 @@ import {
 import Link from "next/link";
 import { useState } from "react";
 import type { OF } from "@/components/OF/columns";
+import CreateOFSheet from "@/components/OF/modals/create-OF";
 
 const OfList = () => {
   const [of, setOf] = useState<OF[]>(ofData);
@@ -26,7 +27,10 @@ const OfList = () => {
   const handleDelete = (ofToDelete: OF) => {
     setOf(prev => prev.filter(item => item.id !== ofToDelete.id));
   };
-
+  const [sheetOpen, setSheetOpen] = useState(false)
+  const handleCreate = (newOF: OF) => {
+    setOf((prev) => [...prev, newOF])
+  }
   return (
     <div className="p-6">
       <div className="flex items-center justify-between mb-6">
@@ -57,12 +61,13 @@ const OfList = () => {
           <div className="border-l mx-4 sm:mx-2 h-8" />
 
           <div className="flex md:gap-4 sm:gap-1 sm:mr-2">
-            <Link href="/pages/ordre_fabrication/create">
-              <Button className="bg-[#023E8A] hover:bg-[#3BCEAB] text-[#F2F9F3] flex items-center">
-                <PlusCircle className="h-4 w-4 mr-2" />
-                <span className="hidden md:inline">Nouveau ordre de fabrication</span>
-              </Button>
-            </Link>
+            <Button
+              className="bg-[#023E8A] hover:bg-[#3BCEAB] text-[#F2F9F3] flex items-center"
+              onClick={() => setSheetOpen(true)}
+            >
+              <PlusCircle className="h-4 w-4 mr-2" />
+              <span className="hidden md:inline">Nouveau ordre de fabrication</span>
+            </Button>
           </div>
         </div>
       </div>
@@ -84,6 +89,8 @@ const OfList = () => {
           }}
         />
       </div>
+
+      <CreateOFSheet open={sheetOpen} onOpenChange={setSheetOpen} onSave={handleCreate} />
     </div>
   );
 };
