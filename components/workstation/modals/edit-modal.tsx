@@ -1,9 +1,8 @@
 "use client";
 import {
-  categoriesEntrepot,
-  entrepotFormValues,
-  entrepotSchema,
-  type,
+  workstationFormValues,
+  workstationSchema,
+  workstationtype,
 } from "@/lib/validations/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -27,40 +26,42 @@ import {
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
-import { Entrepot } from "../columns";
+import { Workstation } from "../columns";
 
 interface EditDialogProps {
-  entrepotData?: entrepotFormValues;
-  onSave: (updated: Entrepot) => void;
+  workstationData?: workstationFormValues;
+  onSave: (updated: Workstation) => void;
 }
 
-const EditDialog = ({ entrepotData, onSave }: EditDialogProps) => {
+const EditDialog = ({ workstationData, onSave }: EditDialogProps) => {
   const { toast } = useToast();
 
   //define the edit form
-  const editForm = useForm<entrepotFormValues>({
-    resolver: zodResolver(entrepotSchema),
-    defaultValues: entrepotData || {
-      reference: "",
-      nomDeEntrepot: "",
-      type: "Transit",
-      categorie: "Entrepôt collectif",
+  const editForm = useForm<workstationFormValues>({
+    resolver: zodResolver(workstationSchema),
+    defaultValues: workstationData || {
+      nom: "",
+      capacite:0,
+      heures:0,
+      type: "Assemblage",
       statut: "Actif",
+
+   
     },
   });
 
-  function onSubmit(data: entrepotFormValues) {
+  function onSubmit(data: workstationFormValues) {
     console.log(data);
 
-    const updatedEntrepot: Entrepot = {
+    const updatedWorkstation: Workstation = {
       ...data,
-      id: entrepotData?.id ?? "",
+      id: workstationData?.id ?? "",
     };
-    onSave(updatedEntrepot);
+    onSave(updatedWorkstation);
 
     toast({
       title: "Succès",
-      description: "Entrepôt a été mis à jour avec succès",
+      description: "Station de travail a été mis à jour avec succès",
     });
   }
 
@@ -68,7 +69,7 @@ const EditDialog = ({ entrepotData, onSave }: EditDialogProps) => {
     <div className=" max-w-md ">
       <DialogHeader className="flex items-start mb-6">
         <DialogTitle className="text-xl section-title ">
-          Modifier les détails de l'entrepôt
+          Modifier les détails du station de travail
         </DialogTitle>
       </DialogHeader>
 
@@ -80,16 +81,16 @@ const EditDialog = ({ entrepotData, onSave }: EditDialogProps) => {
           >
             <FormField
               control={editForm.control}
-              name="reference"
+              name="nom"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-base font-medium">
-                    Réference
+                  Nom
                   </FormLabel>
                   <FormControl>
                     <Input
                       type="text"
-                      placeholder="Réference"
+                      placeholder="Nom"
                       className="h-10 rounded-md"
                       {...field}
                     />
@@ -99,21 +100,27 @@ const EditDialog = ({ entrepotData, onSave }: EditDialogProps) => {
               )}
             />
 
-            <FormField
+<FormField
               control={editForm.control}
-              name="nomDeEntrepot"
+              name="capacite"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-base font-medium">
-                    Nom de l'entrepôt
-                  </FormLabel>
+                  <FormLabel className="text-base font-medium"> Capacité de travail</FormLabel>
                   <FormControl>
-                    <Input
-                      type="text"
-                      placeholder="Nom de l'entrepôt"
-                      className="h-10 rounded-md"
-                      {...field}
-                    />
+                    <Input type="number" placeholder="0" className="h-10 rounded-md" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+<FormField
+              control={editForm.control}
+              name="heures"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-base font-medium">  Total des Heures Travaillées</FormLabel>
+                  <FormControl>
+                    <Input type="number" placeholder="0" className="h-10 rounded-md" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -126,8 +133,8 @@ const EditDialog = ({ entrepotData, onSave }: EditDialogProps) => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-base font-medium">
-                    Type
-                  </FormLabel>
+                  Type
+                                    </FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
@@ -138,7 +145,7 @@ const EditDialog = ({ entrepotData, onSave }: EditDialogProps) => {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      {type.map((t, i) => (
+                      {workstationtype.map((t, i) => (
                         <SelectItem key={i} value={t}>
                           {t}
                         </SelectItem>
@@ -150,35 +157,6 @@ const EditDialog = ({ entrepotData, onSave }: EditDialogProps) => {
               )}
             />
 
-            <FormField
-              control={editForm.control}
-              name="categorie"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-base font-medium">
-                    Catégorie
-                  </FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger className="h-10 rounded-md">
-                        <SelectValue placeholder="Veuillez choisir un type" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {categoriesEntrepot.map((t, i) => (
-                        <SelectItem key={i} value={t}>
-                          {t}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
 
 <FormField
   control={editForm.control}

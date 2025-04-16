@@ -526,3 +526,41 @@ export const entrepotData: entrepotFormValues[] = [
     categorie: "Entrepôt collectif",
   },
 ];
+
+
+import { type workstationFormValues } from "@/lib/validations/schema";
+
+export const workstationData: workstationFormValues[] = [
+  {
+    id: "ws-001",
+    nom: "Poste Assemblage 1",
+    capacite: 5,
+    heures: 8,
+    type: "Assemblage",
+    statut: "Actif",
+  },
+  {
+    id: "ws-002",
+    nom: "Poste Découpe A",
+    capacite: 3,
+    heures: 6,
+    type: "Découpe",
+    statut: "Actif",
+  },
+  {
+    id: "ws-003",
+    nom: "Poste Emballage Final",
+    capacite: 4,
+    heures: 7.5,
+    type: "Packaging",
+    statut: "Inactif",
+  },
+  {
+    id: "ws-004",
+    nom: "Poste Assemblage 2",
+    capacite: 2,
+    heures: 5,
+    type: "Assemblage",
+    statut: "Actif",
+  },
+];

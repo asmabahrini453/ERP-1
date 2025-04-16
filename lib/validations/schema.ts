@@ -91,3 +91,20 @@ export const entrepotSchema = z.object({
   categorie: z.enum(categoriesEntrepot)
 });
 export type entrepotFormValues = z.infer<typeof entrepotSchema> ; 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+export const workstationtype = [
+  "Assemblage",
+  "Découpe", "Packaging"
+] as const;
+
+export const workstationSchema = z.object({
+  id: z.string(),
+  nom: z.string().min(1,"Nom est obligatoire"),
+  capacite: z.coerce.number().min(0, "Capacité est obligatoire"),
+  heures:z.coerce.number(),
+  type:z.enum(workstationtype),
+  statut:z.enum(statuts),
+ 
+});
+export type workstationFormValues = z.infer<typeof workstationSchema> ; 
+
