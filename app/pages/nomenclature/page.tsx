@@ -1,9 +1,9 @@
 "use client";
 
-
 import { nomenclatureData } from "@/app/data";
 import { DataTable } from "@/components/data-table";
 import { columns, Nomenclature } from "@/components/nomenclature/columns";
+import CreateNomenclatureSheet from "@/components/nomenclature/modals/create-nomenclature";
 import { Button } from "@/components/ui/button";
 
 import {
@@ -31,6 +31,11 @@ const NomenclatureList = () => {
       prev.filter(col => col.id !== nomenclatureToDelete.id)
     );
   };
+
+  const [sheetOpen, setSheetOpen] = useState(false)
+  const handleCreate = (newNomenclature: Nomenclature) => {
+    setNomenclatures((prev) => [...prev, newNomenclature])
+  }
 
   return (
     <div className="p-6">
@@ -62,12 +67,13 @@ const NomenclatureList = () => {
           <div className="border-l border mx-4 sm:mx-2 h-8" />
 
           <div className="flex md:gap-4 sm:gap-1 sm:mr-2">
-            <Link href="/pages/nomenclature/create">
-              <Button className="bg-[#023E8A] hover:bg-[#3BCEAB] text-[#F2F9F3] flex items-center">
-                <PlusCircle className="h-4 w-4" />
-                <span className="hidden md:inline">Nouvelle nomenclatures</span>
-              </Button>
-            </Link>
+            <Button
+              className="bg-[#023E8A] hover:bg-[#3BCEAB] text-[#F2F9F3] flex items-center"
+              onClick={() => setSheetOpen(true)}
+            >
+              <PlusCircle className="h-4 w-4 mr-2" />
+              <span className="hidden md:inline">Nouvelle nomenclature</span>
+            </Button>
           </div>
         </div>
       </div>
@@ -90,6 +96,8 @@ const NomenclatureList = () => {
                   }}
                 />
       </div>
+
+      <CreateNomenclatureSheet open={sheetOpen} onOpenChange={setSheetOpen} onSave={handleCreate} />
     </div>
   );
 };
