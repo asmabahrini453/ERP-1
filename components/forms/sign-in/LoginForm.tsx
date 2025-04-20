@@ -27,7 +27,7 @@ const LoginForm = () => {
       </div>
 
       <Button type="submit" className="w-full bg-[#023E8A] hover:bg-[#3BCEAB]">
-      <Link href="/pages/article" >
+      <Link href="/pages/dashboard" >
             Connectez-vous
           </Link>
       </Button>
