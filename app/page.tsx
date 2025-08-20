@@ -38,7 +38,7 @@ export default function Home() {
       <>
        <Header />
       <section id="hero-section" className="relative">
-        <ParticleNetwork />
+        {/* <ParticleNetwork /> */}
         <Hero />
       </section>
 
