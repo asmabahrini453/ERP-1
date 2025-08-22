@@ -45,11 +45,11 @@ const Layout = async ({ children }: Props) => {
      
       <div className="hidden lg:flex flex-1 w-full max-h-full max-w-4000px overflow-hidden relative bg-cream flex-col pt-10 pl-24 gap-3 bg-gradient-to-b from-[#FFFFFF] to-[#b4d0f4]">
         <h2 className="section-title md:text-4xl text-left"> Bonjour, connectez-vous à ERP Pro ! </h2>
-        {/* <p className="section-description text-muted-foreground mt-3 text-left mr-4">
+        <p className="section-description text-muted-foreground mt-3 text-left mr-4">
           Gérez vos tâches, optimisez vos flux de travail et boostez votre productivité avec notre ERP tout-en-un ...
           <br />
           Allons-y 🚀
-        </p> */}
+        </p>
 
         <div className="relative mt-3 shadow-[rgba(116,116,135,0.5)_0_4px_16px] rounded-lg  !w-[850px]">
        
